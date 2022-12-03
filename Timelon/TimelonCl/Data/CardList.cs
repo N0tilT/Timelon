@@ -104,7 +104,7 @@ namespace TimelonCl.Data
         /// Конструктор списка из заданного списка карт
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
-        /// <param name="name">Название списка</param>
+        /// <param name="name">Название</param>
         /// <param name="isEssential">Статус закрепления</param>
         /// <param name="list">Список карт</param>
         public CardList(int id, string name, bool isEssential, List<Card> list) : this(id, name, isEssential)
@@ -119,7 +119,7 @@ namespace TimelonCl.Data
         /// Конструктор пустого списка
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
-        /// <param name="name">Название списка</param>
+        /// <param name="name">Название</param>
         /// <param name="isEssential">Статус закрепления</param>
         /// <exception cref="ArgumentException"></exception>
         public CardList(int id, string name, bool isEssential = false) : base(id, name)
@@ -191,16 +191,7 @@ namespace TimelonCl.Data
         /// <returns>Список карт</returns>
         public List<Card> GetListDefault(SortOrder order = SortOrder.Descending)
         {
-            Sort(order);
-
-            List<Card> result = new List<Card>();
-
-            foreach (int id in _idListDefault)
-            {
-                result.Add(Get(id));
-            }
-
-            return result;
+            return GetListSorted(_idListDefault, order);
         }
 
         /// <summary>
@@ -212,16 +203,7 @@ namespace TimelonCl.Data
         /// <returns>Список карт</returns>
         public List<Card> GetListImportant(SortOrder order = SortOrder.Descending)
         {
-            Sort(order);
-
-            List<Card> result = new List<Card>();
-
-            foreach (int id in _idListImportant)
-            {
-                result.Add(Get(id));
-            }
-
-            return result;
+            return GetListSorted(_idListImportant, order);
         }
 
         /// <summary>
@@ -233,16 +215,7 @@ namespace TimelonCl.Data
         /// <returns>Список карт</returns>
         public List<Card> GetListCompleted(SortOrder order = SortOrder.Descending)
         {
-            Sort(order);
-
-            List<Card> result = new List<Card>();
-
-            foreach (int id in _idListCompleted)
-            {
-                result.Add(Get(id));
-            }
-
-            return result;
+            return GetListSorted(_idListCompleted, order);
         }
 
         /// <summary>
@@ -272,6 +245,20 @@ namespace TimelonCl.Data
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Получить список карт по дате обновления без учета времени
+        /// </summary>
+        /// <param name="date">Дата обновления</param>
+        /// <returns>Список карт</returns>
+        public List<Card> SearchByDateUpdated(DateTime date)
+        {
+            // Поиск карт, обновленных в определенный день указанной даты
+            DateTime min = new DateTime(date.Year, date.Month, date.Day);
+            DateTime max = min.AddHours(23).AddMinutes(59);
+
+            return SearchByDateUpdated(min, max);
         }
 
         /// <summary>
@@ -332,6 +319,26 @@ namespace TimelonCl.Data
         public bool Contains(int id)
         {
             return All.ContainsKey(id);
+        }
+
+        /// <summary>
+        /// Получить отсортированный список карт
+        /// </summary>
+        /// <param name="source">Источник</param>
+        /// <param name="order">Статус сортировки</param>
+        /// <returns>Список карт</returns>
+        private List<Card> GetListSorted(List<int> source, SortOrder order = SortOrder.Descending)
+        {
+            Sort(order);
+
+            List<Card> result = new List<Card>();
+
+            foreach (int id in source)
+            {
+                result.Add(Get(id));
+            }
+
+            return result;
         }
 
         /// <summary>

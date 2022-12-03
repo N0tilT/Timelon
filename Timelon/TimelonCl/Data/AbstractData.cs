@@ -10,7 +10,7 @@ namespace TimelonCl.Data
     /// </summary>
     public interface IUniqueIdentifiable
     {
-        //
+        // PASS
     }
 
     /// <summary>
@@ -43,7 +43,6 @@ namespace TimelonCl.Data
     {
         [XmlAttribute]
         public int Id;
-
         public string Name;
     }
 
@@ -61,7 +60,7 @@ namespace TimelonCl.Data
         /// Зарегистрировать уникальный идентификатор в текущей сессии
         /// </summary>
         /// <param name="id">Идентификатор</param>
-        protected static void Register(int id)
+        private static void Register(int id)
         {
             if (id <= _incrementor)
             {

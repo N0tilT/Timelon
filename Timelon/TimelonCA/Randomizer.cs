@@ -98,10 +98,7 @@ namespace TimelonCA
         /// <returns>Карта со случайными данными</returns>
         public static Card RandomCard()
         {
-            Card card = Card.Make(
-                Random.NextString(4, 8),
-                Random.NextDateTime()
-            );
+            Card card = Card.Make(Random.NextString(4, 8), Random.NextDateTime());
 
             card.Description = Random.NextString(16, 32);
             card.IsImportant = Random.NextBool();

@@ -16,7 +16,7 @@ namespace TimelonCA
         /// </summary>
         public void TestRandomCard()
         {
-            Console.WriteLine("TestRandomCard:");
+            Console.WriteLine("Создание случайных карт:");
 
             for (int i = 0; i < 3; i++)
             {
@@ -31,32 +31,29 @@ namespace TimelonCA
         /// </summary>
         public void TestCardList()
         {
-            Console.WriteLine("TestCardList:");
+            Console.WriteLine("Создание случайного списка карт и сортировки:");
 
             CardList list = Randomizer.RandomCardList(20);
 
             Console.WriteLine();
-            Console.WriteLine("DEFAULT LIST UNSORTED:");
+            Console.WriteLine("В произвольном порядке:");
 
-            // В произвольном порядке
             foreach (Card card in list.GetListDefault(SortOrder.Unsorted))
             {
                 Console.WriteLine(card);
             }
 
             Console.WriteLine();
-            Console.WriteLine("IMPORTANT ASCENDING:");
+            Console.WriteLine("Важные по дате обновления по возрастанию:");
 
-            // Сортировка важных по дате обновления по возрастанию
             foreach (Card card in list.GetListImportant(SortOrder.Ascending))
             {
                 Console.WriteLine(card);
             }
 
             Console.WriteLine();
-            Console.WriteLine("COMPLETED DESCENDING:");
+            Console.WriteLine("Выполненные по дате обновления по убыванию:");
 
-            // Сортировка выполненных по дате обновления по убыванию
             foreach (Card card in list.GetListCompleted(SortOrder.Descending))
             {
                 Console.WriteLine(card);
@@ -70,7 +67,7 @@ namespace TimelonCA
         /// </summary>
         public void TestCardListManager()
         {
-            Console.WriteLine("TestCardListManager:");
+            Console.WriteLine("Создание случайных списков карт в менеджере и работа с данными:");
 
             Manager manager = Manager.Instance;
 
@@ -99,39 +96,40 @@ namespace TimelonCA
         /// </summary>
         public void MeasureCardListOperationsTime()
         {
-            Console.WriteLine("MeasureCardListOperations:");
+            Console.WriteLine("Замер времени выполнения основных операций списка карт:");
 
             Stopwatch watch = new Stopwatch();
+            int cardCount = 100000;
 
             watch.Start();
-            CardList list = Randomizer.RandomCardList(100000);
+            CardList list = Randomizer.RandomCardList(cardCount);
             watch.Stop();
 
-            Console.WriteLine($"Создание случайного списка карт (100000): {watch.Elapsed}");
+            Console.WriteLine($"Создание случайного списка карт ({cardCount}): {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Unsorted);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка в произвольном порядке (100000): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка в произвольном порядке ({cardCount}): {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Ascending);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка по возрастанию (100000): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка по возрастанию ({cardCount}): {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Descending);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка по убыванию (100000): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка по убыванию ({cardCount}): {watch.Elapsed}");
 
             watch.Restart();
             list.SearchByContent(Randomizer.Random.NextString(4, 8));
             watch.Stop();
 
-            Console.WriteLine($"Поиск по части названия или описания карты (100000): {watch.Elapsed}");
+            Console.WriteLine($"Поиск по части названия или описания карты ({cardCount}): {watch.Elapsed}");
 
             DateTime date = Randomizer.Random.NextDateTime();
 
@@ -139,7 +137,7 @@ namespace TimelonCA
             list.SearchByDateUpdated(date, date.AddDays(120));
             watch.Stop();
 
-            Console.WriteLine($"Поиск по дате обновления карты (100000): {watch.Elapsed}");
+            Console.WriteLine($"Поиск по дате обновления карты ({cardCount}): {watch.Elapsed}");
         }
     }
 }
