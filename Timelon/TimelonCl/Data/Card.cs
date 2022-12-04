@@ -161,19 +161,6 @@ namespace TimelonCl.Data
     public class Card : Unique<Card>, IUniqueIdentifiable
     {
         /// <summary>
-        /// Создать новую карту
-        /// </summary>
-        /// <param name="name">Название</param>
-        /// <param name="created">Дата создания или null</param>
-        /// <returns>Новая карта</returns>
-        public static Card Make(string name, DateTime? created = null)
-        {
-            DateTimeContainer date = new DateTimeContainer(created ?? DateTime.Now);
-
-            return new Card(UniqueId(), name, date);
-        }
-
-        /// <summary>
         /// Создать объект из контейнера с данными
         /// </summary>
         /// <param name="data">Контейнер с данными</param>
@@ -230,6 +217,16 @@ namespace TimelonCl.Data
         public Card(int id, string name, DateTimeContainer date) : base(id, name)
         {
             Date = date;
+        }
+
+        /// <summary>
+        /// Базовый конструктор с автоматическим определением идентификатора
+        /// </summary>
+        /// <param name="name">Название</param>
+        /// <param name="date">Контейнер с датами или null</param>
+        public Card(string name, DateTimeContainer date = null) : base(name)
+        {
+            Date = date ?? DateTimeContainer.Now;
         }
 
         /// <summary>

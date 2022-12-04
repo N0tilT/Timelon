@@ -318,7 +318,7 @@ namespace TimelonWPF
                     (addListCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        CardList newList = CardList.Make(tmp.Text);
+                        CardList newList = new CardList(tmp.Text);
                         ListManager.SetList(newList);
                         Lists.Add(newList);
                         SelectedList = newList;
@@ -341,7 +341,7 @@ namespace TimelonWPF
                     (addCardCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        Card newCard = Card.Make(tmp.Text);
+                        Card newCard = new Card(tmp.Text);
                         SelectedList.Set(newCard);
                         DefaultCards.Add(newCard);
                         SelectedCard = newCard;

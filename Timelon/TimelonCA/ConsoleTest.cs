@@ -14,11 +14,12 @@ namespace TimelonCA
         /// <summary>
         /// Запустить тест создания случайных карт
         /// </summary>
-        public void TestRandomCard()
+        /// <param name="cardCount">Количество карт</param>
+        public void TestRandomCard(int cardCount)
         {
             Console.WriteLine("Создание случайных карт:");
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < cardCount; i++)
             {
                 Console.WriteLine(Randomizer.RandomCard());
             }
@@ -29,11 +30,12 @@ namespace TimelonCA
         /// <summary>
         /// Запустить тест создания случайного списка карт и сортировки
         /// </summary>
-        public void TestCardList()
+        /// <param name="cardCount">Количество карт в списке</param>
+        public void TestCardList(int cardCount)
         {
             Console.WriteLine("Создание случайного списка карт и сортировки:");
 
-            CardList list = Randomizer.RandomCardList(20);
+            CardList list = Randomizer.RandomCardList(cardCount);
 
             Console.WriteLine();
             Console.WriteLine("В произвольном порядке:");
@@ -65,7 +67,9 @@ namespace TimelonCA
         /// <summary>
         /// Запустить тест создания случайных списков карт в менеджере и работы с данными
         /// </summary>
-        public void TestCardListManager()
+        /// <param name="cardlistCount">Количество списков</param>
+        /// <param name="cardCount">Количество карт в списке</param>
+        public void TestCardListManager(int cardlistCount, int cardCount)
         {
             Console.WriteLine("Создание случайных списков карт в менеджере и работа с данными:");
 
@@ -76,9 +80,9 @@ namespace TimelonCA
             // Но идентификаторы продолжат инкременироваться (это ок)
             manager.All.Clear();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < cardlistCount; i++)
             {
-                manager.SetList(Randomizer.RandomCardList(5));
+                manager.SetList(Randomizer.RandomCardList(cardCount));
             }
 
             manager.Sync();
@@ -94,12 +98,12 @@ namespace TimelonCA
         /// <summary>
         /// Замерить время выполнения основных операций списка карт
         /// </summary>
-        public void MeasureCardListOperationsTime()
+        /// <param name="cardCount">Количество карт в списке</param>
+        public void MeasureCardListOperationsTime(int cardCount)
         {
             Console.WriteLine("Замер времени выполнения основных операций списка карт:");
 
             Stopwatch watch = new Stopwatch();
-            int cardCount = 100000;
 
             watch.Start();
             CardList list = Randomizer.RandomCardList(cardCount);

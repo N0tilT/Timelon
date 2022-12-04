@@ -12,10 +12,10 @@ namespace TimelonCA
             ConsoleTest test = new ConsoleTest();
 
             // Запуск цепочки тестирования в консоли
-            test.TestRandomCard();
-            test.TestCardList();
-            test.TestCardListManager();
-            test.MeasureCardListOperationsTime();
+            test.TestRandomCard(3);
+            test.TestCardList(20);
+            test.TestCardListManager(3, 5);
+            test.MeasureCardListOperationsTime(100000);
 
             Console.ReadKey();
         }

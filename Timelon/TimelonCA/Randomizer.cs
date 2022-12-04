@@ -93,12 +93,21 @@ namespace TimelonCA
         public static ExtendedRandom Random => _random;
 
         /// <summary>
+        /// Создать случайный контейнер дат
+        /// </summary>
+        /// <returns>Контейнер со случайной датой создания</returns>
+        public static DateTimeContainer RandomDateTimeContainer()
+        {
+            return new DateTimeContainer(Random.NextDateTime());
+        }
+
+        /// <summary>
         /// Создать случайную карту
         /// </summary>
         /// <returns>Карта со случайными данными</returns>
         public static Card RandomCard()
         {
-            Card card = Card.Make(Random.NextString(4, 8), Random.NextDateTime());
+            Card card = new Card(Random.NextString(4, 8), RandomDateTimeContainer());
 
             card.Description = Random.NextString(16, 32);
             card.IsImportant = Random.NextBool();
@@ -114,7 +123,7 @@ namespace TimelonCA
         /// <returns>Случайный список карт</returns>
         public static CardList RandomCardList(int cardCount)
         {
-            CardList list = CardList.Make(Random.NextString(8, 16));
+            CardList list = new CardList(Random.NextString(8, 16));
 
             for (int i = 0; i < cardCount; i++)
             {

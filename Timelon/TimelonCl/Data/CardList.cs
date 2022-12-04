@@ -38,16 +38,6 @@ namespace TimelonCl.Data
     public class CardList : Unique<CardList>, IUniqueIdentifiable
     {
         /// <summary>
-        /// Создать новый список карт
-        /// </summary>
-        /// <param name="name">Название</param>
-        /// <returns>Новый список карт</returns>
-        public static CardList Make(string name)
-        {
-            return new CardList(UniqueId(), name);
-        }
-
-        /// <summary>
         /// Создать объект из контейнера с данными
         /// </summary>
         /// <param name="data">Контейнер с данными</param>
@@ -125,6 +115,15 @@ namespace TimelonCl.Data
         public CardList(int id, string name, bool isEssential = false) : base(id, name)
         {
             IsEssential = isEssential;
+        }
+
+        /// <summary>
+        /// Базовый конструктор с автоматическим определением идентификатора
+        /// </summary>
+        /// <param name="name">Название</param>
+        public CardList(string name) : base(name)
+        {
+            // PASS
         }
 
         /// <summary>
@@ -233,12 +232,10 @@ namespace TimelonCl.Data
             {
                 if (!item.Value.Name.ToLower().Contains(content))
                 {
-                    continue;
-                }
-
-                if (!item.Value.Description.ToLower().Contains(content))
-                {
-                    continue;
+                    if (!item.Value.Description.ToLower().Contains(content))
+                    {
+                        continue;
+                    }
                 }
 
                 result.Add(item.Value);

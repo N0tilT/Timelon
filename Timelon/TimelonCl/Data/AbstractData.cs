@@ -74,7 +74,7 @@ namespace TimelonCl.Data
         /// Получить следующий уникальный идентификатор
         /// </summary>
         /// <returns>Уникальный идентификатор</returns>
-        protected static int UniqueId()
+        private static int UniqueId()
         {
             int result = _incrementor;
 
@@ -101,6 +101,15 @@ namespace TimelonCl.Data
         {
             Id = id;
             Name = name;
+        }
+
+        /// <summary>
+        /// Конструктор с автоматическим определением идентификатора
+        /// </summary>
+        /// <param name="name">Название</param>
+        public Unique(string name) : this(UniqueId(), name)
+        {
+            // PASS
         }
 
         /// <summary>
