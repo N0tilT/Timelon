@@ -123,7 +123,7 @@ namespace TimelonWPF
         /// <param name="e"></param>
         private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            viewModel.ListManager.Sync();
+            viewModel.ListManager.SaveData();
             this.Close();
         }
 

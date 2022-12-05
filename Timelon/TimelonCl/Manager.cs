@@ -70,7 +70,7 @@ namespace TimelonCl
         /// </summary>
         private Manager()
         {
-            Load();
+            LoadData();
         }
 
         /// <summary>
@@ -148,6 +148,87 @@ namespace TimelonCl
         }
 
         /// <summary>
+        /// Сохранить данные
+        /// </summary>
+        public void SaveData()
+        {
+            CreateDataSource();
+
+            // Внедряем закрепленные списки карт в начало
+            InjectEssentials();
+
+            List<CardListData> data = new List<CardListData>();
+
+            foreach (KeyValuePair<int, CardList> item in All)
+            {
+                data.Add(item.Value.ToData());
+            }
+
+            WriteCardListData(data);
+        }
+
+        /// <summary>
+        /// Создать файл для записи данных
+        /// </summary>
+        private void CreateDataSource()
+        {
+            Directory.CreateDirectory(SourceDirectory);
+
+            if (File.Exists(Source))
+            {
+                return;
+            }
+
+            // Пустой файл
+            File.Create(Source).Close();
+
+            // Даже если сохранять нечего
+            // В любом случае мы создадим корректную xml основу
+            // И пустой файл превратится в читаемый программой источник
+            WriteCardListData(new List<CardListData>());
+        }
+
+        /// <summary>
+        /// Записать данные в файл
+        /// </summary>
+        /// <param name="data">Данные списков карт</param>
+        private void WriteCardListData(List<CardListData> data)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
+
+            using (StreamWriter writer = new StreamWriter(Source))
+            {
+                serializer.Serialize(writer, data);
+            }
+        }
+
+        /// <summary>
+        /// Загрузить данные
+        /// </summary>
+        private void LoadData()
+        {
+            // Очищаем списки карт перед загрузкой новых
+            All.Clear();
+            CreateDataSource();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
+
+            using (StreamReader reader = new StreamReader(Source))
+            {
+                List<CardListData> data = (List<CardListData>)serializer.Deserialize(reader);
+
+                foreach (CardListData item in data)
+                {
+                    SetList(CardList.FromData(item));
+                }
+            }
+
+            // Внедряем закрепленные списки карт в конце
+            // Тем самым ограничиваем возможность их случайной перезаписи
+            InjectEssentials();
+        }
+
+        /// <summary>
         /// Внедрить закрепленные списки карт
         /// </summary>
         private void InjectEssentials()
@@ -167,74 +248,6 @@ namespace TimelonCl
                 // Это считается повреждением данных и карта будет перезаписана
                 SetList(cardList);
             }
-        }
-
-        /// <summary>
-        /// Сохранить данные в файл
-        /// </summary>
-        public void Sync()
-        {
-            Directory.CreateDirectory(SourceDirectory);
-
-            if (!File.Exists(Source))
-            {
-                // Пустой файл
-                File.Create(Source).Close();
-            }
-
-            // Внедряем закрепленные списки карт в начало
-            InjectEssentials();
-
-            List<CardListData> data = new List<CardListData>();
-
-            foreach (KeyValuePair<int, CardList> item in All)
-            {
-                data.Add(item.Value.ToData());
-            }
-
-            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
-
-            // Даже если сохранять нечего
-            // В любом случае мы создадим корректную xml основу
-            // И пустой файл превратится в читаемый программой источник
-            using (StreamWriter writer = new StreamWriter(Source))
-            {
-                serializer.Serialize(writer, data);
-            }
-        }
-
-        /// <summary>
-        /// Загрузить данные из файла
-        /// </summary>
-        private void Load()
-        {
-            Directory.CreateDirectory(SourceDirectory);
-
-            if (!File.Exists(Source))
-            {
-                // Создадим пустой xml файл
-                Sync();
-            }
-
-            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
-
-            using (StreamReader reader = new StreamReader(Source))
-            {
-                // TODO: Бросает неприятные исключения при "повреждении" данных в файле
-                List<CardListData> data = (List<CardListData>)serializer.Deserialize(reader);
-
-                // Очищаем списки карт перед загрузкой новых
-                All.Clear();
-
-                foreach (CardListData item in data)
-                {
-                    SetList(CardList.FromData(item));
-                }
-            }
-
-            // Внедряем закрепленные списки карт в конце
-            // Тем самым ограничиваем возможность их случайной перезаписи
-            InjectEssentials();
         }
     }
 }

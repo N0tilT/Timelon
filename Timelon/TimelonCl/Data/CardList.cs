@@ -381,7 +381,6 @@ namespace TimelonCl.Data
 
         /// <summary>
         /// Отсортировать списки идентификаторов
-        /// TODO: Оценить скорость
         /// </summary>
         /// <param name="order">Статус сортировки</param>
         private void Sort(SortOrder order)

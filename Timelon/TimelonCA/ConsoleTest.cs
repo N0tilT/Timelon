@@ -85,7 +85,7 @@ namespace TimelonCA
                 manager.SetList(Randomizer.RandomCardList(cardCount));
             }
 
-            manager.Sync();
+            manager.SaveData();
 
             foreach (KeyValuePair<int, CardList> item in manager.All)
             {
