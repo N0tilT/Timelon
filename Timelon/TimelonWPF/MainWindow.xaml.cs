@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using TimelonWPF;
 
 namespace TimelonWPF
 {
@@ -152,5 +153,11 @@ namespace TimelonWPF
         }
 
         #endregion Window Manager Events
+
+        private void CompleteStatus_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
+
     }
 }

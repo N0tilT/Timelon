@@ -120,7 +120,6 @@
                 <!--Меню карточек-->
                 <StackPanel Grid.Row="1"
                         Grid.Column="1">
-
                     <!--Важные-->
                     <ListBox x:Name="ImportantCardsPanel"
                              Background="Transparent"
@@ -128,11 +127,35 @@
                              ItemsSource="{Binding ImportantCards}"
                              SelectedItem="{Binding SelectedCard}"
                              GotFocus="CardButton_Click">
+                        
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Name}"
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Foreground="#CFCFCF"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Command="{Binding CardDoneCommand}"
+                                     CommandParameter="{Binding SelectedCard}">
+                                        <Image Name="CompleteStatus"
+                                         Margin="4"
+                                         Source="Images\Checkin.png"
+                                         Height="14" />
+                                    </Button>
+                                    <TextBlock Text="{Binding Name}"
                                        FontSize="14"
-                                   Style="{StaticResource CardTheme}" />
+                                       Style="{StaticResource CardTheme}" />
+                                    <Button Foreground="#CFCFCF"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Command="{Binding CardImportantCommand}"
+                                     CommandParameter="{Binding SelectedCard}">
+                                        <Image Name="HighPriority"
+                                         Margin="8"
+                                         Source="Images\Priority1.png"
+                                         Height="14"
+                                         HorizontalAlignment="Right"/>
+                                    </Button>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
@@ -186,9 +209,34 @@
                          GotFocus="CardButton_Click">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Name}"
-                                       FontSize="14"
-                                   Style="{StaticResource CardTheme}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Foreground="#CFCFCF"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Command="{Binding CardDoneCommand}"
+                                     CommandParameter="{Binding SelectedCard}">
+                                        <Image Name="CompleteStatus"
+                                         Margin="4"
+                                         Source="Images\Checkin.png"
+                                         Height="14" />
+                                    </Button>
+                                    <TextBlock Text="{Binding Name}"
+                                     FontSize="14"
+                                     Style="{StaticResource CardTheme}"
+                                     Margin="6"/>
+                                    <Button Foreground="#CFCFCF"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Command="{Binding CardImportantCommand}"
+                                     CommandParameter="{Binding SelectedCard}">
+                                        <Image Name="HighPriority"
+                                         Margin="8"
+                                         Source="Images\Priority2.png"
+                                         Height="14"
+                                         HorizontalAlignment="Right"/>
+                                    </Button>
+                                </StackPanel>
+
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
@@ -257,9 +305,21 @@
                              GotFocus="CardButton_Click">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding  Name}"
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Foreground="#CFCFCF"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Command="{Binding CardDoneCommand}"
+                                     CommandParameter="{Binding SelectedCard}">
+                                        <Image Name="CompleteStatus"
+                                         Margin="4"
+                                         Source="Images\Checkout.png"
+                                         Height="14" />
+                                    </Button>
+                                    <TextBlock Text="{Binding  Name}"
                                        FontSize="14"
                                    Style="{StaticResource CardTheme}" />
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
