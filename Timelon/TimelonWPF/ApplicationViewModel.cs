@@ -218,8 +218,9 @@ namespace TimelonWPF
             {
                 return cardDoneCommand ??
                     (cardDoneCommand = new RelayCommand(obj =>
-                    {
+                    {  
                         Card completed = obj as Card;
+                        if (completed!=null)
                         if (!completed.IsCompleted)
                         {
                             completed.IsCompleted = true;
@@ -229,6 +230,7 @@ namespace TimelonWPF
                             DefaultCards = new ObservableCollection<Card>(SelectedList.GetListDefault());
                             DoneCards = new ObservableCollection<Card>(SelectedList.GetListCompleted());
                         }
+
                     }));
             }
         }

@@ -220,10 +220,11 @@
                                          Source="Images\Checkin.png"
                                          Height="14" />
                                     </Button>
-                                    <TextBlock Text="{Binding Name}"
+                                    <RadioButton Content="{Binding Name}"
                                      FontSize="14"
-                                     Style="{StaticResource CardTheme}"
-                                     Margin="6"/>
+                                      Margin="6"/>
+                                     <!--Style="{StaticResource CardTheme}"-->
+                                     
                                     <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
@@ -521,6 +522,7 @@
                     <Button Foreground="#CFCFCF"
                             Background="Transparent"
                             BorderThickness="0"
+                            Click="DeleteButton_Click"
                             Command="{Binding RemoveCommand}"
                             CommandParameter="{Binding SelectedCard}"
                             Content="Удалить задачу"

@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="Theme/TextBoxTemplateBorderTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBlockTemplateTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBoxInputTheme.xaml" />
+                <ResourceDictionary Source="Theme/CheckCompleteCardButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

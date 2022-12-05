@@ -42,7 +42,11 @@ namespace TimelonWPF
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
         }
-
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CardInfoColumn.Width == new GridLength(0))
+                CardInfoColumn.Width = new GridLength(240);
+        }
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
             if (CardInfoColumn.Width == new GridLength(0))
