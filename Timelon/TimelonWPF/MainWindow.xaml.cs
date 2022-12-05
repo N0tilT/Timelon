@@ -123,8 +123,14 @@ namespace TimelonWPF
         /// <param name="e"></param>
         private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            viewModel.ListManager.SaveData();
-            this.Close();
+            if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
+                "Exit",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                viewModel.ListManager.SaveData();
+                this.Close();
+            }
         }
 
         /// <summary>
