@@ -104,7 +104,8 @@
 
                 <!--#region ListsMenu-->
                 <!--Меню списков-->
-                <StackPanel Grid.Row="1">
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel>
                     <Grid>
                         <Border 
                         Margin="10,20,40,20"
@@ -133,24 +134,28 @@
                         CommandParameter="{Binding ElementName=SearchTextbox}"
                         Style="{StaticResource SearchButtonTheme}">
                         </Button>
+                        
                     </Grid>
-                    <!--Поиск-->
-                    <ListBox 
-                     x:Name="MenuPanel"
-                     Background="Transparent"
-                     BorderThickness="0"
-                     ItemsSource="{Binding Lists}"
-                     SelectedItem="{Binding SelectedList}"
-                     GotFocus="MenuButton_Click" >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"
-                                       FontSize="14"
-                                 Style="{StaticResource MenuButtonTheme}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
+                        <StackPanel>
+                            <ListBox 
+                                 x:Name="MenuPanel"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 ItemsSource="{Binding Lists}"
+                                 SelectedItem="{Binding SelectedList}"
+                                 GotFocus="MenuButton_Click" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                 FontSize="14"
+                                                 Style="{StaticResource MenuButtonTheme}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
                 <!--#endregion-->
 
                 <!--#region Extended-->
@@ -198,177 +203,183 @@
 
                 <!--#region CardsMenu-->
                 <!--Меню карточек-->
-                <StackPanel x:Name="MainCardsMenu"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Visibility="Visible">
-                    <!--Важные-->
-                    <ListBox x:Name="ImportantCardsPanel"
+                <ScrollViewer Grid.Row="1"
+                            Grid.Column="1">
+                    <StackPanel x:Name="MainCardsMenu" 
+                            Visibility="Visible"
+                            ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            >
+                        <!--Важные-->
+                        <ListBox x:Name="ImportantCardsPanel"                            
                              Background="Transparent"
                              BorderThickness="0"
                              ItemsSource="{Binding ImportantCards}"
                              SelectedItem="{Binding SelectedCard}"
                              GotFocus="CardButton_Click">
 
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Foreground="#CFCFCF"
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Command="{Binding CardDoneCommand}"
                                      CommandParameter="{Binding SelectedCard}">
-                                        <Image Name="CompleteStatus"
+                                            <Image Name="CompleteStatus"
                                          Margin="4"
                                          Source="Images\Checkin.png"
                                          Height="14" />
-                                    </Button>
-                                    <TextBlock Text="{Binding Name}"
+                                        </Button>
+                                        <TextBlock Text="{Binding Name}"
                                        FontSize="14"
                                        Style="{StaticResource CardTheme}" />
-                                    <Button Foreground="#CFCFCF"
+                                        <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Command="{Binding CardImportantCommand}"
                                      CommandParameter="{Binding SelectedCard}">
-                                        <Image Name="HighPriority"
+                                            <Image Name="HighPriority"
                                          Margin="8"
                                          Source="Images\Priority1.png"
                                          Height="14"
                                          HorizontalAlignment="Right"/>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Background" Value="LightSteelBlue" />
-                                <Setter Property="Margin" Value="5" />
-                                <Setter Property="Padding" Value="5" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Foreground" Value="White" />
-                                        <Setter Property="BorderThickness" Value="1" />
-                                        <Setter Property="BorderBrush" Value="Black" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
 
-                    <!--Невыполненные-->
-                    <ListBox x:Name="CardsPanel"
+                        <!--Невыполненные-->
+                        <ListBox x:Name="CardsPanel"
+                     
+                     
                      Background="Transparent"
                      BorderThickness="0"
                      ItemsSource="{Binding DefaultCards}"
                      SelectedItem="{Binding SelectedCard}"
                          GotFocus="CardButton_Click">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Foreground="#CFCFCF"
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Command="{Binding CardDoneCommand}"
                                      CommandParameter="{Binding SelectedCard}">
-                                        <Image Name="CompleteStatus"
+                                            <Image Name="CompleteStatus"
                                          Margin="4"
                                          Source="Images\Checkin.png"
                                          Height="14" />
-                                    </Button>
-                                    <RadioButton Content="{Binding Name}"
+                                        </Button>
+                                        <RadioButton Content="{Binding Name}"
                                      FontSize="14"
                                       Margin="6"/>
-                                    <!--Style="{StaticResource CardTheme}"-->
+                                        <!--Style="{StaticResource CardTheme}"-->
 
-                                    <Button Foreground="#CFCFCF"
+                                        <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Command="{Binding CardImportantCommand}"
                                      CommandParameter="{Binding SelectedCard}">
-                                        <Image Name="HighPriority"
+                                            <Image Name="HighPriority"
                                          Margin="8"
                                          Source="Images\Priority2.png"
                                          Height="14"
                                          HorizontalAlignment="Right"/>
-                                    </Button>
-                                </StackPanel>
+                                        </Button>
+                                    </StackPanel>
 
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Background" Value="LightSteelBlue" />
-                                <Setter Property="Margin" Value="5" />
-                                <Setter Property="Padding" Value="5" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Foreground" Value="White" />
-                                        <Setter Property="BorderThickness" Value="1" />
-                                        <Setter Property="BorderBrush" Value="Black" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                    <!--Разделитель завершённых и невыполненных-->
-                    <StackPanel Orientation="Horizontal"
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <!--Разделитель завершённых и невыполненных-->
+                        <StackPanel Orientation="Horizontal"
                                 Background="#FF2C2C2C"
                                 MouseDown="DoneCardsShow_MouseDown">
-                        <TextBlock Text="Завершённые задачи"
+                            <TextBlock Text="Завершённые задачи"
                                    Foreground="White"
                                    FontSize="13"
                                    Margin="5,0,0,0" />
-                        <Polygon x:Name="CardsPanelArrowDown"
+                            <Polygon x:Name="CardsPanelArrowDown"
                                  Fill="LightBlue" Points="3, 3, 11, 14, 19, 3"
                                  Visibility="Hidden" />
-                        <Polygon x:Name="CardspanelArrowUp"
+                            <Polygon x:Name="CardspanelArrowUp"
                                  Fill="LightBlue" Points="3, 14, 11, 3, 19, 14"
                                  Margin="-19,0,0,0" />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!--Завершённые-->
-                    <ListBox x:Name="DoneCardsPanel"
+                        <!--Завершённые-->
+                        <ListBox x:Name="DoneCardsPanel"
                              Background="Transparent"
                              BorderThickness="0"
                              ItemsSource="{Binding DoneCards}"
                              SelectedItem="{Binding SelectedCard}"
                              GotFocus="CardButton_Click">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Foreground="#CFCFCF"
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Command="{Binding CardDoneCommand}"
                                      CommandParameter="{Binding SelectedCard}">
-                                        <Image Name="CompleteStatus"
+                                            <Image Name="CompleteStatus"
                                          Margin="4"
                                          Source="Images\Checkout.png"
                                          Height="14" />
-                                    </Button>
-                                    <TextBlock Text="{Binding  Name}"
+                                        </Button>
+                                        <TextBlock Text="{Binding  Name}"
                                        FontSize="14"
                                    Style="{StaticResource CardTheme}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Background" Value="LightSteelBlue" />
-                                <Setter Property="Margin" Value="5" />
-                                <Setter Property="Padding" Value="5" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Foreground" Value="White" />
-                                        <Setter Property="BorderThickness" Value="1" />
-                                        <Setter Property="BorderBrush" Value="Black" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+                
                 <!--#endregion-->
 
                 <!--#region CardInfo-->
