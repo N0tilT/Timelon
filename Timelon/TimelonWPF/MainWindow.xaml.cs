@@ -55,7 +55,7 @@ namespace TimelonWPF
         }
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Need_Save = true;
+            //viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
             DoneCardsPanel.SelectedItem = null;
@@ -65,6 +65,22 @@ namespace TimelonWPF
         {
             viewModel.Need_Save = true;
         }
+        
+        private void ImportantCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Need_Save = true;
+        }
+        
+        private void RecoverCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Need_Save = true;
+        }
+
+        private void UndoImportantCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Need_Save = true;
+        }
+
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
