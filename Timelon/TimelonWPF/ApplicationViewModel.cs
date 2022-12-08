@@ -11,6 +11,29 @@ using TimelonWPF.Core;
 
 namespace TimelonWPF
 {
+    public class ExtendedCard : Card
+    {
+        private int _parentListId;
+        private string _parentListName;
+
+        public int ParentId
+        {
+            get { return _parentListId; }
+            set { _parentListId = value; }
+        }
+        public string ParentName
+        {
+            get { return _parentListName; }
+            set { _parentListName = value; }
+        }
+        public ExtendedCard(int listId,string listName,int cardId,string cardName,DateTimeContainer date) : base(cardId, cardName, date)
+        {
+            _parentListId = listId;
+            _parentListName = listName;
+        }
+    }
+
+
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         #region Fields
@@ -29,13 +52,30 @@ namespace TimelonWPF
         /// </summary>
         private Manager _listManager;
 
+
+        /// <summary>
+        /// Выбранная расширенная карта
+        /// </summary>
+        private ExtendedCard _selectedExtendedCard;
+
+        /// <summary>
+        /// Список расширенных карт
+        /// </summary>
+        private List<ExtendedCard> _extendedCardList;
+
+        /// <summary>
+        /// Коллекция карт - результата работы поиска
+        /// </summary>
+        private ObservableCollection<ExtendedCard> _extendedCards = new ObservableCollection<ExtendedCard>();
+
         /// <summary>
         /// Коллекция списков
         /// </summary>
         private ObservableCollection<CardList> _lists = new ObservableCollection<CardList>();
 
+
         /// <summary>
-        /// Коллекция важых карт, отсортированных по дате
+        /// Коллекция важных карт, отсортированных по дате
         /// </summary>
         private ObservableCollection<Card> _importantCards = new ObservableCollection<Card>();
 
@@ -48,6 +88,7 @@ namespace TimelonWPF
         /// Коллекция выполненных карт, отсортированных по дате
         /// </summary>
         private ObservableCollection<Card> _doneCards = new ObservableCollection<Card>();
+
 
         #endregion
 
@@ -141,6 +182,36 @@ namespace TimelonWPF
                 OnPropertyChanged("SelectedList");
             }
         }
+
+        /// <summary>
+        /// Доступ к выбранной карте
+        /// </summary>
+        public ExtendedCard SelectedExtendedCard
+        {
+            get { return _selectedExtendedCard; }
+            set
+            {
+                _selectedExtendedCard = value;
+                OnPropertyChanged("SelectedExtendedCard");
+            }
+        }
+
+        /// <summary>
+        /// Доступ к невыполненным задачам
+        /// </summary>
+        public ObservableCollection<ExtendedCard> ExtendedCards
+        {
+            get
+            {
+                return _extendedCards;
+            }
+            set
+            {
+                _extendedCards = value;
+                OnPropertyChanged("ExtendedCards");
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -366,7 +437,15 @@ namespace TimelonWPF
                     (searchCardCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        SelectedList = new CardList(0, "searchResult", true, _listManager.SearchByContent(tmp.Text));
+                        _extendedCardList = new List<ExtendedCard>();
+                        foreach (KeyValuePair<int, CardList> item in _listManager.All)
+                        {
+                            List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
+                            foreach (Card card in searchResult)
+                                _extendedCardList.Add(new ExtendedCard(item.Value.Id, item.Value.Name, card.Id, card.Name, card.Date));
+                        }
+
+                        ExtendedCards = new ObservableCollection<ExtendedCard>(_extendedCardList);
                     }));
             }
         }

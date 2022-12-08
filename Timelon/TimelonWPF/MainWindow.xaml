@@ -116,10 +116,38 @@
                 </ListBox>
                 <!--#endregion-->
 
+                <!--#region Search-->
+                <ListBox x:Name="SearchResult"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         ItemsSource="{Binding ExtendedCards}"
+                         SelectedItem="{Binding SelectedExtendedCard}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock x:Name="ExCardName"
+                                           Text="{Binding Name}"
+                                           FontSize="14"
+                                           Style="{StaticResource CardTheme}"/>
+                                <TextBlock x:Name="ExCardParentList"
+                                           Text="{Binding ParentName}"
+                                           FontSize="14"
+                                           Style="{StaticResource CardTheme}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+                <!--#endregion-->
+                
                 <!--#region CardsMenu-->
                 <!--Меню карточек-->
                 <StackPanel Grid.Row="1"
-                        Grid.Column="1">
+                        Grid.Column="1"
+                            Visibility="Hidden">
                     <!--Важные-->
                     <ListBox x:Name="ImportantCardsPanel"
                              Background="Transparent"

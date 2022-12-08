@@ -15,7 +15,7 @@ namespace TimelonWPF
         {
             InitializeComponent();
             DataContext = viewModel;
-
+            
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
         }
