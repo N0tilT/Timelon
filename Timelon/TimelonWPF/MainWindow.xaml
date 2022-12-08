@@ -7,6 +7,7 @@
         xmlns:local ="clr-namespace:TimelonWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
+        MinWidth="1024" MinHeight="768"
         WindowStyle = "None"
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
@@ -17,11 +18,12 @@
         <!--#region GridDefs-->
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
 
         <!--Заполнение панели управления окном-->
-        <Rectangle x:Name="Window_Menu" Grid.Row="0" Grid.ColumnSpan="3">
+        <Rectangle x:Name="Window_Menu" Grid.Row="0">
             <Rectangle.Fill>
                 <SolidColorBrush Color="White" />
             </Rectangle.Fill>
@@ -30,14 +32,13 @@
 
         <!--#region Manage Window-->
         <Image Name="SaveButton"
-                   Margin="2"
+                   Margin="2,2,0,2"
                HorizontalAlignment="Left"
                    Source="Images\Save.png"
                    MouseDown="SaveChanges_MouseDown" />
         <!--Кнопки управления окном-->
         <StackPanel Orientation="Horizontal"
-                    Grid.Column="3"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right" Margin="934,0,0,0">
 
             <Image Name="HideButton"
                    Margin="2"
@@ -58,8 +59,7 @@
         <!--Скругленные нижние края-->
         <Border Background="#272537"
                 CornerRadius="0 0 10 10"
-                Margin="0,0,0,0"
-                Grid.Row="1">
+                Grid.Row="1" Grid.RowSpan="2" >
 
             <!--Элементы управления приложением-->
             <Grid Margin="10,0,10,0">
@@ -163,7 +163,7 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
                 <!--#endregion-->
-                
+
                 <!--#region CardsMenu-->
                 <!--Меню карточек-->
                 <StackPanel x:Name="MainCardsMenu"
@@ -177,7 +177,7 @@
                              ItemsSource="{Binding ImportantCards}"
                              SelectedItem="{Binding SelectedCard}"
                              GotFocus="CardButton_Click">
-                        
+
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -247,8 +247,8 @@
                                     <RadioButton Content="{Binding Name}"
                                      FontSize="14"
                                       Margin="6"/>
-                                     <!--Style="{StaticResource CardTheme}"-->
-                                     
+                                    <!--Style="{StaticResource CardTheme}"-->
+
                                     <Button Foreground="#CFCFCF"
                                      Background="Transparent"
                                      BorderThickness="0"

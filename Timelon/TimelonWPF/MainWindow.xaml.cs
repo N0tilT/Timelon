@@ -55,7 +55,6 @@ namespace TimelonWPF
         }
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
-            //viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
             DoneCardsPanel.SelectedItem = null;
