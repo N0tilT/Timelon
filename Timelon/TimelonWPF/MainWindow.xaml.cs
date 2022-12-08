@@ -61,7 +61,10 @@ namespace TimelonWPF
             DoneCardsPanel.SelectedItem = null;
             CardsPanel.SelectedItem = null;
         }
-
+        private void DoneCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Need_Save = true;
+        }
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
