@@ -123,6 +123,12 @@ namespace TimelonWPF
             set
             {
                 _importantCards = value;
+
+                ImportantCards.CollectionChanged += (s, e) =>
+                {
+                    OnPropertyChanged("IsEmptyListVisibility");
+                };
+
                 OnPropertyChanged("ImportantCards");
             }
         }
@@ -139,6 +145,12 @@ namespace TimelonWPF
             set
             {
                 _defaultCards = value;
+
+                DefaultCards.CollectionChanged += (s, e) =>
+                {
+                    OnPropertyChanged("IsEmptyListVisibility");
+                };
+
                 OnPropertyChanged("DefaultCards");
             }
         }
@@ -154,9 +166,24 @@ namespace TimelonWPF
             set
             {
                 _doneCards = value;
+
+                DoneCards.CollectionChanged += (s, e) =>
+                {
+                    OnPropertyChanged("IsEmptyListVisibility");
+                };
+
                 OnPropertyChanged("DoneCards");
             }
         }
+
+        Visibility IsEmptyListVisibility
+        {
+            get
+            {
+                return ((DoneCards.Count + ImportantCards.Count + DefaultCards.Count) == 0) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         /// <summary>
         /// Доступ к выбранной карте
         /// </summary>
