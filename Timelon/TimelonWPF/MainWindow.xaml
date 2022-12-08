@@ -210,32 +210,6 @@
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
-
-                                <!--<Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Border x:Name="brd" Background="{TemplateBinding Background}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                        <RadioButton Focusable="False"
-                                                     Margin="{TemplateBinding Padding}"
-                                                     Foreground="{TemplateBinding Foreground}"
-                                                     IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
-                                            <ContentPresenter />
-                                        </RadioButton>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="LimeGreen" />
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
-                                            <Setter Property="BorderBrush" Value="Black" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>-->
-
                                 <Setter Property="Background" Value="LightSteelBlue" />
                                 <Setter Property="Margin" Value="5" />
                                 <Setter Property="Padding" Value="5" />
@@ -292,32 +266,6 @@
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
-
-                                <!--<Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Border x:Name="brd" Background="{TemplateBinding Background}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                        <RadioButton Focusable="False"
-                                                     Margin="{TemplateBinding Padding}"
-                                                     Foreground="{TemplateBinding Foreground}"
-                                                     IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
-                                            <ContentPresenter />
-                                        </RadioButton>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="LimeGreen" />
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
-                                            <Setter Property="BorderBrush" Value="Black" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>-->
-
                                 <Setter Property="Background" Value="LightSteelBlue" />
                                 <Setter Property="Margin" Value="5" />
                                 <Setter Property="Padding" Value="5" />
@@ -375,32 +323,6 @@
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
-
-                                <!--<Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                        <Border x:Name="brd" Background="{TemplateBinding Background}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                        <RadioButton Focusable="False"
-                                                     Margin="{TemplateBinding Padding}"
-                                                     Foreground="{TemplateBinding Foreground}"
-                                                     IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
-                                            <ContentPresenter />
-                                        </RadioButton>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="LimeGreen" />
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
-                                            <Setter Property="BorderBrush" Value="Black" />
-                                        </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>-->
-
                                 <Setter Property="Background" Value="LightSteelBlue" />
                                 <Setter Property="Margin" Value="5" />
                                 <Setter Property="Padding" Value="5" />
@@ -506,6 +428,7 @@
                         <Button Foreground="#CFCFCF"
                                 Background="Transparent"
                                 BorderThickness="0"
+                                Click="DoneCardButton_Click"
                                 Command="{Binding CardDoneCommand}"
                                 CommandParameter="{Binding SelectedCard}"
                                 Content="Выполнить задачу"
