@@ -116,10 +116,11 @@
                 </ListBox>
                 <!--#endregion-->
 
-                <!--#region Search-->
-                <ListBox x:Name="SearchResult"
+                <!--#region Extended-->
+                <ListBox x:Name="ExtendedCardsMenu"
                          Grid.Column="1"
                          Grid.Row="1"
+                         Visibility="Hidden"
                          Background="Transparent"
                          BorderThickness="0"
                          ItemsSource="{Binding ExtendedCards}"
@@ -134,20 +135,36 @@
                                            Style="{StaticResource CardTheme}"/>
                                 <TextBlock x:Name="ExCardParentList"
                                            Text="{Binding ParentName}"
-                                           FontSize="14"
+                                           Margin="10,0,0,0"
+                                           FontSize="12"
+                                           FontStyle="Oblique"
                                            Style="{StaticResource CardTheme}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Background" Value="LightSteelBlue" />
+                            <Setter Property="Margin" Value="5" />
+                            <Setter Property="Padding" Value="5" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
                 <!--#endregion-->
                 
                 <!--#region CardsMenu-->
                 <!--Меню карточек-->
-                <StackPanel Grid.Row="1"
-                        Grid.Column="1"
-                            Visibility="Hidden">
+                <StackPanel x:Name="MainCardsMenu"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Visibility="Visible">
                     <!--Важные-->
                     <ListBox x:Name="ImportantCardsPanel"
                              Background="Transparent"
@@ -582,6 +599,7 @@
                 <!--Кнопка создания списка-->
                 <Button x:Name="AddListButton"
                         Grid.Row="2"
+                        Click="AddListButton_Click"
                         Command="{Binding AddListCommand}"
                         CommandParameter="{Binding ElementName=AddListTextbox}"
                         Style="{StaticResource AddButtonTheme}" Margin="0,27,5,28" />
@@ -612,6 +630,7 @@
                         Grid.Column="1"
                         Grid.Row="2"
                         Margin="0,27,50,28"
+                        Click="AddCardButton_Click"
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
@@ -639,6 +658,7 @@
                 <Button x:Name="SearchButton"
                         Grid.Column="1"
                         Margin="0,28,50,27"
+                        Click="SearchButton_Click"
                         Command="{Binding SearchCardCommand}"
                         CommandParameter="{Binding ElementName=SearchTextbox}"
                         Style="{StaticResource SearchButtonTheme}">

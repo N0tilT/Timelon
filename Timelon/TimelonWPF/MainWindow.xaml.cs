@@ -41,6 +41,11 @@ namespace TimelonWPF
         {
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
+            if(ExtendedCardsMenu.Visibility == Visibility.Visible)
+            {
+                ExtendedCardsMenu.Visibility = Visibility.Hidden;
+                MainCardsMenu.Visibility = Visibility.Visible;
+            }
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -57,17 +62,16 @@ namespace TimelonWPF
 
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
-            AddListTextbox.Text = "";
         }
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCardTextbox.Text = "";
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            SearchTextbox.Text = "";
+            ExtendedCardsMenu.Visibility = Visibility.Visible;
+            MainCardsMenu.Visibility = Visibility.Hidden;
         }
 
         private void DoneCardsShow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
