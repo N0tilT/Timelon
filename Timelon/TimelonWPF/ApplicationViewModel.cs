@@ -398,10 +398,14 @@ namespace TimelonWPF
                     (addListCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
+                        if (tmp.Text != "")
+                        {
                         CardList newList = new CardList(tmp.Text);
                         ListManager.SetList(newList);
                         Lists.Add(newList);
                         SelectedList = newList;
+                        }
+
                     }));
             }
         }
@@ -421,10 +425,14 @@ namespace TimelonWPF
                     (addCardCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        Card newCard = new Card(tmp.Text);
-                        SelectedList.Set(newCard);
-                        DefaultCards.Add(newCard);
-                        SelectedCard = newCard;
+                        if (tmp.Text!="")
+                        {
+                            Card newCard = new Card(tmp.Text);
+                            SelectedList.Set(newCard);
+                            DefaultCards.Add(newCard);
+                            SelectedCard = newCard;
+                        }
+
                     }));
             }
         }
@@ -444,7 +452,9 @@ namespace TimelonWPF
                     (searchCardCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        _extendedCardList = new List<ExtendedCard>();
+                        if (tmp.Text != "")
+                        {
+                            _extendedCardList = new List<ExtendedCard>();
                         foreach (KeyValuePair<int, CardList> item in _listManager.All)
                         {
                             List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
@@ -453,6 +463,8 @@ namespace TimelonWPF
                         }
 
                         ExtendedCards = new ObservableCollection<ExtendedCard>(_extendedCardList);
+                        }
+
                     }));
             }
         }

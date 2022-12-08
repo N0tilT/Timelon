@@ -104,21 +104,53 @@
 
                 <!--#region ListsMenu-->
                 <!--Меню списков-->
-                <ListBox Grid.Row="1"
+                <StackPanel Grid.Row="1">
+                    <Grid>
+                        <Border 
+                        Margin="10,20,40,20"
+                        Style="{StaticResource TextBoxTemplateBorderTheme}">
+                            <Grid>
+                                <!--Шаблон поиска-->
+                                <TextBlock x:Name="TemplateSearch"
+                                   Text="Поиск"
+                                   FontSize="15"
+                                   Style="{StaticResource TextBlockTemplateTheme}" />
+                                <!--Текстовое поле ввода для поиска-->
+                                <TextBox x:Name="SearchTextbox"
+                                 FontSize="15"
+                                 Margin="0,-3,0,0"
+                                 TextChanged="SearchTextbox_TextChanged"
+                                 Style="{StaticResource TextBoxInputTheme}" />
+                            </Grid>
+                        </Border>
+
+                        <!--Кнопка поиска-->
+                        <Button x:Name="SearchButton"
+                        
+                        Margin="0,28,10,27"
+                        Click="SearchButton_Click"
+                        Command="{Binding SearchCardCommand}"
+                        CommandParameter="{Binding ElementName=SearchTextbox}"
+                        Style="{StaticResource SearchButtonTheme}">
+                        </Button>
+                    </Grid>
+                    <!--Поиск-->
+                    <ListBox 
                      x:Name="MenuPanel"
                      Background="Transparent"
                      BorderThickness="0"
                      ItemsSource="{Binding Lists}"
                      SelectedItem="{Binding SelectedList}"
-                     GotFocus="MenuButton_Click">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"
+                     GotFocus="MenuButton_Click" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
                                        FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
                 <!--#endregion-->
 
                 <!--#region Extended-->
@@ -566,34 +598,12 @@
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
 
-                <!--Поиск-->
-                <Border Grid.Column="1"
-                        Margin="40,20,80,20"
-                        Style="{StaticResource TextBoxTemplateBorderTheme}">
-                    <Grid>
-                        <!--Шаблон поиска-->
-                        <TextBlock x:Name="TemplateSearch"
-                                   Text="Поиск"
-                                   FontSize="15"
-                                   Style="{StaticResource TextBlockTemplateTheme}" />
-                        <!--Текстовое поле ввода для поиска-->
-                        <TextBox x:Name="SearchTextbox"
-                                 FontSize="15"
-                                 Margin="0,-3,0,0"
-                                 TextChanged="SearchTextbox_TextChanged"
-                                 Style="{StaticResource TextBoxInputTheme}" />
-                    </Grid>
-                </Border>
-
-                <!--Кнопка поиска-->
-                <Button x:Name="SearchButton"
-                        Grid.Column="1"
-                        Margin="0,28,50,27"
-                        Click="SearchButton_Click"
-                        Command="{Binding SearchCardCommand}"
-                        CommandParameter="{Binding ElementName=SearchTextbox}"
-                        Style="{StaticResource SearchButtonTheme}">
-                </Button>
+                <TextBlock x:Name="CardList" 
+                           Text="{Binding SelectedList.Name}"
+                           Style="{StaticResource TitleTheme}"
+                           Grid.Column="1" HorizontalAlignment="Left" 
+                           Margin="10,0,0,0" TextWrapping="Wrap" 
+                            VerticalAlignment="Top" />
                 <!--#endregion-->
             </Grid>
         </Border>
