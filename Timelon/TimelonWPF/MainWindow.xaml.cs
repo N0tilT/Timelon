@@ -157,7 +157,7 @@ namespace TimelonWPF
             if (viewModel.Need_Save == true)
             {
                 if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
-                    "Exit",
+                    "Выход",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
