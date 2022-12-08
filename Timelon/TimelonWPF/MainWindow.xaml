@@ -29,6 +29,11 @@
         <!--#endregion-->
 
         <!--#region Manage Window-->
+        <Image Name="SaveButton"
+                   Margin="2"
+               HorizontalAlignment="Left"
+                   Source="Images\Save.png"
+                   MouseDown="SaveChanges_MouseDown" />
         <!--Кнопки управления окном-->
         <StackPanel Orientation="Horizontal"
                     Grid.Column="3"

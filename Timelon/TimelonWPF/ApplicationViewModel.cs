@@ -89,6 +89,13 @@ namespace TimelonWPF
         /// </summary>
         private ObservableCollection<Card> _doneCards = new ObservableCollection<Card>();
 
+        //Для save
+        public bool Need_Save=false;
+
+        public void NeedSave()
+        {
+            Need_Save = true;
+        }
 
         #endregion
 
@@ -289,7 +296,7 @@ namespace TimelonWPF
             {
                 return cardDoneCommand ??
                     (cardDoneCommand = new RelayCommand(obj =>
-                    {  
+                    {
                         Card completed = obj as Card;
                         if (completed!=null)
                         if (!completed.IsCompleted)

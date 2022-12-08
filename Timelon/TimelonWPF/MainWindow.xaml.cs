@@ -10,7 +10,7 @@ namespace TimelonWPF
     public partial class MainWindow : Window
     {
         private ApplicationViewModel viewModel = new ApplicationViewModel();
-
+        //bool Need_Save=false;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,11 +49,13 @@ namespace TimelonWPF
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
         }
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
             DoneCardsPanel.SelectedItem = null;
@@ -62,10 +64,12 @@ namespace TimelonWPF
 
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.Need_Save = true;
         }
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.Need_Save = true;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -131,14 +135,22 @@ namespace TimelonWPF
         /// <param name="e"></param>
         private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
-                "Exit",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (viewModel.Need_Save == true)
             {
-                viewModel.ListManager.SaveData();
-                this.Close();
+                if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
+                    "Exit",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    this.Close();
+                }
             }
+            else this.Close();
+        }
+        private void SaveChanges_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            viewModel.Need_Save = false;
+            viewModel.ListManager.SaveData();
         }
 
         /// <summary>
