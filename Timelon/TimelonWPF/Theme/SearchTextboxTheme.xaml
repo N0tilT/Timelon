@@ -10,7 +10,7 @@
                             Width="400" Height="40">
 
                         <Grid>
-                            <Rectangle StrokeThickness="1"/>
+                            <Rectangle StrokeThickness="1" />
 
                             <TextBox Margin="1"
                                      Text="{TemplateBinding Text}"
@@ -19,7 +19,7 @@
                                      VerticalAlignment="Center"
                                      Padding="5"
                                      Foreground="#CFCFCF"
-                                     x:Name="Search"/>
+                                     x:Name="Search" />
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="Поиск"
@@ -34,16 +34,14 @@
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Text,ElementName=Search}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="Visibility" Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
-                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Visibility" Value="Hidden" />
                                     </Style>
                                 </TextBlock.Style>
-
                             </TextBlock>
                         </Grid>
-
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

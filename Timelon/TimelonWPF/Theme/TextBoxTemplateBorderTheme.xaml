@@ -3,9 +3,9 @@
 
     <Style TargetType="{x:Type Border}"
            x:Key="TextBoxTemplateBorderTheme">
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="#353340"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="#3d2525" />
+        <Setter Property="CornerRadius" Value="10" />
     </Style>
 </ResourceDictionary>

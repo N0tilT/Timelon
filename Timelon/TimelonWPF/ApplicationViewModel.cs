@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 using TimelonCl;
 using TimelonCl.Data;
 using TimelonWPF.Core;
@@ -21,22 +20,24 @@ namespace TimelonWPF
             get { return _parentListId; }
             set { _parentListId = value; }
         }
+
         public string ParentName
         {
             get { return _parentListName; }
             set { _parentListName = value; }
         }
-        public ExtendedCard(int listId,string listName,int cardId,string cardName,DateTimeContainer date) : base(cardId, cardName, date)
+
+        public ExtendedCard(int listId, string listName, int cardId, string cardName, DateTimeContainer date) : base(cardId, cardName, date)
         {
             _parentListId = listId;
             _parentListName = listName;
         }
     }
 
-
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         #region Fields
+
         /// <summary>
         /// Выбранная карта
         /// </summary>
@@ -51,7 +52,6 @@ namespace TimelonWPF
         /// Текущий менеджер списков
         /// </summary>
         private Manager _listManager;
-
 
         /// <summary>
         /// Выбранная расширенная карта
@@ -73,7 +73,6 @@ namespace TimelonWPF
         /// </summary>
         private ObservableCollection<CardList> _lists = new ObservableCollection<CardList>();
 
-
         /// <summary>
         /// Коллекция важных карт, отсортированных по дате
         /// </summary>
@@ -90,26 +89,28 @@ namespace TimelonWPF
         private ObservableCollection<Card> _doneCards = new ObservableCollection<Card>();
 
         //Для save
-        public bool Need_Save=false;
+        public bool Need_Save = false;
 
         public void NeedSave()
         {
             Need_Save = true;
         }
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
         /// <summary>
         /// Доступ к коллекции списков
         /// </summary>
-        public ObservableCollection<CardList> Lists { get { return _lists; } set { _lists = value; } }
+        public ObservableCollection<CardList> Lists
+        { get { return _lists; } set { _lists = value; } }
 
         /// <summary>
         /// Доступ к менеджеру списков
         /// </summary>
-        public Manager ListManager { get { return _listManager; } set { _listManager = value; } }
+        public Manager ListManager
+        { get { return _listManager; } set { _listManager = value; } }
 
         /// <summary>
         /// Доступ к важным задачам
@@ -154,6 +155,7 @@ namespace TimelonWPF
                 OnPropertyChanged("DefaultCards");
             }
         }
+
         /// <summary>
         /// Доступ к выполненным задачам
         /// </summary>
@@ -176,7 +178,7 @@ namespace TimelonWPF
             }
         }
 
-        Visibility IsEmptyListVisibility
+        private Visibility IsEmptyListVisibility
         {
             get
             {
@@ -212,7 +214,6 @@ namespace TimelonWPF
                 DefaultCards = new ObservableCollection<Card>(_selectedList.GetListDefault());
                 DoneCards = new ObservableCollection<Card>(_selectedList.GetListCompleted());
 
-
                 OnPropertyChanged("SelectedList");
             }
         }
@@ -246,13 +247,15 @@ namespace TimelonWPF
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Commands
+
         /// <summary>
         /// Команда отметки задачи(карточки) как важной
         /// </summary>
         private RelayCommand cardImportantCommand;
+
         /// <summary>
         /// Отметить задачу как важную
         /// </summary>
@@ -279,10 +282,12 @@ namespace TimelonWPF
                     }));
             }
         }
+
         /// <summary>
         /// Команда отметки задачи(карточки) как не важной
         /// </summary>
         private RelayCommand cardUndoImportantCommand;
+
         /// <summary>
         /// Отменить отметку о важности
         /// </summary>
@@ -314,6 +319,7 @@ namespace TimelonWPF
         /// Команда завершения задачи(карточки)
         /// </summary>
         private RelayCommand cardDoneCommand;
+
         /// <summary>
         /// Выполнить задачу
         /// </summary>
@@ -325,24 +331,25 @@ namespace TimelonWPF
                     (cardDoneCommand = new RelayCommand(obj =>
                     {
                         Card completed = obj as Card;
-                        if (completed!=null)
-                        if (!completed.IsCompleted)
-                        {
-                            completed.IsCompleted = true;
-                            SelectedList.Set(completed);    //Обновляем карту в списке
+                        if (completed != null)
+                            if (!completed.IsCompleted)
+                            {
+                                completed.IsCompleted = true;
+                                SelectedList.Set(completed);    //Обновляем карту в списке
 
-                            ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant());
-                            DefaultCards = new ObservableCollection<Card>(SelectedList.GetListDefault());
-                            DoneCards = new ObservableCollection<Card>(SelectedList.GetListCompleted());
-                        }
-
+                                ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant());
+                                DefaultCards = new ObservableCollection<Card>(SelectedList.GetListDefault());
+                                DoneCards = new ObservableCollection<Card>(SelectedList.GetListCompleted());
+                            }
                     }));
             }
         }
+
         /// <summary>
         /// Команда восстановления задачи(карточки) из выполненных в невыполненные
         /// </summary>
         private RelayCommand cardRecoverCommand;
+
         /// <summary>
         /// Восстановить задачу(карту) в невыполненные
         /// </summary>
@@ -374,7 +381,7 @@ namespace TimelonWPF
         /// Команда удаления карты из списка
         /// </summary>
         private RelayCommand removeCommand;
-        
+
         /// <summary>
         /// Удаление карты из списка
         /// </summary>
@@ -393,7 +400,7 @@ namespace TimelonWPF
                                 DoneCards.Remove(rCard);
                                 SelectedList.Remove(rCard.Id);
                             }
-                            else if(rCard.IsImportant)
+                            else if (rCard.IsImportant)
                             {
                                 ImportantCards.Remove(rCard);
                                 SelectedList.Remove(rCard.Id);
@@ -409,11 +416,11 @@ namespace TimelonWPF
             }
         }
 
-
         /// <summary>
         /// Команда добавления нового списка
         /// </summary>
         private RelayCommand addListCommand;
+
         /// <summary>
         /// Добавить новый список
         /// </summary>
@@ -427,12 +434,11 @@ namespace TimelonWPF
                         TextBox tmp = obj as TextBox;
                         if (tmp.Text != "")
                         {
-                        CardList newList = new CardList(tmp.Text);
-                        ListManager.SetList(newList);
-                        Lists.Add(newList);
-                        SelectedList = newList;
+                            CardList newList = new CardList(tmp.Text);
+                            ListManager.SetList(newList);
+                            Lists.Add(newList);
+                            SelectedList = newList;
                         }
-
                     }));
             }
         }
@@ -441,6 +447,7 @@ namespace TimelonWPF
         /// Команда добавления новой карты
         /// </summary>
         private RelayCommand addCardCommand;
+
         /// <summary>
         /// Добавить новую карту
         /// </summary>
@@ -452,14 +459,13 @@ namespace TimelonWPF
                     (addCardCommand = new RelayCommand(obj =>
                     {
                         TextBox tmp = obj as TextBox;
-                        if (tmp.Text!="")
+                        if (tmp.Text != "")
                         {
                             Card newCard = new Card(tmp.Text);
                             SelectedList.Set(newCard);
                             DefaultCards.Add(newCard);
                             SelectedCard = newCard;
                         }
-
                     }));
             }
         }
@@ -468,6 +474,7 @@ namespace TimelonWPF
         /// Команда поиска карты по содержимому
         /// </summary>
         private RelayCommand searchCardCommand;
+
         /// <summary>
         /// Поиск карты по содержимому
         /// </summary>
@@ -482,21 +489,20 @@ namespace TimelonWPF
                         if (tmp.Text != "")
                         {
                             _extendedCardList = new List<ExtendedCard>();
-                        foreach (KeyValuePair<int, CardList> item in _listManager.All)
-                        {
-                            List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
-                            foreach (Card card in searchResult)
-                                _extendedCardList.Add(new ExtendedCard(item.Value.Id, item.Value.Name, card.Id, card.Name, card.Date));
-                        }
+                            foreach (KeyValuePair<int, CardList> item in _listManager.All)
+                            {
+                                List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
+                                foreach (Card card in searchResult)
+                                    _extendedCardList.Add(new ExtendedCard(item.Value.Id, item.Value.Name, card.Id, card.Name, card.Date));
+                            }
 
-                        ExtendedCards = new ObservableCollection<ExtendedCard>(_extendedCardList);
+                            ExtendedCards = new ObservableCollection<ExtendedCard>(_extendedCardList);
                         }
-
                     }));
             }
         }
-        #endregion
 
+        #endregion Commands
 
         /// <summary>
         /// Конструктор по умолчанию
@@ -516,15 +522,13 @@ namespace TimelonWPF
             ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant());
             DefaultCards = new ObservableCollection<Card>(SelectedList.GetListDefault());
             DoneCards = new ObservableCollection<Card>(SelectedList.GetListCompleted());
-
-
         }
-
 
         /// <summary>
         /// Определение интерфейса событий
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)

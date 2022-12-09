@@ -19,13 +19,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="35*" />
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
         <!--Заполнение панели управления окном-->
         <Rectangle x:Name="Window_Menu" Grid.Row="0">
             <Rectangle.Fill>
-                <SolidColorBrush Color="White" />
+                <SolidColorBrush Color="#ffe9eb" />
             </Rectangle.Fill>
         </Rectangle>
         <!--#endregion-->
@@ -57,9 +57,9 @@
         <!--#endregion-->
 
         <!--Скругленные нижние края-->
-        <Border Background="#272537"
+        <Border Background="#77ba5d"
                 CornerRadius="0 0 10 10"
-                Grid.Row="1" Grid.RowSpan="2" >
+                Grid.Row="1" Grid.RowSpan="2">
 
             <!--Элементы управления приложением-->
             <Grid Margin="10,0,10,0">
@@ -84,8 +84,8 @@
                 <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#272537" Offset="1" />
-                            <GradientStop Color="#FF565966" Offset="0" />
+                            <GradientStop Color="#9A1612" Offset="1" />
+                            <GradientStop Color="#E66B64" Offset="0" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -95,64 +95,78 @@
                 <!--#endregion-->
 
                 <!--#region Title-->
+
                 <!--Заглавие-->
                 <Border x:Name ="Title">
                     <TextBlock x:Name="TitleText"
-                           Style="{StaticResource TitleTheme}"><Run Text="Timelon" /></TextBlock>
+                               Style="{StaticResource TitleTheme}"><Run Text="Timelon" /></TextBlock>
                 </Border>
+
+                <!--Название списка-->
+                <TextBlock x:Name="CardList"
+                           Text="{Binding SelectedList.Name}"
+                           Style="{StaticResource TitleTheme}"
+                           Grid.Column="1" HorizontalAlignment="Left"
+                           Margin="10,0,0,0" TextWrapping="Wrap"
+                            VerticalAlignment="Top" />
+
+                <!--Заглавие информации о карточке-->
+                <TextBlock Text="{Binding SelectedCard.Name}"
+                           Grid.Column="2"
+                           FontSize="22"
+                           Style="{StaticResource TitleTheme}" />
+
                 <!--#endregion-->
 
                 <!--#region ListsMenu-->
+
                 <!--Меню списков-->
                 <ScrollViewer Grid.Row="1">
                     <StackPanel>
                     <Grid>
-                        <Border 
-                        Margin="10,20,40,20"
-                        Style="{StaticResource TextBoxTemplateBorderTheme}">
+
+                        <!--Поиск-->
+                        <Border Margin="10,20,40,20"
+                                Style="{StaticResource TextBoxTemplateBorderTheme}">
                             <Grid>
                                 <!--Шаблон поиска-->
                                 <TextBlock x:Name="TemplateSearch"
-                                   Text="Поиск"
-                                   FontSize="15"
-                                   Style="{StaticResource TextBlockTemplateTheme}" />
+                                           Text="Поиск"
+                                           FontSize="15"
+                                           Style="{StaticResource TextBlockTemplateTheme}" />
                                 <!--Текстовое поле ввода для поиска-->
                                 <TextBox x:Name="SearchTextbox"
-                                 FontSize="15"
-                                 Margin="0,-3,0,0"
-                                 TextChanged="SearchTextbox_TextChanged"
-                                 Style="{StaticResource TextBoxInputTheme}" />
+                                         FontSize="15"
+                                         Margin="0,-3,0,0"
+                                         TextChanged="SearchTextbox_TextChanged"
+                                         Style="{StaticResource TextBoxInputTheme}" />
                             </Grid>
                         </Border>
 
                         <!--Кнопка поиска-->
                         <Button x:Name="SearchButton"
-                        
-                        Margin="0,28,10,27"
-                        Click="SearchButton_Click"
-                        Command="{Binding SearchCardCommand}"
-                        CommandParameter="{Binding ElementName=SearchTextbox}"
-                        Style="{StaticResource SearchButtonTheme}">
+                                Margin="0,28,10,27"
+                                Click="SearchButton_Click"
+                                Command="{Binding SearchCardCommand}"
+                                CommandParameter="{Binding ElementName=SearchTextbox}"
+                                Style="{StaticResource SearchButtonTheme}">
                         </Button>
-                        
                     </Grid>
-                        <StackPanel>
-                            <ListBox 
-                                 x:Name="MenuPanel"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 ItemsSource="{Binding Lists}"
-                                 SelectedItem="{Binding SelectedList}"
-                                 GotFocus="MenuButton_Click" >
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"
-                                                 FontSize="14"
-                                                 Style="{StaticResource MenuButtonTheme}" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </StackPanel>
+                        <!--Меню списков-->
+                        <ListBox x:Name="MenuPanel"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     ItemsSource="{Binding Lists}"
+                                     SelectedItem="{Binding SelectedList}"
+                                    GotFocus="MenuButton_Click">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                                   FontSize="14"
+                                                   Style="{StaticResource MenuButtonTheme}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </ScrollViewer>
 
@@ -174,13 +188,13 @@
                                 <TextBlock x:Name="ExCardName"
                                            Text="{Binding Name}"
                                            FontSize="14"
-                                           Style="{StaticResource CardTheme}"/>
+                                           Style="{StaticResource CardTheme}" />
                                 <TextBlock x:Name="ExCardParentList"
                                            Text="{Binding ParentName}"
                                            Margin="10,0,0,0"
                                            FontSize="12"
                                            FontStyle="Oblique"
-                                           Style="{StaticResource CardTheme}"/>
+                                           Style="{StaticResource CardTheme}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -202,49 +216,37 @@
                 <!--#endregion-->
 
                 <!--#region CardsMenu-->
+
                 <!--Меню карточек-->
                 <ScrollViewer Grid.Row="1"
-                            Grid.Column="1">
-                    
-                    <StackPanel x:Name="MainCardsMenu" 
-                            Visibility="Visible"
-                            ScrollViewer.VerticalScrollBarVisibility="Visible"
-                            >
+                              Grid.Column="1">
+                    <StackPanel x:Name="MainCardsMenu"
+                                Visibility="Visible"
+                                ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <!--Важные-->
-                        <ListBox x:Name="ImportantCardsPanel"                            
-                             Background="Transparent"
-                             BorderThickness="0"
-                             ItemsSource="{Binding ImportantCards}"
-                             SelectedItem="{Binding SelectedCard}"
-                             GotFocus="CardButton_Click">
+                        <ListBox x:Name="ImportantCardsPanel"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 ItemsSource="{Binding ImportantCards}"
+                                 SelectedItem="{Binding SelectedCard}"
+                                 GotFocus="CardButton_Click">
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Foreground="#CFCFCF"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Command="{Binding CardDoneCommand}"
-                                     CommandParameter="{Binding SelectedCard}">
-                                            <Image Name="CompleteStatus"
-                                         Margin="4"
-                                         Source="Images\Checkin.png"
-                                         Height="14" />
-                                        </Button>
+                                        <Image Name="CompleteStatus"
+                                               Margin="4"
+                                               Source="Images\Checkin.png"
+                                               Height="14" />
                                         <TextBlock Text="{Binding Name}"
-                                       FontSize="14"
-                                       Style="{StaticResource CardTheme}" />
-                                        <Button Foreground="#CFCFCF"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Command="{Binding CardImportantCommand}"
-                                     CommandParameter="{Binding SelectedCard}">
-                                            <Image Name="HighPriority"
-                                         Margin="8"
-                                         Source="Images\Priority1.png"
-                                         Height="14"
-                                         HorizontalAlignment="Right"/>
-                                        </Button>
+                                                   FontSize="14"
+                                                   Style="{StaticResource CardTheme}" />
+
+                                        <Image Name="HighPriority"
+                                               Margin="8"
+                                               Source="Images\Priority1.png"
+                                               Height="14"
+                                               HorizontalAlignment="Right" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -266,44 +268,29 @@
 
                         <!--Невыполненные-->
                         <ListBox x:Name="CardsPanel"
-                     
-                     
-                     Background="Transparent"
-                     BorderThickness="0"
-                     ItemsSource="{Binding DefaultCards}"
-                     SelectedItem="{Binding SelectedCard}"
-                         GotFocus="CardButton_Click">
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 ItemsSource="{Binding DefaultCards}"
+                                 SelectedItem="{Binding SelectedCard}"
+                                 GotFocus="CardButton_Click">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Foreground="#CFCFCF"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Command="{Binding CardDoneCommand}"
-                                     CommandParameter="{Binding SelectedCard}">
-                                            <Image Name="CompleteStatus"
-                                         Margin="4"
-                                         Source="Images\Checkin.png"
-                                         Height="14" />
-                                        </Button>
-                                        <RadioButton Content="{Binding Name}"
-                                     FontSize="14"
-                                      Margin="6"/>
+                                        <Image Name="CompleteStatus"
+                                               Margin="4"
+                                               Source="Images\Checkin.png"
+                                               Height="14" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="14"
+                                                   Margin="6" />
                                         <!--Style="{StaticResource CardTheme}"-->
 
-                                        <Button Foreground="#CFCFCF"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Command="{Binding CardImportantCommand}"
-                                     CommandParameter="{Binding SelectedCard}">
-                                            <Image Name="HighPriority"
-                                         Margin="8"
-                                         Source="Images\Priority2.png"
-                                         Height="14"
-                                         HorizontalAlignment="Right"/>
-                                        </Button>
+                                        <Image Name="HighPriority"
+                                               Margin="8"
+                                               Source="Images\Priority2.png"
+                                               Height="14"
+                                                HorizontalAlignment="Right" />
                                     </StackPanel>
-
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
@@ -323,43 +310,37 @@
                         </ListBox>
                         <!--Разделитель завершённых и невыполненных-->
                         <StackPanel Orientation="Horizontal"
-                                Background="#FF2C2C2C"
-                                MouseDown="DoneCardsShow_MouseDown">
+                                    Background="#FFBEBC"
+                                    MouseDown="DoneCardsShow_MouseDown">
                             <TextBlock Text="Завершённые задачи"
-                                   Foreground="White"
-                                   FontSize="13"
-                                   Margin="5,0,0,0" />
+                                       Foreground="#3d2525"
+                                       FontSize="13"
+                                       Margin="5,0,0,0" />
                             <Polygon x:Name="CardsPanelArrowDown"
-                                 Fill="LightBlue" Points="3, 3, 11, 14, 19, 3"
-                                 Visibility="Hidden" />
+                                     Fill="#3d2525" Points="3, 3, 11, 14, 19, 3"
+                                     Visibility="Hidden" />
                             <Polygon x:Name="CardspanelArrowUp"
-                                 Fill="LightBlue" Points="3, 14, 11, 3, 19, 14"
-                                 Margin="-19,0,0,0" />
+                                     Fill="#3d2525" Points="3, 14, 11, 3, 19, 14"
+                                     Margin="-19,0,0,0" />
                         </StackPanel>
 
                         <!--Завершённые-->
                         <ListBox x:Name="DoneCardsPanel"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             ItemsSource="{Binding DoneCards}"
-                             SelectedItem="{Binding SelectedCard}"
-                             GotFocus="CardButton_Click">
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 ItemsSource="{Binding DoneCards}"
+                                 SelectedItem="{Binding SelectedCard}"
+                                 GotFocus="CardButton_Click">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Foreground="#CFCFCF"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Command="{Binding CardDoneCommand}"
-                                     CommandParameter="{Binding SelectedCard}">
-                                            <Image Name="CompleteStatus"
-                                         Margin="4"
-                                         Source="Images\Checkout.png"
-                                         Height="14" />
-                                        </Button>
+                                        <Image Name="CompleteStatus"
+                                               Margin="4"
+                                               Source="Images\Checkout.png"
+                                               Height="14" />
                                         <TextBlock Text="{Binding  Name}"
-                                       FontSize="14"
-                                   Style="{StaticResource CardTheme}" />
+                                                   FontSize="14"
+                                                   Style="{StaticResource CardTheme}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -380,15 +361,10 @@
                         </ListBox>
                     </StackPanel>
                 </ScrollViewer>
-                
+
                 <!--#endregion-->
 
                 <!--#region CardInfo-->
-                <!--Заглавие информации-->
-                <TextBlock Text="{Binding SelectedCard.Name}"
-                           Grid.Column="2"
-                           FontSize="22"
-                           Style="{StaticResource TitleTheme}" />
 
                 <!--Меню информации о карточке-->
                 <StackPanel x:Name="CardInfo"
@@ -434,10 +410,6 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
-
-                    <!--Отметка о важности карты-->
-
-                    <!--Отметка о выполнении карты-->
 
                     <!--Описание карты-->
                     <Border Grid.Row="2"
@@ -487,7 +459,6 @@
                                 Background="#FFBD7039"
                                 Height="35"
                                 Margin="5">
-
                             <Button Foreground="#CFCFCF"
                                     Background="Transparent"
                                     BorderThickness="0"
@@ -610,12 +581,6 @@
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
 
-                <TextBlock x:Name="CardList" 
-                           Text="{Binding SelectedList.Name}"
-                           Style="{StaticResource TitleTheme}"
-                           Grid.Column="1" HorizontalAlignment="Left" 
-                           Margin="10,0,0,0" TextWrapping="Wrap" 
-                            VerticalAlignment="Top" />
                 <!--#endregion-->
             </Grid>
         </Border>

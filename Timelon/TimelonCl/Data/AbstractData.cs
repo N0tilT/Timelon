@@ -43,6 +43,7 @@ namespace TimelonCl.Data
     {
         [XmlAttribute]
         public int Id;
+
         public string Name;
     }
 

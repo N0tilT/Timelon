@@ -8,19 +8,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid Background="{TemplateBinding Background}">
-                            <Image Source="/Images/Search.png"/>
+                            <Image Source="/Images/Search.png" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
-            <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Margin" Value="0,0,5,0"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style.Setters>
 
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style.Setters>
     </Style>
 </ResourceDictionary>

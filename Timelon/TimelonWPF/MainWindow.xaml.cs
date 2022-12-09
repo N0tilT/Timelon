@@ -10,12 +10,13 @@ namespace TimelonWPF
     public partial class MainWindow : Window
     {
         private ApplicationViewModel viewModel = new ApplicationViewModel();
+
         //bool Need_Save=false;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = viewModel;
-            
+
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
         }
@@ -41,18 +42,20 @@ namespace TimelonWPF
         {
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
-            if(ExtendedCardsMenu.Visibility == Visibility.Visible)
+            if (ExtendedCardsMenu.Visibility == Visibility.Visible)
             {
                 ExtendedCardsMenu.Visibility = Visibility.Hidden;
                 MainCardsMenu.Visibility = Visibility.Visible;
             }
         }
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
         }
+
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
             if (CardInfoColumn.Width == new GridLength(0))
@@ -60,16 +63,17 @@ namespace TimelonWPF
             DoneCardsPanel.SelectedItem = null;
             CardsPanel.SelectedItem = null;
         }
+
         private void DoneCardButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
         }
-        
+
         private void ImportantCardButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
         }
-        
+
         private void RecoverCardButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = true;
@@ -165,6 +169,7 @@ namespace TimelonWPF
             }
             else this.Close();
         }
+
         private void SaveChanges_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             viewModel.Need_Save = false;
