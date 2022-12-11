@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimelonCl", "TimelonCl\TimelonCl.csproj", "{09B959A2-2ABC-4552-863A-DCC4F8A8BCE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon", "Timelon\Timelon.csproj", "{09B959A2-2ABC-4552-863A-DCC4F8A8BCE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimelonCA", "TimelonCA\TimelonCA.csproj", "{D9917A70-C688-45D1-AEE5-FBAF3A558202}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.Test.Integration", "Timelon.Test.Integration\Timelon.Test.Integration.csproj", "{D9917A70-C688-45D1-AEE5-FBAF3A558202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimelonWPF", "TimelonWPF\TimelonWPF.csproj", "{4CE868DE-C688-447D-BE43-FCD11950CF7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.App", "Timelon.App\Timelon.App.csproj", "{4CE868DE-C688-447D-BE43-FCD11950CF7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A97EEDD-EC44-4BCC-B189-189631F1C5B6}"
 	ProjectSection(SolutionItems) = preProject
 		TODO\TODO.txt = TODO\TODO.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimelonClTests", "TimelonClTests\TimelonClTests.csproj", "{58212695-488B-4D24-B781-774891F7146C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.Test", "Timelon.Test\Timelon.Test.csproj", "{BB220E03-892C-46A1-A6CC-3BA064B0CB30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58212695-488B-4D24-B781-774891F7146C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58212695-488B-4D24-B781-774891F7146C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58212695-488B-4D24-B781-774891F7146C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58212695-488B-4D24-B781-774891F7146C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
