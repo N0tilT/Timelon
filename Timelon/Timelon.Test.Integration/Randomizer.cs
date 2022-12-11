@@ -1,7 +1,7 @@
 ﻿using System;
 using Timelon.Data;
 
-namespace Timelon.Test
+namespace Timelon.Test.Integration
 {
     /// <summary>
     /// Дополненный генератор псевдо-случайных чисел

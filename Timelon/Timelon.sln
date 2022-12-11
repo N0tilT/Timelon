@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon", "Timelon\Timelon.csproj", "{09B959A2-2ABC-4552-863A-DCC4F8A8BCE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.Test", "Timelon.Test\Timelon.Test.csproj", "{D9917A70-C688-45D1-AEE5-FBAF3A558202}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.Test.Integration", "Timelon.Test.Integration\Timelon.Test.Integration.csproj", "{D9917A70-C688-45D1-AEE5-FBAF3A558202}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.App", "Timelon.App\Timelon.App.csproj", "{4CE868DE-C688-447D-BE43-FCD11950CF7C}"
 EndProject

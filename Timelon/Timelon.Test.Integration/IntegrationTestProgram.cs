@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Timelon.Data;
 
-namespace Timelon.Test
+namespace Timelon.Test.Integration
 {
     /// <summary>
     /// Программа интеграционного тестирования модулей библиотеки в консоли

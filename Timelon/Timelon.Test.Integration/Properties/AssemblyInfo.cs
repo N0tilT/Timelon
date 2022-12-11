@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("Timelon.Test")]
+[assembly: AssemblyTitle("Timelon.Test.Integration")]
 [assembly: AssemblyDescription("Integration test for library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Arkham")]
-[assembly: AssemblyProduct("Timelon")]
+[assembly: AssemblyProduct("Timelon.Test")]
 [assembly: AssemblyCopyright("Copyright © Arkham 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
