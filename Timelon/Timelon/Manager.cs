@@ -74,6 +74,21 @@ namespace Timelon
         }
 
         /// <summary>
+        /// Конструктор менеджера для отладки
+        /// </summary>
+        /// <param name="source"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public Manager(string source)
+        {
+            if (source == _source)
+            {
+                throw new ArgumentException("Недопустимо использование источника по-умолчанию для отладки");
+            }
+            
+            _source = source;
+        }
+
+        /// <summary>
         /// Доступ к файлу с данными
         /// </summary>
         public string Source => Path.Combine(SourceDirectory, FileName);
