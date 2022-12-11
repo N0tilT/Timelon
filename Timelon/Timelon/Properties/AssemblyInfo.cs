@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TimelonCl")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Timelon")]
+[assembly: AssemblyDescription("Main library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TimelonCl")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("Arkham")]
+[assembly: AssemblyProduct("Timelon")]
+[assembly: AssemblyCopyright("Copyright © Arkham 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -5,12 +5,12 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TimelonWPF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Timelon.App")]
+[assembly: AssemblyDescription("Main application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TimelonWPF")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("Arkham")]
+[assembly: AssemblyProduct("Timelon")]
+[assembly: AssemblyCopyright("Copyright © Arkham 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
