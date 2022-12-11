@@ -128,26 +128,6 @@ namespace Timelon
         }
 
         /// <summary>
-        /// Поиск по части названия или описания по всем подспискам
-        /// </summary>
-        /// <param name="content">искомое значение</param>
-        /// <returns>Список найденных карт</returns>
-        public List<Card> SearchByContent(string content)
-        {
-            List<Card> result = new List<Card>();
-
-            foreach (KeyValuePair<int, CardList> item in All)
-            {
-                foreach (Card card in item.Value.SearchByContent(content))
-                {
-                    result.Add(card);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Сохранить данные
         /// </summary>
         public void SaveData()
