@@ -6,15 +6,29 @@ using Timelon.Data;
 namespace Timelon.Test
 {
     /// <summary>
-    /// Класс консольного тестирования
+    /// Программа интеграционного тестирования модулей библиотеки в консоли
     /// </summary>
-    class ConsoleTest
+    class IntegrationTestProgram
     {
+        private static void Main()
+        {
+            // Инициализация менеджера как можно раньше
+            _ = Manager.Instance;
+
+            // Запуск цепочки тестирования в консоли
+            TestRandomCard(3);
+            TestCardList(20);
+            TestCardListManager(3, 5);
+            MeasureCardListOperationsTime(100000);
+
+            Console.ReadKey();
+        }
+
         /// <summary>
         /// Запустить тест создания случайных карт
         /// </summary>
         /// <param name="cardCount">Количество карт</param>
-        public void TestRandomCard(int cardCount)
+        private static void TestRandomCard(int cardCount)
         {
             Console.WriteLine("Создание случайных карт:");
 
@@ -30,7 +44,7 @@ namespace Timelon.Test
         /// Запустить тест создания случайного списка карт и сортировки
         /// </summary>
         /// <param name="cardCount">Количество карт в списке</param>
-        public void TestCardList(int cardCount)
+        private static void TestCardList(int cardCount)
         {
             Console.WriteLine("Создание случайного списка карт и сортировки:");
 
@@ -68,7 +82,7 @@ namespace Timelon.Test
         /// </summary>
         /// <param name="cardlistCount">Количество списков</param>
         /// <param name="cardCount">Количество карт в списке</param>
-        public void TestCardListManager(int cardlistCount, int cardCount)
+        private static void TestCardListManager(int cardlistCount, int cardCount)
         {
             Console.WriteLine("Создание случайных списков карт в менеджере и работа с данными:");
 
@@ -98,7 +112,7 @@ namespace Timelon.Test
         /// Замерить время выполнения основных операций списка карт
         /// </summary>
         /// <param name="cardCount">Количество карт в списке</param>
-        public void MeasureCardListOperationsTime(int cardCount)
+        private static void MeasureCardListOperationsTime(int cardCount)
         {
             Console.WriteLine("Замер времени выполнения основных операций списка карт:");
 
