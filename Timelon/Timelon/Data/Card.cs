@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TimelonCl.Data
+namespace Timelon.Data
 {
     /// <summary>
     /// Контейнер данных дат для сериализации

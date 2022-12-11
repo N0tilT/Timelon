@@ -1,14 +1,13 @@
 ﻿using System;
-using TimelonCl;
 
-namespace TimelonCA
+namespace Timelon.Test
 {
     class Program
     {
         static void Main(string[] args)
         {
             // Инициализация менеджера как можно раньше
-            Manager manager = Manager.Instance;
+            _ = Manager.Instance;
             ConsoleTest test = new ConsoleTest();
 
             // Запуск цепочки тестирования в консоли

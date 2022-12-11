@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Xml.Serialization;
 
-namespace TimelonCl.Data
+namespace Timelon.Data
 {
     /// <summary>
     /// Интерфейс, обозначающий принадлежность к идентифицируемому виду

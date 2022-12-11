@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TimelonWPF
+namespace Timelon.App
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

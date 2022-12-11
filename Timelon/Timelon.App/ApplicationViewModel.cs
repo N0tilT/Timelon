@@ -2,13 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
-using TimelonCl;
-using TimelonCl.Data;
-using TimelonWPF.Core;
+using Timelon.Data;
+using Timelon.App.Core;
 
-namespace TimelonWPF
+namespace Timelon.App
 {
     public class ExtendedCard : Card
     {

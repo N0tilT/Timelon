@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TimelonWPF.Core
+namespace Timelon.App.Core
 {
     public class RelayCommand : ICommand
     {

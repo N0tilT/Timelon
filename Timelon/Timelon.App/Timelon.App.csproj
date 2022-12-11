@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4CE868DE-C688-447D-BE43-FCD11950CF7C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TimelonWPF</RootNamespace>
-    <AssemblyName>TimelonWPF</AssemblyName>
+    <RootNamespace>Timelon.App</RootNamespace>
+    <AssemblyName>Timelon.App</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -162,9 +162,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TimelonCl\TimelonCl.csproj">
+    <ProjectReference Include="..\Timelon\Timelon.csproj">
       <Project>{09b959a2-2abc-4552-863a-dcc4f8a8bce2}</Project>
-      <Name>TimelonCl</Name>
+      <Name>Timelon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

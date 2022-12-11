@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TimelonWPF.Core
+namespace Timelon.App.Core
 {
     internal class ObservableObject : INotifyPropertyChanged
     {

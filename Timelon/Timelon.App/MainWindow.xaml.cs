@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TimelonWPF
+namespace Timelon.App
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml

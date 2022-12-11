@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using TimelonCl;
-using TimelonCl.Data;
+using Timelon.Data;
 
-namespace TimelonCA
+namespace Timelon.Test
 {
     /// <summary>
     /// Класс консольного тестирования
