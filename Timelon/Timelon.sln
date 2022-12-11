@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO\TODO.txt = TODO\TODO.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelon.Test", "Timelon.Test\Timelon.Test.csproj", "{BB220E03-892C-46A1-A6CC-3BA064B0CB30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE868DE-C688-447D-BE43-FCD11950CF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB220E03-892C-46A1-A6CC-3BA064B0CB30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
