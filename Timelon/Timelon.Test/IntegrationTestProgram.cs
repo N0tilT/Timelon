@@ -114,7 +114,7 @@ namespace Timelon.Test
         /// <param name="cardCount">Количество карт в списке</param>
         private static void MeasureCardListOperationsTime(int cardCount)
         {
-            Console.WriteLine("Замер времени выполнения основных операций списка карт:");
+            Console.WriteLine($"Замер времени выполнения операций списка карт ({cardCount}):");
 
             Stopwatch watch = new Stopwatch();
 
@@ -122,31 +122,31 @@ namespace Timelon.Test
             CardList list = Randomizer.RandomCardList(cardCount);
             watch.Stop();
 
-            Console.WriteLine($"Создание случайного списка карт ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Создание случайного списка карт: {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Unsorted);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка в произвольном порядке ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка в произвольном порядке: {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Ascending);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка по возрастанию ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка по возрастанию: {watch.Elapsed}");
 
             watch.Restart();
             list.GetListDefault(SortOrder.Descending);
             watch.Stop();
 
-            Console.WriteLine($"Сортировка по убыванию ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Сортировка по убыванию: {watch.Elapsed}");
 
             watch.Restart();
             list.SearchByContent(Randomizer.Random.NextString(4, 8));
             watch.Stop();
 
-            Console.WriteLine($"Поиск по части названия или описания карты ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Поиск по части названия или описания карты: {watch.Elapsed}");
 
             DateTime date = Randomizer.Random.NextDateTime();
 
@@ -154,7 +154,7 @@ namespace Timelon.Test
             list.SearchByDateUpdated(date, date.AddDays(120));
             watch.Stop();
 
-            Console.WriteLine($"Поиск по дате обновления карты ({cardCount}): {watch.Elapsed}");
+            Console.WriteLine($"Поиск по дате обновления карты: {watch.Elapsed}");
         }
     }
 }

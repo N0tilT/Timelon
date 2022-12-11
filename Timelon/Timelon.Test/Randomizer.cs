@@ -107,11 +107,12 @@ namespace Timelon.Test
         /// <returns>Карта со случайными данными</returns>
         public static Card RandomCard()
         {
-            Card card = new Card(Random.NextString(4, 8), RandomDateTimeContainer());
-
-            card.Description = Random.NextString(16, 32);
-            card.IsImportant = Random.NextBool();
-            card.IsCompleted = Random.NextBool();
+            Card card = new Card(Random.NextString(4, 8), RandomDateTimeContainer())
+            {
+                Description = Random.NextString(16, 32),
+                IsImportant = Random.NextBool(),
+                IsCompleted = Random.NextBool()
+            };
 
             return card;
         }
