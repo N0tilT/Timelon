@@ -428,6 +428,25 @@ namespace Timelon.App
                         }
                     }));
 
+        /// <summary>
+        /// Команда отображения списка-родителя карты
+        /// </summary>
+        private RelayCommand showParentListCommand;
+
+        public RelayCommand ShowParentListCommand => showParentListCommand ??
+            (showParentListCommand = new RelayCommand(obj =>
+            {
+                if(obj is ExtendedCard rCard)
+                {
+                    if(rCard.ParentId != 0)
+                    {
+                        SelectedList = ListManager.GetList(rCard.ParentId);
+                        SelectedCard = SelectedList.Get(rCard.Id);
+                        ExtendedCards = null;
+                    }
+                }
+            }));
+
         #endregion Commands
 
         #region Methods

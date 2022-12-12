@@ -141,8 +141,18 @@ namespace Timelon.App
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            Veil.Visibility = Visibility.Hidden;
             ExtendedCardsMenu.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Hidden;
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(240);
+        }
+
+        private void GoToListButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExtendedCardsMenu.Visibility = Visibility.Hidden;
+            MainCardsMenu.Visibility = Visibility.Visible;
+            ExCardInfoColumn.Width = new GridLength(0);
         }
 
         private void DoneCardsShow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
