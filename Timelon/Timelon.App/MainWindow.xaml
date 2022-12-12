@@ -164,7 +164,7 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
                     <!--Скрываемая панель информации о расширенной карточке-->
                     <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
                 </Grid.ColumnDefinitions>
@@ -186,6 +186,21 @@
                 <Rectangle Grid.Column="3" Grid.RowSpan="4" />
                 <!--#endregion-->
 
+                <!--#region  Veil-->
+                <TextBox x:Name="Veil" 
+                         TextWrapping="Wrap"
+                         
+                         BorderThickness="0"
+                         Text=" Здесь пустовато...
+                         
+                         
+                         Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
+                         Grid.Column="1" Margin="5,168,68,243" Grid.Row="2"
+                         FontSize="22" 
+                         FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
+                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
+                <!--#endregion-->
+                
                 <!--#region Title-->
 
                 <!--Заглавие-->
@@ -268,6 +283,18 @@
                         </ListBox>
                     </StackPanel>
                 </ScrollViewer>
+
+                <Button Grid.Column="1" 
+                        Height="35" Width="35"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding RemoveListCommand}"
+                        CommandParameter="{Binding SelectedList}">
+                    <Image Source="Images/DeleteList.png"/>
+                </Button>
+
 
                 <!--#endregion-->
 
@@ -452,19 +479,7 @@
                 <!--#endregion-->
 
                 <!--#region CardsMenu-->
-                <TextBox x:Name="Veil" 
-                         TextWrapping="Wrap"
-                         
-                         BorderThickness="0"
-                         Text=" Здесь пустовато...
-                         
-                         
-                         Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
-                         Grid.Column="1" Margin="5,168,68,243" Grid.Row="2"
-                         FontSize="22" 
-                         FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
-                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
-
+                
                 <!--Меню карточек-->
                 <ScrollViewer x:Name="MainCardsMenu" 
                               Visibility="Visible"
@@ -575,7 +590,7 @@
                                 BorderThickness="2"
                                 Margin="7,0,7,0">
                             <StackPanel Orientation="Horizontal"
-                                    Background="#DDA15E"
+                                    Background="#CD8A39"
                                     MouseDown="DoneCardsShow_MouseDown">
                                 <TextBlock Text="Завершённые задачи"
                                        Foreground="#3d2525"
@@ -799,6 +814,7 @@
                                 Content="Восстановить задачу"
                                 FontSize="14" FontWeight="Bold" />
                     </Border>
+                    
                 </StackPanel>
 
                 <!--Кнопка удалить задачу-->
@@ -812,7 +828,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Click="DeleteButton_Click"
-                            Command="{Binding RemoveCommand}"
+                            Command="{Binding RemoveCardCommand}"
                             CommandParameter="{Binding SelectedCard}"
                             Content="Удалить задачу"
                             FontSize="14" FontWeight="Bold" />
