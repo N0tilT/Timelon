@@ -331,6 +331,11 @@
                                     <Setter Property="BorderBrush" Value="Black" />
                                 </Trigger>
                             </Style.Triggers>
+                            <Style.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Style.Resources>
                         </Style>
                     </ListBox.ItemContainerStyle>
                 </ListBox>
@@ -467,7 +472,7 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkin.png"
                                                Margin="4"
-                                               Height="14" 
+                                               Height="15" 
                                                SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding Name}"
                                                    FontSize="14"
@@ -476,7 +481,7 @@
                                         <Image Name="HighPriority"
                                                Source="Images\Priority1.png"
                                                Margin="8"
-                                               Height="14"
+                                               Height="15"
                                                HorizontalAlignment="Right"
                                                SnapsToDevicePixels="True"/>
                                     </StackPanel>
@@ -494,6 +499,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -538,6 +548,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -575,7 +590,7 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkout.png"
                                                Margin="4"
-                                               Height="14"
+                                               Height="15"
                                                SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding  Name}"
                                                    FontSize="14"
@@ -595,6 +610,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
