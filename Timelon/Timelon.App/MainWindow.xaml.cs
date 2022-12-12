@@ -88,6 +88,8 @@ namespace Timelon.App
                 ExtendedCardsMenu.Visibility = Visibility.Hidden;
                 MainCardsMenu.Visibility = Visibility.Visible;
                 ExCardInfoColumn.Width = new GridLength(0);
+                SearchResult.Visibility = Visibility.Hidden;
+                CardListName.Visibility = Visibility.Visible;
             }
         }
 
