@@ -162,11 +162,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
-                    <ColumnDefinition Width="195*"/>
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -180,7 +179,7 @@
                 <Rectangle Grid.Column="0" Grid.Row="0"  Grid.RowSpan="3" />
                 <!--Фон для списка карточек-->
                 <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="4"
-                           Fill="#e8ae86" Grid.ColumnSpan="2"/>
+                           Fill="#e8ae86"/>
 
                 <!--Фон для информации о карточке-->
                 <Rectangle Grid.Column="3" Grid.RowSpan="4" />
@@ -204,7 +203,7 @@
                            Style="{StaticResource TitleTheme}" />
 
                 <!--Заглавие информации о карточке-->
-                <TextBlock Grid.Column="3"
+                <TextBlock Grid.Column="2"
                            Text="{Binding SelectedCard.Name}"
                            Style="{StaticResource TitleTheme}" />
 
@@ -377,7 +376,7 @@
                             Grid.Row="2"
                             VerticalAlignment="Center">
 
-                    
+
 
                     <!--Кнопка перейти к родительскому списку -->
                     <Border CornerRadius="5"
@@ -396,23 +395,6 @@
                                 FontSize="14" FontWeight="Bold" />
                     </Border>
                 </StackPanel>
-
-                <!--Кнопка удалить задачу-->
-                <Border CornerRadius="5"
-                        Grid.Column="3"
-                        Grid.Row="3"
-                        Background="#FF952424"
-                        Margin="10,20,0,20"
-                        Height="35">
-                    <Button Foreground="#CFCFCF"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="DeleteButton_Click"
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding SelectedCard}"
-                            Content="Удалить задачу"
-                            FontSize="14" FontWeight="Bold" />
-                </Border>
                 <!--#endregion-->
                 <!--#endregion-->
 
@@ -428,12 +410,7 @@
                          Grid.Column="1" Margin="5,168,68,243" Grid.Row="2"
                          FontSize="22" 
                          FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
-<<<<<<< Updated upstream
-                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow"
-=======
-                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Grid.ColumnSpan="2"
->>>>>>> Stashed changes
-                         />
+                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
 
                 <!--Меню карточек-->
                 <ScrollViewer x:Name="MainCardsMenu" 
@@ -441,7 +418,7 @@
                               Grid.Row="1"
                               Grid.RowSpan="2"
                               Grid.Column="1"
-                              VerticalAlignment="Stretch" Grid.ColumnSpan="2">
+                              VerticalAlignment="Stretch" >
                     <StackPanel>
                         <!--Важные-->
                         <ListBox x:Name="ImportantCardsPanel"
@@ -596,7 +573,7 @@
 
                 <!--Меню информации о карточке-->
                 <StackPanel x:Name="CardInfo"
-                            Grid.Column="3"
+                            Grid.Column="2"
                             Grid.Row="1"
                             Grid.RowSpan="3"
                             DataContext="{Binding SelectedCard}">
@@ -666,13 +643,8 @@
                     </Border>
                 </StackPanel>
 
-<<<<<<< Updated upstream
-                <StackPanel Margin="10,265,0,0"
-                            Grid.Column="2"
-=======
                 <StackPanel Margin="10,208,0,168"
-                            Grid.Column="3"
->>>>>>> Stashed changes
+                            Grid.Column="2"
                             Grid.Row="2"
                             VerticalAlignment="Center">
 
@@ -745,7 +717,7 @@
 
                 <!--Кнопка удалить задачу-->
                 <Border CornerRadius="5"
-                        Grid.Column="3"
+                        Grid.Column="2"
                         Grid.Row="3"
                         Background="#FF952424"
                         Margin="10,20,0,20"
@@ -794,7 +766,7 @@
                 <Border Grid.Row="3"
                         Grid.Column="1"
                         Margin="40,20,80,20"
-                        Style="{StaticResource TextBoxTemplateBorderTheme}" Grid.ColumnSpan="2">
+                        Style="{StaticResource TextBoxTemplateBorderTheme}" >
                     <Grid>
                         <!--Шаблон создания задачи-->
                         <TextBlock x:Name="TemplateCard"
@@ -813,7 +785,7 @@
 
                 <!--Кнопка добавления дела-->
                 <Button x:Name="AddCardButton"
-                        Grid.Column="2"
+                        Grid.Column="1"
                         Grid.Row="3"
                         Margin="0,27,50,28"
                         Click="AddCardButton_Click"
