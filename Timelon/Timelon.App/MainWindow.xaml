@@ -304,6 +304,18 @@
                     </StackPanel>
                 </ScrollViewer>
 
+                <Button Grid.Column="1" 
+                        Height="35" Width="35"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding RemoveListCommand}"
+                        CommandParameter="{Binding SelectedList}">
+                    <Image Source="Images/DeleteList.png"/>
+                </Button>
+
+                
                 <!--#endregion-->
 
                 <!--#region Extended-->
@@ -969,7 +981,7 @@
                         Margin="10,20,0,20"
                         Height="35">
                     <Button Click="DeleteButton_Click"
-                            Command="{Binding RemoveCommand}"
+                            Command="{Binding RemoveCardCommand}"
                             CommandParameter="{Binding SelectedCard}"
                             Content="Удалить задачу"
                             FontSize="14" FontWeight="Bold">
@@ -1078,6 +1090,7 @@
                 <!--#endregion-->
             </Grid>
         </Border>
+        <!--#region  Tray-->
         <Grid>
             <tb:TaskbarIcon x:Name="Tray"
                 Visibility="Visible" 
@@ -1086,8 +1099,12 @@
                 IconSource="Images\Icon.ico">
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu>
-                        <MenuItem 
-                            Header="Выход" Click="MenuItem_Click">
+                        <MenuItem
+                        Header="Сохранить" Click="MenuItem_Click_1">
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem
+                        Header="Выход" Click="MenuItem_Click">
                         </MenuItem>
                     </ContextMenu>
                 </tb:TaskbarIcon.ContextMenu>
