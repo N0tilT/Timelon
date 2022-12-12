@@ -221,10 +221,10 @@
     <Resource Include="Colors\ColorsWatermelon.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Up_Arrow_Default.png" />
+    <Resource Include="Images\Up_Arrow_Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Down_Arrow_Default.png" />
+    <Resource Include="Images\Down_Arrow_Default.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Theme\Thumb_Icon_Default.png" />
