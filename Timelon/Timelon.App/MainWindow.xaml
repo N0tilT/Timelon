@@ -221,6 +221,22 @@
 
                 <!--#endregion-->
 
+                <!--#region  Veil-->
+                <TextBox x:Name="Veil" 
+                         TextWrapping="Wrap"
+                         
+                         BorderThickness="0"
+                         Text=" Здесь пустовато...
+                         
+                         
+                         Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
+                         Grid.Column="1" Margin="5,168,68,243" Grid.Row="2"
+                         FontSize="22" 
+                         FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
+                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
+
+                <!--#endregion-->
+                
                 <!--#region ListsMenu-->
 
                 <!--Поиск-->
@@ -506,19 +522,7 @@
                 <!--#endregion-->
 
                 <!--#region CardsMenu-->
-                <TextBox x:Name="Veil" 
-                         TextWrapping="Wrap"
-                         
-                         BorderThickness="0"
-                         Text=" Здесь пустовато...
-                         
-                         
-                         Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
-                         Grid.Column="1" Margin="5,168,68,243" Grid.Row="2"
-                         FontSize="22" 
-                         FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
-                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
-
+                
                 <!--Меню карточек-->
                 <ScrollViewer x:Name="MainCardsMenu" 
                               Visibility="Visible"
@@ -648,7 +652,7 @@
                                 BorderThickness="2"
                                 Margin="7,0,7,0">
                             <StackPanel Orientation="Horizontal"
-                                    Background="#DDA15E"
+                                    Background="#FFB27731"
                                     MouseDown="DoneCardsShow_MouseDown">
                                 <TextBlock Text="Завершённые задачи"
                                        Foreground="#3d2525"
@@ -1112,5 +1116,6 @@
         </Grid>
         <Grid Margin="788,68,144,542" Grid.Row="1"/>
         <Grid Margin="788,68,144,542" Grid.Row="1"/>
+        <!--#endregion-->
     </Grid>
 </Window>
