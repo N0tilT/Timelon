@@ -104,7 +104,7 @@ namespace Timelon.App
         /// Доступ к коллекции списков
         /// </summary>
         public ObservableCollection<CardList> Lists
-        { get { return _lists; } set { _lists = value; OnPropertyChanged("Lists"); } }
+        { get { return _lists; } set { _lists = value; } }
 
         /// <summary>
         /// Доступ к менеджеру списков
@@ -336,13 +336,13 @@ namespace Timelon.App
         /// <summary>
         /// Команда удаления карты из списка
         /// </summary>
-        private RelayCommand removeCardCommand;
+        private RelayCommand removeCommand;
 
         /// <summary>
         /// Удаление карты из списка
         /// </summary>
-        public RelayCommand RemoveCardCommand => removeCardCommand ??
-                    (removeCardCommand = new RelayCommand(obj =>
+        public RelayCommand RemoveCommand => removeCommand ??
+                    (removeCommand = new RelayCommand(obj =>
                     {
                         if (obj is Card rCard)
                         {
@@ -364,25 +364,6 @@ namespace Timelon.App
                         }
                     },
                     (obj) => DefaultCards.Count > 0 || DoneCards.Count > 0 || ImportantCards.Count > 0));  //Удаляем карты, только если они есть в списке
-
-        /// <summary>
-        /// Команда удаления списка
-        /// </summary>
-        private RelayCommand removeListCommand;
-
-        public RelayCommand RemoveListCommand => removeListCommand ??
-            (removeListCommand = new RelayCommand(obj =>
-            {
-                if(obj is CardList rList)
-                {
-                    if (!rList.IsEssential)
-                    {
-                        SelectedList = ListManager.All[0];
-                        ListManager.RemoveList(rList.Id);
-                        Lists.Remove(rList);
-                    }
-                }
-            }));
 
         /// <summary>
         /// Команда добавления нового списка
