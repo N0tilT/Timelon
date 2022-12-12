@@ -303,6 +303,20 @@ namespace Timelon.App
                 this.Close();
             }
         }
+        private void Trash_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Точно хотите удалить весь список?",
+            "Удаление",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Trash.Command = viewModel.RemoveListCommand;
+            }
+            else
+            {
+                Trash.Command = null;
+            }
+        }
 
         #endregion Window Manager Events
 

@@ -320,13 +320,15 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <Button Grid.Column="1" 
+                <Button x:Name="Trash"
+                        Grid.Column="1" 
                         Height="35" Width="35"
                         HorizontalAlignment="Right"
                         Margin="0,0,10,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Command="{Binding RemoveListCommand}"
+                        Click="Trash_Click"
+
                         CommandParameter="{Binding SelectedList}">
                     <Image Source="Images/DeleteList.png"/>
                 </Button>
