@@ -82,7 +82,7 @@
                     IsDirectionReversed="True">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            Margin="1"
+                            Margin="2"
                             Command="ScrollBar.PageUpCommand"          
                             Style="{StaticResource ScrollBar_Track}"/>
                     </Track.DecreaseRepeatButton>
@@ -95,7 +95,7 @@
 
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
-                            Margin="1"
+                            Margin="2"
                             Command="ScrollBar.PageDownCommand"
                             Style="{StaticResource ScrollBar_Track}"/>
                     </Track.IncreaseRepeatButton>
@@ -370,8 +370,8 @@
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderThickness" Value="0" />
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
@@ -466,13 +466,13 @@
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderThickness" Value="0" />
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
