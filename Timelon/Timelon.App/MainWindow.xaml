@@ -315,7 +315,7 @@
                          Text=" Здесь пустовато...
                          
                          
-                         Этот список не содержит карточек. Добавьте к нему карточки с помощью кнопки ниже." 
+                         Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
                          Grid.Column="1" Margin="0,225,63,225" Grid.Row="1" 
                          FontSize="22" 
                          FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
