@@ -29,11 +29,11 @@
                 <Trigger Property="Orientation"
                          Value="Vertical">
                     <Setter Property="Width"
-                            Value="40"/>
+                            Value="35"/>
                     <Setter Property="Height"
-                            Value="550"/>
+                            Value="480"/>
                     <Setter Property="Margin"
-                            Value="8"/>
+                            Value="10"/>
 
                     <Setter Property="Template"
                             Value="{DynamicResource VerticalScrollBar}"/>
@@ -45,20 +45,21 @@
                          TargetType="{x:Type ScrollBar}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
                 </Grid.RowDefinitions>
                 <Border
                     Grid.Row="1"
-                    CornerRadius="15"
+                    CornerRadius="10"
                     Margin="10"
                     Background="#E6C36A">
                 </Border>
                 <RepeatButton
                     x:Name="rb_Up"
                     Focusable="False"
-                    Height="40"
+                    Height="20"
+                    Width="25"
                     Command="ScrollBar.LineUpCommand"
                     Background="{StaticResource UpArrow_Default}"
                     Style="{StaticResource ScrollBar_UpArrow}">
@@ -68,7 +69,8 @@
                     x:Name="rb_Down"
                     Grid.Row="2"
                     Focusable="False"
-                    Height="40"
+                    Height="20"
+                    Width="25"
                     Command="ScrollBar.LineDownCommand"
                     Background="{StaticResource DownArrow_Default}"
                     Style="{StaticResource ScrollBar_DownArrow}">
@@ -93,7 +95,7 @@
 
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
-                            Margin="1,1,1,1"
+                            Margin="1"
                             Command="ScrollBar.PageDownCommand"
                             Style="{StaticResource ScrollBar_Track}"/>
                     </Track.IncreaseRepeatButton>
