@@ -323,10 +323,8 @@
                          Grid.Column="1" Margin="0,225,63,225" Grid.Row="1"  Grid.RowSpan="2"
                          FontSize="22" 
                          FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
-                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101"
-                         >
-
-                </TextBox>
+                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow"
+                         />
 
                 <!--Меню карточек-->
                 <ScrollViewer Grid.Row="1"
