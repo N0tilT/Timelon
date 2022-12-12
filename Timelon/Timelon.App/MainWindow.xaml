@@ -166,6 +166,7 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
                     <RowDefinition />
                     <RowDefinition Height="75" />
                 </Grid.RowDefinitions>
@@ -173,7 +174,7 @@
                 <!--Фон для списка карточек-->
                 <Rectangle Grid.Column="0" Grid.Row="0"  Grid.RowSpan="3" />
                 <!--Фон для списка карточек-->
-                <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
+                <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="4">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFC3916F" Offset="1" />
@@ -212,38 +213,39 @@
 
                 <!--#region ListsMenu-->
 
-                <!--Меню списков-->
-                <ScrollViewer Grid.Row="1">
-                    <StackPanel>
-                        <Grid>
-
-                            <!--Поиск-->
-                            <Border Margin="10,20,40,20"
+                <!--Поиск-->
+                <Grid Grid.Row="1">
+                    <Border Margin="10,20,40,20"
                                 Style="{StaticResource TextBoxTemplateBorderTheme}">
-                                <Grid>
-                                    <!--Шаблон поиска-->
-                                    <TextBlock x:Name="TemplateSearch"
+                        <Grid>
+                            <!--Шаблон поиска-->
+                            <TextBlock x:Name="TemplateSearch"
                                            Text="Поиск"
                                            FontSize="15"
                                            Style="{StaticResource TextBlockTemplateTheme}" />
-                                    <!--Текстовое поле ввода для поиска-->
-                                    <TextBox x:Name="SearchTextbox"
+                            <!--Текстовое поле ввода для поиска-->
+                            <TextBox x:Name="SearchTextbox"
                                          Margin="0,-3,0,0"
                                          FontSize="15"
                                          TextChanged="SearchTextbox_TextChanged"
                                          Style="{StaticResource TextBoxInputTheme}" />
-                                </Grid>
-                            </Border>
+                        </Grid>
+                    </Border>
 
-                            <!--Кнопка поиска-->
-                            <Button x:Name="SearchButton"
+                    <!--Кнопка поиска-->
+                    <Button x:Name="SearchButton"
                                 Margin="0,28,10,27"
                                 Style="{StaticResource SearchButtonTheme}"
                                 Click="SearchButton_Click"
                                 Command="{Binding SearchCardCommand}"
                                 CommandParameter="{Binding ElementName=SearchTextbox}">
-                            </Button>
-                        </Grid>
+                    </Button>
+                </Grid>
+                
+                <!--Меню списков-->
+                <ScrollViewer Grid.Row="2">
+                    <StackPanel>
+                        
                         <!--Меню списков-->
                         <ListBox x:Name="MenuPanel"
                                  Background="Transparent"
@@ -268,6 +270,7 @@
                 <ListBox x:Name="ExtendedCardsMenu"
                          Grid.Column="1"
                          Grid.Row="1"
+                         Grid.RowSpan="2"
                          Visibility="Hidden"
                          Background="Transparent"
                          BorderThickness="0"
@@ -316,7 +319,7 @@
                          
                          
                          Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже." 
-                         Grid.Column="1" Margin="0,225,63,225" Grid.Row="1" 
+                         Grid.Column="1" Margin="0,225,63,225" Grid.Row="1"  Grid.RowSpan="2"
                          FontSize="22" 
                          FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
                          Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101"
@@ -326,6 +329,7 @@
 
                 <!--Меню карточек-->
                 <ScrollViewer Grid.Row="1"
+                              Grid.RowSpan="2"
                               Grid.Column="1"
                               VerticalAlignment="Stretch">
                     <StackPanel x:Name="MainCardsMenu"
@@ -487,7 +491,7 @@
                 <StackPanel x:Name="CardInfo"
                             Grid.Column="2"
                             Grid.Row="1"
-                            Grid.RowSpan="2"
+                            Grid.RowSpan="3"
                             DataContext="{Binding SelectedCard}">
 
                     <!--Название карты-->
@@ -550,7 +554,7 @@
 
                 <StackPanel Margin="10,40,0,0"
                             Grid.Column="2"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             VerticalAlignment="Center">
 
                     <!--Кнопка выполнить задачу-->
@@ -623,7 +627,7 @@
                 <!--Кнопка удалить задачу-->
                 <Border CornerRadius="5"
                         Grid.Column="2"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Background="#FF952424"
                         Margin="10,20,0,20"
                         Height="35">
@@ -641,7 +645,7 @@
                 <!--#region InputFields-->
                 <!--Поля ввода-->
                 <!--Создать список-->
-                <Border Grid.Row="2"
+                <Border Grid.Row="3"
                         Margin="10,20,30,20"
                         Style="{StaticResource TextBoxTemplateBorderTheme}">
                     <Grid>
@@ -661,14 +665,14 @@
 
                 <!--Кнопка создания списка-->
                 <Button x:Name="AddListButton"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Click="AddListButton_Click"
                         Command="{Binding AddListCommand}"
                         CommandParameter="{Binding ElementName=AddListTextbox}"
                         Style="{StaticResource AddButtonTheme}" Margin="0,27,5,28" />
 
                 <!--Создать карточку дела-->
-                <Border Grid.Row="2"
+                <Border Grid.Row="3"
                         Grid.Column="1"
                         Margin="40,20,80,20"
                         Style="{StaticResource TextBoxTemplateBorderTheme}">
@@ -691,7 +695,7 @@
                 <!--Кнопка добавления дела-->
                 <Button x:Name="AddCardButton"
                         Grid.Column="1"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Margin="0,27,50,28"
                         Click="AddCardButton_Click"
                         Command="{Binding AddCardCommand}"
