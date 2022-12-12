@@ -416,9 +416,8 @@
                 <ScrollViewer x:Name="MainCardsMenu" 
                               Visibility="Visible"
                               Grid.Row="1"
-                              Grid.RowSpan="2"
-                              Grid.Column="1"
-                              VerticalAlignment="Stretch" >
+                              Grid.RowSpan="3"
+                              VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="235,4.8,5,69.8" >
                     <StackPanel>
                         <!--Важные-->
                         <ListBox x:Name="ImportantCardsPanel"
@@ -631,9 +630,9 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
-                    <TextBox x:Name="Description"
+                    <TextBlock x:Name="Description"
                              Height="21"
-                             BorderThickness="0"
+                             
                              Background="Transparent"
                              FontSize="14" FontWeight="Bold"
                              Text="Описание" Width="74"
@@ -808,11 +807,10 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
-                <TextBox x:Name="Time"
+                <TextBlock x:Name="Time"
                              Height="21"
-                             BorderThickness="0"
                              Background="Transparent"
-                             
+                             Focusable="False"
                              Text="Время создания" Margin="0,60,0,0"
                              Grid.Column="2" FontSize="14" FontWeight="Bold" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
                              />
