@@ -194,11 +194,21 @@
                 </Border>
 
                 <!--Название списка-->
-                <TextBlock x:Name="CardList"
+                <TextBlock x:Name="CardListName"
                            Grid.Column="1" 
-                           Margin="232,0,0,0" 
+                           Margin="0,0,0,0" 
                            VerticalAlignment="Top" HorizontalAlignment="Left"
                            Text="{Binding SelectedList.Name}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource TitleTheme}" />
+                
+                <!--Название списка - результата поиска-->
+                <TextBlock x:Name="SearchResult"
+                           Visibility="Collapsed"
+                           Grid.Column="1" 
+                           Margin="0,0,0,0" 
+                           VerticalAlignment="Top" HorizontalAlignment="Left"
+                           Text="Результат поиска"
                            TextWrapping="Wrap"
                            Style="{StaticResource TitleTheme}" />
 
@@ -278,14 +288,32 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Name}"
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Name="CompleteStatus"
+                                               Source="Images\Checkin.png"
+                                               Margin="4"
+                                               Height="15"
+                                               SnapsToDevicePixels="True"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name}"
                                            FontSize="14"
                                            Style="{StaticResource CardTheme}" />
-                                <TextBlock Margin="10,0,0,0"
+                                        <TextBlock Margin="10,0,0,0"
                                            Text="{Binding ParentName}"
                                            FontSize="12"
                                            FontStyle="Oblique"
                                            Style="{StaticResource CardTheme}" />
+                                    </StackPanel>
+                                    
+
+                                    <Image Name="HighPriority"
+                                               Source="Images\Priority2.png"
+                                               HorizontalAlignment="Right"
+                                               Margin="8"
+                                               Height="15"
+                                               SnapsToDevicePixels="True"/>
+                                </StackPanel>
+                                
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -305,7 +333,11 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
                 <!--#region ExtendedCardInfo-->
-
+                
+                <TextBlock Grid.Column="3"
+                           Text="{Binding SelectedExtendedCard.Name}"
+                           Style="{StaticResource TitleTheme}" />
+                
                 <!--Меню информации о расширенной карточке-->
                 <StackPanel x:Name="ExtendedCardInfo"
                             Grid.Column="4"
@@ -586,14 +618,18 @@
                             Margin="10,10,1,10"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="71*"/>
+                                <ColumnDefinition Width="44*"/>
+                            </Grid.ColumnDefinitions>
                             <TextBlock x:Name="CardDateTemplate"
                                        Text=""
                                        FontSize="14"
-                                       Style="{StaticResource TextBlockTemplateTheme}" />
+                                       Style="{StaticResource TextBlockTemplateTheme}" Margin="10,10,0,10" />
                             <TextBox x:Name="CardDateTextbox"
                                      Text="{Binding Date.Created, Mode=OneWay}"
                                      FontSize="14"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}" Grid.ColumnSpan="2" />
                         </Grid>
                     </Border>
 
@@ -792,13 +828,15 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
+                
                 <TextBox x:Name="Time"
                              Height="21"
                              BorderThickness="0"
                              Background="Transparent"
                              
                              Text="Время создания" Margin="0,60,0,0"
-                             Grid.Column="2" FontSize="14" FontWeight="Bold" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                             Grid.Column="2" Grid.RowSpan="2" 
+                            FontSize="14" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Top" 
                              />
 
                 <!--#endregion-->
