@@ -11,7 +11,6 @@ namespace Timelon.App
     public partial class MainWindow : Window
     {
         private ApplicationViewModel viewModel = new ApplicationViewModel();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -267,33 +266,48 @@ namespace Timelon.App
             this.Show();
         }
 
-        private void MenuExitClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (viewModel.Need_Save == true)
-            {
-                this.Show();
-                if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
-                    "Выход",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            else this.Close();
+            Confirmation();
         }
-
-        #endregion Window Manager Events
-
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = false;
             viewModel.ListManager.SaveData();
         }
+
+        private void Confirmation()
+        {
+            Window ClearWindow = new Window()
+            {
+                Visibility = Visibility.Collapsed,
+                AllowsTransparency = true,
+                Background = System.Windows.Media.Brushes.Transparent,
+                WindowStyle = WindowStyle.None,
+                ShowInTaskbar = false
+            };
+            if (viewModel.Need_Save == true)
+            {
+                ClearWindow.Show();
+                if (MessageBox.Show(ClearWindow, "Точно хотите выйти? Все несохраненные данные будут удалены.",
+                    "Выход",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    ClearWindow.Close();
+                    this.Close();
+                }
+                else ClearWindow.Close();
+            }
+            else
+            {
+                ClearWindow.Close();
+                this.Close();
+            }
+        }
+
+        #endregion Window Manager Events
+
+
     }
 }
