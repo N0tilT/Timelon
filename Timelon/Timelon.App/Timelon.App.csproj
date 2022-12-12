@@ -244,8 +244,5 @@
   <ItemGroup>
     <Resource Include="Images\Icon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\DeleteList.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
