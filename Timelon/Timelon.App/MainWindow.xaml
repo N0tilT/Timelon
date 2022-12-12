@@ -165,9 +165,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -321,7 +321,7 @@
                     </ListBox.ItemTemplate>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Background" Value="#FFBB8283" />
+                            <Setter Property="Background" Value="#FFCF842A" />
                             <Setter Property="Margin" Value="5" />
                             <Setter Property="Padding" Value="5" />
                             <Style.Triggers>
@@ -489,7 +489,7 @@
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="#FFBB8283" />
+                                    <Setter Property="Background" Value="#CD8A39" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
@@ -539,7 +539,7 @@
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="#FFBB8283" />
+                                    <Setter Property="Background" Value="#CD8A39" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
@@ -600,7 +600,7 @@
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="#FFBB8283" />
+                                    <Setter Property="Background" Value="#CD8A39" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
