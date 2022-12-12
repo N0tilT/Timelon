@@ -371,6 +371,7 @@
                                      FontSize="14"
                                      Style="{StaticResource TextBoxInputTheme}" 
                                      IsReadOnly="True"
+                                     Cursor="Arrow"
                                      />
                         </Grid>
                     </Border>
@@ -642,14 +643,14 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
-                    <TextBlock x:Name="Description"
+                    <TextBox x:Name="Description"
                              Height="21"
-                             
+                             BorderThickness="0"
                              Background="Transparent"
                              FontSize="14" FontWeight="Bold"
                              Text="Описание" Width="74"
-                                                                  Cursor="Arrow"
-                                     IsReadOnly="True"
+                             Cursor="Arrow"
+                             IsReadOnly="True"
                              />
 
                     <!--Описание карты-->
@@ -821,11 +822,12 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
-                <TextBlock x:Name="Time"
+                <TextBox x:Name="Time"
+                         BorderThickness="0"
                              Height="21"
                              Background="Transparent"
-                                                                  Cursor="Arrow"
-                                     IsReadOnly="True"
+                             Cursor="Arrow"
+                             IsReadOnly="True"
                              Text="Время создания" Margin="0,60,0,0"
                              Grid.Column="2" FontSize="14" FontWeight="Bold" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
                              />
