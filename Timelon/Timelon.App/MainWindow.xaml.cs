@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,6 +18,8 @@ namespace Timelon.App
             InitializeComponent();
             DataContext = viewModel;
 
+            NoCard();
+
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
         }
@@ -31,6 +34,35 @@ namespace Timelon.App
             DragMove();
         }
 
+        private void NoCard()
+        {
+            if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) != 0)
+            {
+                YesVisible();
+            }
+            else
+            {
+                NoVisible();
+            }
+        }
+
+        void YesVisible()
+        {
+            MainCardsMenu.Visibility = Visibility.Visible;
+            Veil.Opacity = 0;
+        }
+
+        void NoVisible()
+        {
+            MainCardsMenu.Visibility = Visibility.Collapsed;
+            Veil.Opacity = 1;
+        }
+
+        async void Sleeper()
+        {
+            await Task.Delay(2);
+            NoCard();
+        }
         #region ButtonClick
 
         /// <summary>
@@ -40,6 +72,7 @@ namespace Timelon.App
         /// <param name="e"></param>
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            Sleeper();
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
             if (ExtendedCardsMenu.Visibility == Visibility.Visible)
@@ -51,6 +84,7 @@ namespace Timelon.App
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) == 1) NoVisible();
             viewModel.Need_Save = true;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
@@ -86,11 +120,13 @@ namespace Timelon.App
 
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
+            NoVisible();
             viewModel.Need_Save = true;
         }
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
+            YesVisible();
             viewModel.Need_Save = true;
         }
 
@@ -157,17 +193,18 @@ namespace Timelon.App
         /// <param name="e"></param>
         private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (viewModel.Need_Save == true)
-            {
-                if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
-                    "Выход",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            else this.Close();
+            //if (viewModel.Need_Save == true)
+            //{
+            //    if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
+            //        "Выход",
+            //        MessageBoxButton.YesNo,
+            //        MessageBoxImage.Question) == MessageBoxResult.Yes)
+            //    {
+            //        this.Close();
+            //    }
+            //}
+            //else this.Close();
+            this.Hide();
         }
 
         private void SaveChanges_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -198,6 +235,32 @@ namespace Timelon.App
                 this.WindowState = WindowState.Maximized;
             else
                 this.WindowState = WindowState.Normal;
+        }
+
+        private void TaskbarIcon_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void MenuExitClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (viewModel.Need_Save == true)
+            {
+                this.Show();
+                if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
+                    "Выход",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else this.Close();
         }
 
         #endregion Window Manager Events

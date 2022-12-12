@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
         MinWidth="1024" MinHeight="768"
@@ -63,7 +63,7 @@
                     Background="{StaticResource UpArrow_Default}"
                     Style="{StaticResource ScrollBar_UpArrow}">
                 </RepeatButton>
-                
+
                 <RepeatButton
                     x:Name="rb_Down"
                     Grid.Row="2"
@@ -101,7 +101,7 @@
             </Grid>
         </ControlTemplate>
     </Window.Resources>
-    
+
     <Grid>
         <!--Основное окно-->
         <!--#region GridDefs-->
@@ -215,35 +215,35 @@
                 <!--Меню списков-->
                 <ScrollViewer Grid.Row="1">
                     <StackPanel>
-                    <Grid>
+                        <Grid>
 
-                        <!--Поиск-->
-                        <Border Margin="10,20,40,20"
+                            <!--Поиск-->
+                            <Border Margin="10,20,40,20"
                                 Style="{StaticResource TextBoxTemplateBorderTheme}">
-                            <Grid>
-                                <!--Шаблон поиска-->
-                                <TextBlock x:Name="TemplateSearch"
+                                <Grid>
+                                    <!--Шаблон поиска-->
+                                    <TextBlock x:Name="TemplateSearch"
                                            Text="Поиск"
                                            FontSize="15"
                                            Style="{StaticResource TextBlockTemplateTheme}" />
-                                <!--Текстовое поле ввода для поиска-->
-                                <TextBox x:Name="SearchTextbox"
+                                    <!--Текстовое поле ввода для поиска-->
+                                    <TextBox x:Name="SearchTextbox"
                                          Margin="0,-3,0,0"
                                          FontSize="15"
                                          TextChanged="SearchTextbox_TextChanged"
                                          Style="{StaticResource TextBoxInputTheme}" />
-                            </Grid>
-                        </Border>
+                                </Grid>
+                            </Border>
 
-                        <!--Кнопка поиска-->
-                        <Button x:Name="SearchButton"
+                            <!--Кнопка поиска-->
+                            <Button x:Name="SearchButton"
                                 Margin="0,28,10,27"
                                 Style="{StaticResource SearchButtonTheme}"
                                 Click="SearchButton_Click"
                                 Command="{Binding SearchCardCommand}"
                                 CommandParameter="{Binding ElementName=SearchTextbox}">
-                        </Button>
-                    </Grid>
+                            </Button>
+                        </Grid>
                         <!--Меню списков-->
                         <ListBox x:Name="MenuPanel"
                                  Background="Transparent"
@@ -308,6 +308,21 @@
                 <!--#endregion-->
 
                 <!--#region CardsMenu-->
+                <TextBox x:Name="Veil" 
+                         TextWrapping="Wrap"
+                         
+                         BorderThickness="0"
+                         Text=" Здесь пустовато...
+                         
+                         
+                         Этот список не содержит карточек. Добавьте к нему карточки с помощью кнопки ниже." 
+                         Grid.Column="1" Margin="0,225,63,225" Grid.Row="1" 
+                         FontSize="22" 
+                         FontFamily="Arial" IsReadOnly="True" TextAlignment="Center" FontWeight="Bold" SelectionOpacity="0"
+                         Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101"
+                         >
+
+                </TextBox>
 
                 <!--Меню карточек-->
                 <ScrollViewer Grid.Row="1"
@@ -680,5 +695,20 @@
                 <!--#endregion-->
             </Grid>
         </Border>
+        <Grid>
+            <tb:TaskbarIcon x:Name="Tray"
+                Visibility="Visible" 
+                TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown"
+                ToolTipText="Timelon" 
+                IconSource="Images\Icon.ico">
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem 
+                            Header="Выход" Click="MenuItem_Click">
+                        </MenuItem>
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+        </Grid>
     </Grid>
 </Window>
