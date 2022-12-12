@@ -176,8 +176,8 @@
                 <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#fab228" Offset="1" />
-                            <GradientStop Color="#f4be54" Offset="0" />
+                            <GradientStop Color="#FFC3916F" Offset="1" />
+                            <GradientStop Color="#FFF7E79C" Offset="0" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -326,7 +326,8 @@
 
                 <!--Меню карточек-->
                 <ScrollViewer Grid.Row="1"
-                              Grid.Column="1">
+                              Grid.Column="1"
+                              VerticalAlignment="Stretch">
                     <StackPanel x:Name="MainCardsMenu"
                                 Visibility="Visible">
                         <!--Важные-->
@@ -419,8 +420,11 @@
                             </ListBox.ItemContainerStyle>
                         </ListBox>
                         <!--Разделитель завершённых и невыполненных-->
-                        <StackPanel Orientation="Horizontal"
-                                    Background="#FFBEBC"
+                        <Border BorderBrush="Black" 
+                                BorderThickness="2"
+                                Margin="7,0,7,0">
+                            <StackPanel Orientation="Horizontal"
+                                    Background="#FFC3916F"
                                     MouseDown="DoneCardsShow_MouseDown">
                             <TextBlock Text="Завершённые задачи"
                                        Foreground="#3d2525"
@@ -434,6 +438,8 @@
                                      Margin="-19,0,0,0" />
                         </StackPanel>
 
+                        </Border>
+                        
                         <!--Завершённые-->
                         <ListBox x:Name="DoneCardsPanel"
                                  Background="Transparent"
