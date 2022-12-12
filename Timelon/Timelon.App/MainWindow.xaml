@@ -55,7 +55,7 @@
                     Grid.Row="1"
                     CornerRadius="10"
                     Margin="10"
-                    Background="#FF477654">
+                    Background="#283618">
                 </Border>
                 <RepeatButton
                     x:Name="rb_Up"
@@ -153,7 +153,7 @@
         <!--#endregion-->
 
         <!--Скругленные нижние края-->
-        <Border Background="#889e6a"
+        <Border Background="#606C38"
                 CornerRadius="0 0 10 10"
                 Grid.Row="1" Grid.RowSpan="2">
 
@@ -181,7 +181,7 @@
                 <Rectangle Grid.Column="0" Grid.Row="0"  Grid.RowSpan="3" />
                 <!--Фон для списка карточек-->
                 <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="4"
-                           Fill="#e8ae86"/>
+                           Fill="#DDA15E"/>
 
                 <!--Фон для информации о карточке-->
                 <Rectangle Grid.Column="3" Grid.RowSpan="4" />
@@ -561,7 +561,7 @@
                                 BorderThickness="2"
                                 Margin="7,0,7,0">
                             <StackPanel Orientation="Horizontal"
-                                    Background="#FFBB8283"
+                                    Background="#DDA15E"
                                     MouseDown="DoneCardsShow_MouseDown">
                                 <TextBlock Text="Завершённые задачи"
                                        Foreground="#3d2525"
