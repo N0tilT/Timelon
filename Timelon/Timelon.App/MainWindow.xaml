@@ -11,7 +11,8 @@
         WindowStyle = "None"
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="Images\Icon.ico">
     <Window.Resources>
         <ImageBrush x:Key="UpArrow_Default" 
                     ImageSource="Images/Up_Arrow_Default.png"/>
