@@ -6,7 +6,7 @@ using System.Text;
 namespace Timelon.Test.Data
 {
     /// <summary>
-    /// Summary description for CardListTest
+    /// Модульное тестирование класса CardList
     /// </summary>
     [TestClass]
     public class CardListTest

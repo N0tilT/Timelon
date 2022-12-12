@@ -421,9 +421,8 @@
                 <ScrollViewer x:Name="MainCardsMenu" 
                               Visibility="Visible"
                               Grid.Row="1"
-                              Grid.RowSpan="2"
-                              Grid.Column="1"
-                              VerticalAlignment="Stretch" >
+                              Grid.RowSpan="3"
+                              VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="235,4.8,5,69.8" >
                     <StackPanel>
                         <!--Важные-->
                         <ListBox x:Name="ImportantCardsPanel"
@@ -465,6 +464,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -505,10 +509,16 @@
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True" >
+                                            <Setter Property="Background" Value="Red"/>
                                             <Setter Property="BorderThickness" Value="0" />
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -566,6 +576,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -627,9 +642,9 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
-                    <TextBox x:Name="Description"
+                    <TextBlock x:Name="Description"
                              Height="21"
-                             BorderThickness="0"
+                             
                              Background="Transparent"
                              FontSize="14" FontWeight="Bold"
                              Text="Описание" Width="74"
@@ -806,9 +821,8 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
-                <TextBox x:Name="Time"
+                <TextBlock x:Name="Time"
                              Height="21"
-                             BorderThickness="0"
                              Background="Transparent"
                                                                   Cursor="Arrow"
                                      IsReadOnly="True"
