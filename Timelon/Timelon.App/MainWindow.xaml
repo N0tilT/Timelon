@@ -149,7 +149,11 @@
         <!--#endregion-->
 
         <!--Скругленные нижние края-->
+<<<<<<< Updated upstream
         <Border Background="#77ba5d"
+=======
+        <Border Background="#758303"
+>>>>>>> Stashed changes
                 CornerRadius="0 0 10 10"
                 Grid.Row="1" Grid.RowSpan="2">
 
