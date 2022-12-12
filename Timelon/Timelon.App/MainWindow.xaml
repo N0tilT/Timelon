@@ -263,11 +263,41 @@
                                  ItemsSource="{Binding Lists}"
                                  SelectedItem="{Binding SelectedList}"
                                  GotFocus="MenuButton_Click">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="#FFBB8283" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFB27731" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"
-                                               FontSize="14"
-                                               Style="{StaticResource MenuButtonTheme}" />
+                                               FontSize="16"
+                                               Style="{StaticResource MenuButtonTheme}"
+                                               Height="40"
+                                               VerticalAlignment="Center"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -424,14 +454,40 @@
                             Background="#FF892384"
                             Height="35"
                             Margin="5">
-                        <Button Foreground="#CFCFCF"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Click="GoToListButton_Click"
+                        <Button Click="GoToListButton_Click"
                                 Command="{Binding ShowParentListCommand}"
                                 CommandParameter="{Binding SelectedExtendedCard}"
                                 Content="Перейти к списку"
-                                FontSize="14" FontWeight="Bold" />
+                                FontSize="14" FontWeight="Bold" >
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Foreground" Value="#CFCF"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF892355"/>
+                                            <Setter Property="Foreground" Value="#CFCF" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </Border>
                 </StackPanel>
                 <!--#endregion-->
@@ -492,11 +548,20 @@
                                     <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
-                                    <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Left" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFB27731" />
                                             <Setter Property="Foreground" Value="Black" />
                                             <Setter Property="BorderThickness" Value="0" />
-                                            <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
                                     <Style.Resources>
@@ -542,10 +607,20 @@
                                     <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Left" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
                                     <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True" >
+                                        <Trigger Property="IsMouseOver" Value="True" >
+                                            <Setter Property="Background" Value="#FFB27731" />
+                                            <Setter Property="Foreground" Value="Black" />
                                             <Setter Property="BorderThickness" Value="0" />
-                                            <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
                                     <Style.Resources>
@@ -603,11 +678,20 @@
                                     <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Left" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
                                     <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFB27731" />
                                             <Setter Property="Foreground" Value="Black" />
                                             <Setter Property="BorderThickness" Value="0" />
-                                            <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
                                     <Style.Resources>
@@ -711,14 +795,40 @@
                             Background="#FF1C7628"
                             Height="35"
                             Margin="5">
-                        <Button Foreground="#CFCFCF"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Click="DoneCardButton_Click"
+                        <Button Click="DoneCardButton_Click"
                                 Command="{Binding CardDoneCommand}"
                                 CommandParameter="{Binding SelectedCard}"
                                 Content="Выполнить задачу"
-                                FontSize="14" FontWeight="Bold" />
+                                FontSize="14" FontWeight="Bold" >
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Foreground" Value="#CFCF"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF1C6000"/>
+                                            <Setter Property="Foreground" Value="#CFCF" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </Border>
 
                     <StackPanel Orientation="Horizontal">
@@ -729,14 +839,40 @@
                                 Background="#FFBD7039"
                                 Height="35"
                                 Margin="5">
-                            <Button Foreground="#CFCFCF"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Click="ImportantCardButton_Click"
+                            <Button Click="ImportantCardButton_Click"
                                     Command="{Binding CardImportantCommand}"
                                     CommandParameter="{Binding SelectedCard}"
                                     Content="Отметить как важное"
-                                    FontSize="14" FontWeight="Bold" />
+                                    FontSize="14" FontWeight="Bold" >
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Foreground" Value="#CFCF"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FFBD5000"/>
+                                                <Setter Property="Foreground" Value="#CFCF" />
+                                                <Setter Property="BorderThickness" Value="0" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                        <Style.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Style.Resources>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </Border>
                         <!--Отменить отметку о важности-->
                         <Border CornerRadius="5"
@@ -744,14 +880,40 @@
                                 Grid.Row="1"
                                 Background="#FFBD4539"
                                 Height="35">
-                            <Button Foreground="#CFCFCF"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Click="UndoImportantCardButton_Click"
+                            <Button Click="UndoImportantCardButton_Click"
                                     Command="{Binding CardUndoImportantCommand}"
                                     CommandParameter="{Binding SelectedCard}"
                                     Content="Отменить"
-                                    FontSize="13" FontWeight="Bold" />
+                                    FontSize="13" FontWeight="Bold">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Foreground" Value="#CFCF"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FFBD3530"/>
+                                                <Setter Property="Foreground" Value="#CFCF" />
+                                                <Setter Property="BorderThickness" Value="0" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                        <Style.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Style.Resources>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </Border>
                     </StackPanel>
 
@@ -762,14 +924,40 @@
                             Background="#FF232689"
                             Height="35"
                             Margin="5">
-                        <Button Foreground="#CFCFCF"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Click="RecoverCardButton_Click"
+                        <Button Click="RecoverCardButton_Click"
                                 Command="{Binding CardRecoverCommand}"
                                 CommandParameter="{Binding SelectedCard}"
                                 Content="Восстановить задачу"
-                                FontSize="14" FontWeight="Bold" />
+                                FontSize="14" FontWeight="Bold">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Foreground" Value="#CFCF"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF232670"/>
+                                            <Setter Property="Foreground" Value="#CFCF" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </Border>
                 </StackPanel>
 
@@ -780,14 +968,40 @@
                         Background="#FF952424"
                         Margin="10,20,0,20"
                         Height="35">
-                    <Button Foreground="#CFCFCF"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="DeleteButton_Click"
+                    <Button Click="DeleteButton_Click"
                             Command="{Binding RemoveCommand}"
                             CommandParameter="{Binding SelectedCard}"
                             Content="Удалить задачу"
-                            FontSize="14" FontWeight="Bold" />
+                            FontSize="14" FontWeight="Bold">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Foreground" Value="#CFCF"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF930000"/>
+                                        <Setter Property="Foreground" Value="#CFCF" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </Border>
                 <!--#endregion-->
 
