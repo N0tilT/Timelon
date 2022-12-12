@@ -25,7 +25,12 @@ namespace Timelon.App
             set { _parentListName = value; }
         }
 
-        public ExtendedCard(int listId, string listName, int cardId, string cardName, DateTimeContainer date) : base(cardId, cardName, date)
+        public ExtendedCard(int listId,
+            string listName, int cardId,
+            string cardName, DateTimeContainer date,
+            string description, bool isImportant, bool isCompleted)
+            :
+            base(cardId, cardName, date, description, isImportant, isCompleted)
         {
             _parentListId = listId;
             _parentListName = listName;
@@ -421,7 +426,9 @@ namespace Timelon.App
                             {
                                 List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
                                 foreach (Card card in searchResult)
-                                    _extendedCardList.Add(new ExtendedCard(item.Value.Id, item.Value.Name, card.Id, card.Name, card.Date));
+                                    _extendedCardList.Add(new ExtendedCard(item.Value.Id, 
+                                        item.Value.Name, card.Id, card.Name, 
+                                        card.Date, card.Description, card.IsImportant, card.IsCompleted));
                             }
 
                             ExtendedCards = new ObservableCollection<ExtendedCard>(_extendedCardList);

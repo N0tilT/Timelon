@@ -146,6 +146,8 @@ namespace Timelon.App
             MainCardsMenu.Visibility = Visibility.Hidden;
             CardInfoColumn.Width = new GridLength(0);
             ExCardInfoColumn.Width = new GridLength(240);
+            CardListName.Visibility = Visibility.Collapsed;
+            SearchResult.Visibility = Visibility.Visible;
         }
 
         private void GoToListButton_Click(object sender, RoutedEventArgs e)
@@ -153,6 +155,8 @@ namespace Timelon.App
             ExtendedCardsMenu.Visibility = Visibility.Hidden;
             MainCardsMenu.Visibility = Visibility.Visible;
             ExCardInfoColumn.Width = new GridLength(0);
+            CardListName.Visibility = Visibility.Visible;
+            SearchResult.Visibility = Visibility.Collapsed;
         }
 
         private void DoneCardsShow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
