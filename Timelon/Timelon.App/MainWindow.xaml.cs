@@ -20,6 +20,9 @@ namespace Timelon.App
 
             NoCard();
 
+            this.MaxHeight = SystemParameters.WorkArea.Height + SystemParameters.BorderWidth * 2 + 100;
+            this.MaxWidth = SystemParameters.WorkArea.Width + SystemParameters.BorderWidth * 2 + 100;
+
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
         }
@@ -49,20 +52,20 @@ namespace Timelon.App
         void YesVisible()
         {
             MainCardsMenu.Visibility = Visibility.Visible;
-            Veil.Opacity = 0;
+            Veil.Visibility = Visibility.Hidden;
         }
 
         void NoVisible()
         {
             MainCardsMenu.Visibility = Visibility.Collapsed;
-            Veil.Opacity = 1;
+            Veil.Visibility = Visibility.Visible;
         }
-
         async void Sleeper()
         {
             await Task.Delay(2);
             NoCard();
         }
+
         #region ButtonClick
 
         /// <summary>
