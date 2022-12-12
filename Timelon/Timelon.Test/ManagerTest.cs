@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Timelon.Data;
@@ -12,7 +13,22 @@ namespace Timelon.Test
         /// Путь до директории с файлом с данными для отладки
         /// /bin/DEBUG/
         /// </summary>
-        private const string Source = "sample";
+        private const string SampleSource = "sample";
+
+        /// <summary>
+        /// Зарезервированный идентификатор списка карт A
+        /// </summary>
+        private const int ReservedIdA = Manager.EssentialIdB + 1;
+
+        /// <summary>
+        /// Зарезервированный идентификатор списка карт B
+        /// </summary>
+        private const int ReservedIdB = ReservedIdA + 1;
+
+        /// <summary>
+        /// Зарезервированный идентификатор несуществующего списка карт
+        /// </summary>
+        private const int ReservedBadId = ReservedIdB + 1;
 
         /// <summary>
         /// Экземпляр менеджера
@@ -25,13 +41,14 @@ namespace Timelon.Test
         private PrivateObject _managerAccessor;
 
         /// <summary>
-        /// Экземпляры списков карт
+        /// Список карт A
         /// </summary>
-        private readonly List<CardList> _sampleList = new List<CardList>()
-        {
-            new CardList(10, "SampleX"),
-            new CardList(11, "SampleY")
-        };
+        private readonly CardList _cardListA = new CardList(ReservedIdA, "SampleA");
+
+        /// <summary>
+        /// Список карт B
+        /// </summary>
+        private readonly CardList _cardListB = new CardList(ReservedIdB, "SampleB");
 
         /// <summary>
         /// Конструктор
@@ -39,6 +56,19 @@ namespace Timelon.Test
         public ManagerTest()
         {
             ResetManager();
+        }
+
+        /// <summary>
+        /// Тест конструктора
+        /// </summary>
+        [TestMethod]
+        public void TestConstructor()
+        {
+            Manager value = new Manager(SampleSource);
+            string badSource = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            Assert.IsNotNull(value);
+            Assert.ThrowsException<ArgumentException>(() => new Manager(badSource));
         }
 
         /// <summary>
@@ -58,7 +88,7 @@ namespace Timelon.Test
         [TestMethod]
         public void TestSourceDirectoryProperty()
         {
-            string expected = Path.Combine(Source, Manager.DirectoryName);
+            string expected = Path.Combine(SampleSource, Manager.DirectoryName);
             string actual = _manager.SourceDirectory.ToString();
 
             Assert.AreEqual(expected, actual);
@@ -70,7 +100,7 @@ namespace Timelon.Test
         [TestMethod]
         public void TestSourceProperty()
         {
-            string expected = Path.Combine(Source, Manager.DirectoryName);
+            string expected = Path.Combine(SampleSource, Manager.DirectoryName);
             expected = Path.Combine(expected, Manager.FileName);
 
             string actual = _manager.Source.ToString();
@@ -95,9 +125,10 @@ namespace Timelon.Test
         [TestMethod]
         public void TestGetList()
         {
-            CardList value = _manager.GetList(_sampleList[0].Id);
+            CardList value = _manager.GetList(_cardListA.Id);
 
             Assert.IsNotNull(value);
+            Assert.ThrowsException<KeyNotFoundException>(() => _manager.GetList(ReservedBadId));
         }
 
         /// <summary>
@@ -107,12 +138,15 @@ namespace Timelon.Test
         public void TestSetList()
         {
             int notExpected = _manager.All.Count;
-            int actual = _manager.All.Count + 1;
 
-            _manager.SetList(_sampleList[1]);
+            // Список карт A уже находится в менеджере
+            _manager.SetList(_cardListA);
+            _manager.SetList(_cardListB);
+
+            int actual = _manager.All.Count;
+
+            Assert.IsTrue(actual - notExpected == 1);
             ResetManager();
-
-            Assert.AreNotEqual(notExpected, actual);
         }
 
         /// <summary>
@@ -122,12 +156,27 @@ namespace Timelon.Test
         public void TestRemoveList()
         {
             int notExpected = _manager.All.Count;
-            int actual = _manager.All.Count - 1;
 
-            _manager.RemoveList(_sampleList[0].Id);
+            // Список карт A есть в менеджере
+            _manager.RemoveList(_cardListA.Id);
+
+            Assert.AreNotEqual(notExpected, _manager.All.Count);
             ResetManager();
+        }
 
-            Assert.AreNotEqual(notExpected, actual);
+        /// <summary>
+        /// Тест метода RemoveList с отсутствующим списком карт и сброс изменений
+        /// </summary>
+        [TestMethod]
+        public void TestRemoveNotExistingList()
+        {
+            int expected = _manager.All.Count;
+
+            // Список карт B отсутствует в менеджере
+            _manager.RemoveList(_cardListB.Id);
+
+            Assert.AreEqual(expected, _manager.All.Count);
+            ResetManager();
         }
 
         /// <summary>
@@ -136,38 +185,36 @@ namespace Timelon.Test
         [TestMethod]
         public void TestContainsList()
         {
-            bool condition = _manager.ContainsList(_sampleList[0].Id);
+            bool conditionGood = _manager.ContainsList(_cardListA.Id);
+            bool conditionBad = _manager.ContainsList(_cardListB.Id);
 
-            Assert.IsTrue(condition);
+            Assert.IsTrue(conditionGood);
+            Assert.IsFalse(conditionBad);
         }
 
         /// <summary>
-        /// Тест методов SaveData и LoadData и сброс изменений
+        /// Тест метода SaveData включая всю последовательность работы с данными и сброс изменений
         /// </summary>
         [TestMethod]
-        public void TestSaveLoadData()
+        public void TestSaveLoadDataSequence()
         {
-            SortedList<int, CardList> expected = _manager.All;
+            int expected = _manager.All.Count;
 
+            _manager.SetList(_cardListB);
             _manager.SaveData();
+
             ResetManager();
             _managerAccessor.Invoke("LoadData");
 
-            SortedList<int, CardList> actual = _manager.All;
+            int actual = _manager.All.Count;
 
-            Assert.AreEqual(expected.Count, actual.Count);
-
-            // TODO: Проверять точнее?
-            // for (int i = 0; i < expected.Count; i++)
-            // {
-            //     Assert.IsTrue(actual[i].Equals(expected[i]));
-            // }
+            Assert.AreNotEqual(expected, actual);
 
             ResetManager();
         }
 
         /// <summary>
-        /// Тест создания файла с данными для отладки
+        /// Тест метода CreateDataSource
         /// </summary>
         [TestMethod]
         public void TestCreateDataSource()
@@ -203,11 +250,11 @@ namespace Timelon.Test
         /// </summary>
         private void ResetManager()
         {
-            _manager = new Manager(Source);
+            _manager = new Manager(SampleSource);
             _managerAccessor = new PrivateObject(_manager);
 
-            // На данном этапе необходим только один список карт
-            _manager.SetList(_sampleList[0]);
+            // На этапе инициализации необходим только один список карт
+            _manager.SetList(_cardListA);
         }
     }
 }

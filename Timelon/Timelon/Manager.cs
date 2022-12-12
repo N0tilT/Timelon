@@ -24,6 +24,16 @@ namespace Timelon
         public const string DirectoryName = "Timelon";
 
         /// <summary>
+        /// Зарезервированный идентификатор закрепленного списка карт
+        /// </summary>
+        public const int EssentialIdA = 0;
+
+        /// <summary>
+        /// Зарезервированный идентификатор закрепленного списка карт
+        /// </summary>
+        public const int EssentialIdB = 1;
+
+        /// <summary>
         /// Экземпляр класса одиночки
         /// </summary>
         private static Manager _instance = null;
@@ -60,8 +70,8 @@ namespace Timelon
         /// </summary>
         private readonly List<CardList> _listEssential = new List<CardList>
         {
-            new CardList(0, "Задачи", true),
-            new CardList(1, "Важное", true)
+            new CardList(EssentialIdA, "Задачи", true),
+            new CardList(EssentialIdB, "Важное", true)
         };
 
         /// <summary>
