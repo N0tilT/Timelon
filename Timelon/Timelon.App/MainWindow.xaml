@@ -373,6 +373,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -413,10 +418,16 @@
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True" >
+                                            <Setter Property="Background" Value="Red"/>
                                             <Setter Property="BorderThickness" Value="0" />
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -474,6 +485,11 @@
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Style.Resources>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
