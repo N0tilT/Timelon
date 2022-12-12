@@ -530,10 +530,17 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
+                    <TextBox x:Name="Description"
+                             Height="21"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             FontSize="14" FontWeight="Bold"
+                             Text="Описание" Width="74"
+                             />
 
                     <!--Описание карты-->
                     <Border Grid.Row="2"
-                            Margin="10,10,1,10"
+                            Margin="10,5,1,10"
                             Height="150"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
@@ -551,7 +558,7 @@
                     </Border>
                 </StackPanel>
 
-                <StackPanel Margin="10,40,0,0"
+                <StackPanel Margin="10,265,0,0"
                             Grid.Column="2"
                             Grid.Row="2"
                             VerticalAlignment="Center">
@@ -700,6 +707,14 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
+                <TextBox x:Name="Time"
+                             Height="21"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             
+                             Text="Время создания" Margin="0,60,0,0"
+                             Grid.Column="2" FontSize="14" FontWeight="Bold" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                             />
 
                 <!--#endregion-->
             </Grid>
@@ -719,5 +734,7 @@
                 </tb:TaskbarIcon.ContextMenu>
             </tb:TaskbarIcon>
         </Grid>
+        <Grid Margin="788,68,144,542" Grid.Row="1"/>
+        <Grid Margin="788,68,144,542" Grid.Row="1"/>
     </Grid>
 </Window>
