@@ -106,7 +106,7 @@
         <!--Основное окно-->
         <!--#region GridDefs-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="35*" />
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
@@ -132,16 +132,19 @@
             <Image Name="HideButton"
                    Margin="2"
                    Source="Images\Less2.png"
-                   MouseDown="HideWindow_MouseDown" />
+                   MouseDown="HideWindow_MouseDown" 
+                   SnapsToDevicePixels="True"/>
 
             <Image Name="SizeButton"
                    Margin="4"
                    Source="Images\FS.png"
-                   MouseDown="MinimizeWindow_MouseDown" />
+                   MouseDown="MinimizeWindow_MouseDown"
+                   SnapsToDevicePixels="True"/>
 
             <Image Name="CloseButton"
                    Source="Images\CLose.png"
-                   MouseDown="CloseApp_MouseDown" />
+                   MouseDown="CloseApp_MouseDown"
+                   SnapsToDevicePixels="True"/>
         </StackPanel>
         <!--#endregion-->
 
@@ -325,7 +328,8 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkin.png"
                                                Margin="4"
-                                               Height="14" />
+                                               Height="14" 
+                                               SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding Name}"
                                                    FontSize="14"
                                                    Style="{StaticResource CardTheme}" />
@@ -334,7 +338,8 @@
                                                Source="Images\Priority1.png"
                                                Margin="8"
                                                Height="14"
-                                               HorizontalAlignment="Right" />
+                                               HorizontalAlignment="Right"
+                                               SnapsToDevicePixels="True"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -367,7 +372,8 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkin.png"
                                                Margin="4"
-                                               Height="14" />
+                                               Height="14"
+                                               SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding Name}"
                                                    FontSize="14"
                                                    Margin="6" />
@@ -377,7 +383,8 @@
                                                Source="Images\Priority2.png"
                                                HorizontalAlignment="Right"
                                                Margin="8"
-                                               Height="14" />
+                                               Height="14"
+                                               SnapsToDevicePixels="True"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -425,7 +432,8 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkout.png"
                                                Margin="4"
-                                               Height="14" />
+                                               Height="14"
+                                               SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding  Name}"
                                                    FontSize="14"
                                                    Style="{StaticResource CardTheme}" />
