@@ -6,6 +6,9 @@ using Timelon.Data;
 
 namespace Timelon.Test
 {
+    /// <summary>
+    /// Модульное тестирование класса Manager
+    /// </summary>
     [TestClass]
     public class ManagerTest
     {
@@ -51,11 +54,16 @@ namespace Timelon.Test
         private readonly CardList _cardListB = new CardList(ReservedIdB, "SampleB");
 
         /// <summary>
-        /// Конструктор
+        /// Вернуть менеджер к начальному состоянию
         /// </summary>
-        public ManagerTest()
+        [TestInitialize()]
+        public void ResetManager()
         {
-            ResetManager();
+            _manager = new Manager(SampleSource);
+            _managerAccessor = new PrivateObject(_manager);
+
+            // На этапе инициализации необходим только один список карт
+            _manager.SetList(_cardListA);
         }
 
         /// <summary>
@@ -79,7 +87,7 @@ namespace Timelon.Test
         {
             Manager value = Manager.Instance;
 
-            Assert.IsInstanceOfType(value, typeof(Manager));
+            Assert.IsNotNull(value);
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace Timelon.Test
         {
             SortedList<int, CardList> value = _manager.All;
 
-            Assert.IsInstanceOfType(value, typeof(SortedList<int, CardList>));
+            Assert.IsNotNull(value);
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace Timelon.Test
         }
 
         /// <summary>
-        /// Тест метода SetList и сброс изменений
+        /// Тест метода SetList
         /// </summary>
         [TestMethod]
         public void TestSetList()
@@ -146,11 +154,10 @@ namespace Timelon.Test
             int actual = _manager.All.Count;
 
             Assert.IsTrue(actual - notExpected == 1);
-            ResetManager();
         }
 
         /// <summary>
-        /// Тест метода RemoveList и сброс изменений
+        /// Тест метода RemoveList
         /// </summary>
         [TestMethod]
         public void TestRemoveList()
@@ -161,11 +168,10 @@ namespace Timelon.Test
             _manager.RemoveList(_cardListA.Id);
 
             Assert.AreNotEqual(notExpected, _manager.All.Count);
-            ResetManager();
         }
 
         /// <summary>
-        /// Тест метода RemoveList с отсутствующим списком карт и сброс изменений
+        /// Тест метода RemoveList с отсутствующим списком карт
         /// </summary>
         [TestMethod]
         public void TestRemoveNotExistingList()
@@ -176,7 +182,6 @@ namespace Timelon.Test
             _manager.RemoveList(_cardListB.Id);
 
             Assert.AreEqual(expected, _manager.All.Count);
-            ResetManager();
         }
 
         /// <summary>
@@ -193,7 +198,7 @@ namespace Timelon.Test
         }
 
         /// <summary>
-        /// Тест метода SaveData включая всю последовательность работы с данными и сброс изменений
+        /// Тест метода SaveData включая всю последовательность работы с данными
         /// </summary>
         [TestMethod]
         public void TestSaveLoadDataSequence()
@@ -209,8 +214,6 @@ namespace Timelon.Test
             int actual = _manager.All.Count;
 
             Assert.AreNotEqual(expected, actual);
-
-            ResetManager();
         }
 
         /// <summary>
@@ -228,7 +231,7 @@ namespace Timelon.Test
         }
 
         /// <summary>
-        /// Тест метода InjectEssentials и сброс изменений
+        /// Тест метода InjectEssentials
         /// </summary>
         [TestMethod]
         public void TestInjectEssentials()
@@ -241,20 +244,6 @@ namespace Timelon.Test
             {
                 Assert.IsTrue(_manager.ContainsList(item.Id));
             }
-
-            ResetManager();
-        }
-
-        /// <summary>
-        /// Вернуть менеджер к начальному состоянию
-        /// </summary>
-        private void ResetManager()
-        {
-            _manager = new Manager(SampleSource);
-            _managerAccessor = new PrivateObject(_manager);
-
-            // На этапе инициализации необходим только один список карт
-            _manager.SetList(_cardListA);
         }
     }
 }
