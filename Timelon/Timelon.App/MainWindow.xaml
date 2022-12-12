@@ -319,12 +319,12 @@
                     </ListBox.ItemTemplate>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Background" Value="LightSteelBlue" />
+                            <Setter Property="Background" Value="#FFBB8283" />
                             <Setter Property="Margin" Value="5" />
                             <Setter Property="Padding" Value="5" />
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Foreground" Value="Black" />
                                     <Setter Property="BorderThickness" Value="1" />
                                     <Setter Property="BorderBrush" Value="Black" />
                                 </Trigger>
