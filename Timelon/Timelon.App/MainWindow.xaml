@@ -199,7 +199,7 @@
                 <!--Название списка-->
                 <TextBlock x:Name="CardList"
                            Grid.Column="1" 
-                           Margin="10,0,0,0" 
+                           Margin="232,0,0,0" 
                            VerticalAlignment="Top" HorizontalAlignment="Left"
                            Text="{Binding SelectedList.Name}"
                            TextWrapping="Wrap"
@@ -342,7 +342,6 @@
                                  GotFocus="CardButton_Click"
                                  ItemsSource="{Binding ImportantCards}"
                                  SelectedItem="{Binding SelectedCard}">
-
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -366,7 +365,7 @@
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
@@ -393,7 +392,7 @@
                                         <Image Name="CompleteStatus"
                                                Source="Images\Checkin.png"
                                                Margin="4"
-                                               Height="14"
+                                               Height="15"
                                                SnapsToDevicePixels="True"/>
                                         <TextBlock Text="{Binding Name}"
                                                    FontSize="14"
@@ -404,20 +403,19 @@
                                                Source="Images\Priority2.png"
                                                HorizontalAlignment="Right"
                                                Margin="8"
-                                               Height="14"
+                                               Height="15"
                                                SnapsToDevicePixels="True"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Background" Value="#FFBB8283" />
                                     <Setter Property="Margin" Value="5" />
                                     <Setter Property="Padding" Value="5" />
                                     <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter Property="BorderThickness" Value="1" />
+                                        <Trigger Property="IsSelected" Value="True" >
+                                            <Setter Property="BorderThickness" Value="0" />
                                             <Setter Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </Style.Triggers>
