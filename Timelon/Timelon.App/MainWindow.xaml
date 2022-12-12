@@ -328,7 +328,10 @@
                             <TextBox x:Name="ExCardDateTextbox"
                                      Text="{Binding Date.Created, Mode=OneWay}"
                                      FontSize="14"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}"
+                                     Cursor="Arrow"
+                                     IsReadOnly="True"
+                                     />
                         </Grid>
                     </Border>
 
@@ -366,7 +369,9 @@
                             <TextBox x:Name="ExCardDescriptionTextbox"
                                      Text="{Binding Description}"
                                      FontSize="14"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}" 
+                                     IsReadOnly="True"
+                                     />
                         </Grid>
                     </Border>
                 </StackPanel>
@@ -586,14 +591,21 @@
                             Margin="10,10,1,10"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="147*"/>
+                                <ColumnDefinition Width="82*"/>
+                            </Grid.ColumnDefinitions>
                             <TextBlock x:Name="CardDateTemplate"
                                        Text=""
                                        FontSize="14"
-                                       Style="{StaticResource TextBlockTemplateTheme}" />
+                                       Style="{StaticResource TextBlockTemplateTheme}" Margin="10,0,0,0" />
                             <TextBox x:Name="CardDateTextbox"
                                      Text="{Binding Date.Created, Mode=OneWay}"
                                      FontSize="14"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}" 
+                                     Cursor="Arrow"
+                                     IsReadOnly="True" Grid.ColumnSpan="2"
+                                     />
                         </Grid>
                     </Border>
 
@@ -621,6 +633,8 @@
                              Background="Transparent"
                              FontSize="14" FontWeight="Bold"
                              Text="Описание" Width="74"
+                                                                  Cursor="Arrow"
+                                     IsReadOnly="True"
                              />
 
                     <!--Описание карты-->
@@ -796,7 +810,8 @@
                              Height="21"
                              BorderThickness="0"
                              Background="Transparent"
-                             
+                                                                  Cursor="Arrow"
+                                     IsReadOnly="True"
                              Text="Время создания" Margin="0,60,0,0"
                              Grid.Column="2" FontSize="14" FontWeight="Bold" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
                              />
