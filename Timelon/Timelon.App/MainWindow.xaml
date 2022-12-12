@@ -149,11 +149,7 @@
         <!--#endregion-->
 
         <!--Скругленные нижние края-->
-<<<<<<< Updated upstream
-        <Border Background="#77ba5d"
-=======
-        <Border Background="#758303"
->>>>>>> Stashed changes
+        <Border Background="#889e6a"
                 CornerRadius="0 0 10 10"
                 Grid.Row="1" Grid.RowSpan="2">
 
@@ -180,8 +176,8 @@
                 <Rectangle Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#9A1612" Offset="1" />
-                            <GradientStop Color="#E66B64" Offset="0" />
+                            <GradientStop Color="#fab228" Offset="1" />
+                            <GradientStop Color="#f4be54" Offset="0" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
