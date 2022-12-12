@@ -215,7 +215,7 @@
     <Resource Include="Images\Save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Colors\Colors.txt" />
+    <Resource Include="Colors\ColorsWatermelon.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Up_Arrow_Default.png" />
@@ -234,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Theme\Down_Arrow_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Colors\ColorsMelon.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
