@@ -12,7 +12,6 @@ namespace Timelon.App
     {
         private ApplicationViewModel viewModel = new ApplicationViewModel();
 
-        //bool Need_Save=false;
         public MainWindow()
         {
             InitializeComponent();
@@ -88,6 +87,7 @@ namespace Timelon.App
             {
                 ExtendedCardsMenu.Visibility = Visibility.Hidden;
                 MainCardsMenu.Visibility = Visibility.Visible;
+                ExCardInfoColumn.Width = new GridLength(0);
             }
         }
 
@@ -287,5 +287,11 @@ namespace Timelon.App
         }
 
         #endregion Window Manager Events
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            viewModel.Need_Save = false;
+            viewModel.ListManager.SaveData();
+        }
     }
 }
