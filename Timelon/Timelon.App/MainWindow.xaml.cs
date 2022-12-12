@@ -20,9 +20,6 @@ namespace Timelon.App
 
             NoCard();
 
-            this.MaxHeight = SystemParameters.WorkArea.Height + SystemParameters.BorderWidth * 2 + 100;
-            this.MaxWidth = SystemParameters.WorkArea.Width + SystemParameters.BorderWidth * 2 + 100;
-
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
         }
@@ -36,7 +33,9 @@ namespace Timelon.App
         {
             DragMove();
         }
-
+        /// <summary>
+        /// Проверка на наличие карточек в списке
+        /// </summary>
         private void NoCard()
         {
             if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) != 0)
@@ -48,18 +47,25 @@ namespace Timelon.App
                 NoVisible();
             }
         }
-
+        /// <summary>
+        /// Показать MainCardsMenu и скрыть Veil
+        /// </summary>
         void YesVisible()
         {
             MainCardsMenu.Visibility = Visibility.Visible;
             Veil.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Показать Veil и скрыть MainCardsMenu
+        /// </summary>
         void NoVisible()
         {
             MainCardsMenu.Visibility = Visibility.Collapsed;
             Veil.Visibility = Visibility.Visible;
         }
+        /// <summary>
+        /// Задержка для проверки нового выбранного списка на наличие карточек
+        /// </summary>
         async void Sleeper()
         {
             await Task.Delay(2);
@@ -135,8 +141,18 @@ namespace Timelon.App
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            Veil.Visibility = Visibility.Hidden;
             ExtendedCardsMenu.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Hidden;
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(240);
+        }
+
+        private void GoToListButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExtendedCardsMenu.Visibility = Visibility.Hidden;
+            MainCardsMenu.Visibility = Visibility.Visible;
+            ExCardInfoColumn.Width = new GridLength(0);
         }
 
         private void DoneCardsShow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
