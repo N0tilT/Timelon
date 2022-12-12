@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:local ="clr-namespace:Timelon"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
         MinWidth="1024" MinHeight="768"
@@ -12,7 +12,96 @@
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.Resources>
+        <ImageBrush x:Key="UpArrow_Default" 
+                    ImageSource="Up_Arrow_Default.png"/>
 
+        <ImageBrush x:Key="DownArrow_Default"
+                    ImageSource="Down_Arrow_Default.png"/>
+
+        <Style TargetType="ScrollBar">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True"/>
+            <Setter Property="OverridesDefaultStyle"
+                    Value="True"/>
+
+            <Style.Triggers>
+                <Trigger Property="Orientation"
+                         Value="Vertical">
+                    <Setter Property="Width"
+                            Value="40"/>
+                    <Setter Property="Height"
+                            Value="550"/>
+                    <Setter Property="Margin"
+                            Value="8"/>
+
+                    <Setter Property="Template"
+                            Value="{DynamicResource VerticalScrollBar}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar"
+                         TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="1"
+                    CornerRadius="15"
+                    Margin="10"
+                    Background="#E6C36A">
+                </Border>
+                <RepeatButton
+                    x:Name="rb_Up"
+                    Focusable="False"
+                    Height="40"
+                    Command="ScrollBar.LineUpCommand"
+                    Background="{StaticResource UpArrow_Default}"
+                    Style="{StaticResource ScrollBar_UpArrow}">
+                </RepeatButton>
+                
+                <RepeatButton
+                    x:Name="rb_Down"
+                    Grid.Row="2"
+                    Focusable="False"
+                    Height="40"
+                    Command="ScrollBar.LineDownCommand"
+                    Background="{StaticResource DownArrow_Default}"
+                    Style="{StaticResource ScrollBar_DownArrow}">
+                </RepeatButton>
+
+                <Track
+                    Name="PART_Track"
+                    Grid.Row="1"
+                    IsDirectionReversed="True">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton
+                            Margin="1"
+                            Command="ScrollBar.PageUpCommand"          
+                            Style="{StaticResource ScrollBar_Track}"/>
+                    </Track.DecreaseRepeatButton>
+
+                    <Track.Thumb>
+                        <Thumb                         
+                            Style="{StaticResource ScrollBar_Thumb}">
+                        </Thumb>
+                    </Track.Thumb>
+
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton
+                            Margin="1,1,1,1"
+                            Command="ScrollBar.PageDownCommand"
+                            Style="{StaticResource ScrollBar_Track}"/>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    
     <Grid>
         <!--Основное окно-->
         <!--#region GridDefs-->

@@ -105,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Theme\ScrollBarTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\TextBlockTemplateTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +216,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Colors\Colors.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Up_Arrow_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Down_Arrow_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Thumb_Icon_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Thumb_Icon_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Up_Arrow_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Down_Arrow_MouseOver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

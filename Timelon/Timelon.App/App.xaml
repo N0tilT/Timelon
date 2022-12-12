@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="Theme/TitleTheme.xaml" />
                 <ResourceDictionary Source="Theme/CheckCardTheme.xaml" />
                 <ResourceDictionary Source="Theme/FoundCardTheme.xaml" />
-
+                <ResourceDictionary Source="Theme/ScrollBarTheme.xaml" />
                 <ResourceDictionary Source="Theme/ListBoxItemTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBoxTemplateBorderTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBlockTemplateTheme.xaml" />
