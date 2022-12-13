@@ -310,18 +310,18 @@ namespace Timelon.App
                 this.Close();
             }
         }
-        private void Trash_Click(object sender, RoutedEventArgs e)
+        private void DeleteListButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Точно хотите удалить весь список?",
             "Удаление",
             MessageBoxButton.YesNo,
             MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                Trash.Command = viewModel.RemoveListCommand;
+                DeleteListButton.Command = viewModel.RemoveListCommand;
             }
             else
             {
-                Trash.Command = null;
+                DeleteListButton.Command = null;
             }
         }
 

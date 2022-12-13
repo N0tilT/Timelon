@@ -20,6 +20,15 @@
                 <ResourceDictionary Source="Theme/TextBlockTemplateTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBoxInputTheme.xaml" />
                 <ResourceDictionary Source="Theme/CheckCompleteCardButtonTheme.xaml" />
+
+                <ResourceDictionary Source="Theme/VeilTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListTheme.xaml"/>
+                <ResourceDictionary Source="Theme/DeleteListButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/CheckBoxCardInfoTheme.xaml"/>
+                <ResourceDictionary Source="Theme/CardActButtonTheme.xaml"/>
+
+                <ResourceDictionary Source="Theme/Colors.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

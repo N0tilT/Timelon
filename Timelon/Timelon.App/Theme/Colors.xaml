@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="MainBackgroundColor" Color="#606C38"/>
+    <SolidColorBrush x:Key="TexBoxInputFieldsColor" Color="#BC6C25" />
+    <SolidColorBrush x:Key="ControlsColor" Color="#283618" />
+    <SolidColorBrush x:Key="ButtonColor" Color="#31572C" />
+    <SolidColorBrush x:Key="ButtonFocusedColor" Color="#FF23401F" />
+    <SolidColorBrush x:Key="ForegroundColor" Color="#FEFAE0" />
+    <SolidColorBrush x:Key="ListBoxItemColor" Color="#CD8A39" />
+</ResourceDictionary>

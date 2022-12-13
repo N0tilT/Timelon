@@ -4,8 +4,8 @@
            x:Key="MenuButtonTheme">
         <Style.Setters>
 
-            <Setter Property="Height" Value="50" />
-            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment"  Value="Center" />
             <Setter Property="Foreground" Value="#ffe9eb" />
