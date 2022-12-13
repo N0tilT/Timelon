@@ -3,8 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using Timelon.Data;
 using Timelon.App.Core;
+using Timelon.Data;
 
 namespace Timelon.App
 {
@@ -373,7 +373,7 @@ namespace Timelon.App
         public RelayCommand RemoveListCommand => removeListCommand ??
             (removeListCommand = new RelayCommand(obj =>
             {
-                if(obj is CardList rList)
+                if (obj is CardList rList)
                 {
                     if (!rList.IsEssential)
                     {
@@ -445,8 +445,8 @@ namespace Timelon.App
                             {
                                 List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
                                 foreach (Card card in searchResult)
-                                    _extendedCardList.Add(new ExtendedCard(item.Value.Id, 
-                                        item.Value.Name, card.Id, card.Name, 
+                                    _extendedCardList.Add(new ExtendedCard(item.Value.Id,
+                                        item.Value.Name, card.Id, card.Name,
                                         card.Date, card.Description, card.IsImportant, card.IsCompleted));
                             }
 
@@ -462,9 +462,9 @@ namespace Timelon.App
         public RelayCommand ShowParentListCommand => showParentListCommand ??
             (showParentListCommand = new RelayCommand(obj =>
             {
-                if(obj is ExtendedCard rCard)
+                if (obj is ExtendedCard rCard)
                 {
-                    if(rCard.ParentId != 0)
+                    if (rCard.ParentId != 0)
                     {
                         SelectedList = ListManager.GetList(rCard.ParentId);
                         SelectedCard = SelectedList.Get(rCard.Id);
@@ -487,7 +487,7 @@ namespace Timelon.App
             DoneCards = new ObservableCollection<Card>(_selectedList.GetListCompleted());
         }
 
-        #endregion
+        #endregion Methods
 
         /// <summary>
         /// Конструктор по умолчанию

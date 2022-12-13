@@ -5,10 +5,10 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Padding" Value="20" />
-        
+
         <Setter Property="TextAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="#FEFAE0" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
         <Setter Property="FontSize" Value="22" />
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 </ResourceDictionary>

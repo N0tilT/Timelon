@@ -94,7 +94,7 @@ namespace Timelon
             {
                 throw new ArgumentException("Недопустимо использование источника по-умолчанию для отладки");
             }
-            
+
             _source = source;
         }
 

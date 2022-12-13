@@ -7,4 +7,5 @@
     <SolidColorBrush x:Key="ButtonFocusedColor" Color="#FF23401F" />
     <SolidColorBrush x:Key="ForegroundColor" Color="#FEFAE0" />
     <SolidColorBrush x:Key="ListBoxItemColor" Color="#CD8A39" />
+    <SolidColorBrush x:Key="ListBoxItemSelectedColor" Color="#FFB27731" />
 </ResourceDictionary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using Timelon.Data;
 
 namespace Timelon.Test.Integration
@@ -9,7 +8,7 @@ namespace Timelon.Test.Integration
     /// <summary>
     /// Программа интеграционного тестирования модулей библиотеки в консоли
     /// </summary>
-    class IntegrationTestProgram
+    internal class IntegrationTestProgram
     {
         private static void Main()
         {

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Timelon.App.Core;
-using Timelon.Data;
 
 namespace Timelon.App
 {
@@ -16,6 +12,7 @@ namespace Timelon.App
     public partial class MainWindow : Window
     {
         private ApplicationViewModel viewModel = new ApplicationViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,54 +22,6 @@ namespace Timelon.App
 
             Title.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
             Window_Menu.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(LayoutRoot_MouseLeftButtonDown);
-        }
-
-        /// <summary>
-        /// Перетаскиваение окна по клику мыши
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LayoutRoot_MouseLeftButtonDown(object sender, EventArgs e)
-        {
-            DragMove();
-        }
-        /// <summary>
-        /// Проверка на наличие карточек в списке
-        /// </summary>
-        private void NoCard()
-        {
-            if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) != 0)
-            {
-                YesVisible();
-            }
-            else
-            {
-                NoVisible();
-            }
-        }
-        /// <summary>
-        /// Показать MainCardsMenu и скрыть Veil
-        /// </summary>
-        void YesVisible()
-        {
-            MainCardsMenu.Visibility = Visibility.Visible;
-            Veil.Visibility = Visibility.Hidden;
-        }
-        /// <summary>
-        /// Показать Veil и скрыть MainCardsMenu
-        /// </summary>
-        void NoVisible()
-        {
-            MainCardsMenu.Visibility = Visibility.Collapsed;
-            Veil.Visibility = Visibility.Visible;
-        }
-        /// <summary>
-        /// Задержка для проверки нового выбранного списка на наличие карточек
-        /// </summary>
-        async void Sleeper()
-        {
-            await Task.Delay(2);
-            NoCard();
         }
 
         #region ButtonClick
@@ -181,6 +130,39 @@ namespace Timelon.App
             }
         }
 
+        private void AddCardTextbox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                YesVisible();
+                viewModel.Need_Save = true;
+
+                if (viewModel.AddCardCommand.CanExecute(AddCardTextbox))
+                    viewModel.AddCardCommand.Execute(AddCardTextbox);
+            }
+        }
+
+        private void SearchTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SearchButton_Click(sender, e);
+                if (viewModel.SearchCardCommand.CanExecute(SearchTextbox))
+                    viewModel.SearchCardCommand.Execute(SearchTextbox);
+            }
+        }
+
+        private void AddListTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddListButton_Click(sender, e);
+
+                if (viewModel.AddListCommand.CanExecute(AddListTextbox))
+                    viewModel.AddListCommand.Execute(AddListTextbox);
+            }
+        }
+
         #endregion ButtonClick
 
         #region TextChangedEvents
@@ -275,6 +257,7 @@ namespace Timelon.App
         {
             Confirmation();
         }
+
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             viewModel.Need_Save = false;
@@ -310,6 +293,7 @@ namespace Timelon.App
                 this.Close();
             }
         }
+
         private void DeleteListButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Точно хотите удалить весь список?",
@@ -325,63 +309,62 @@ namespace Timelon.App
             }
         }
 
+        /// <summary>
+        /// Перетаскиваение окна по клику мыши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LayoutRoot_MouseLeftButtonDown(object sender, EventArgs e)
+        {
+            DragMove();
+        }
 
         #endregion Window Manager Events
 
-        private void AddCardTextbox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        #region Methods
+
+        /// <summary>
+        /// Проверка на наличие карточек в списке
+        /// </summary>
+        private void NoCard()
         {
-            if (e.Key == Key.Enter)
+            if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) != 0)
             {
                 YesVisible();
-                viewModel.Need_Save = true;
-                TextBox tmp = AddCardTextbox;
-                if (tmp.Text != "")
-                {
-                Card newCard = new Card(tmp.Text);
-                    viewModel.SelectedList.Set(newCard);
-                    viewModel.DefaultCards.Add(newCard);
-                    viewModel.SelectedCard = newCard;
-                }
             }
-        }
-
-        private void SearchTextbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            else
             {
-                SearchButton_Click(sender, e);
-                TextBox tmp = SearchTextbox;
-                if (tmp.Text != "")
-                {
-                    viewModel._extendedCardList = new List<ExtendedCard>();
-                    foreach (KeyValuePair<int, CardList> item in viewModel._listManager.All)
-                    {
-                        List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
-                        foreach (Card card in searchResult)
-                            viewModel._extendedCardList.Add(new ExtendedCard(item.Value.Id,
-                                item.Value.Name, card.Id, card.Name,
-                                card.Date, card.Description, card.IsImportant, card.IsCompleted));
-                    }
-
-                    viewModel.ExtendedCards = new ObservableCollection<ExtendedCard>(viewModel._extendedCardList);
-                }
+                NoVisible();
             }
         }
 
-        private void AddListTextbox_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// Показать MainCardsMenu и скрыть Veil
+        /// </summary>
+        private void YesVisible()
         {
-            if (e.Key == Key.Enter)
-            {
-                AddListButton_Click(sender, e);
-                TextBox tmp = AddListTextbox;
-                if (tmp.Text != "")
-                {
-                    CardList newList = new CardList(tmp.Text);
-                    viewModel.ListManager.SetList(newList);
-                    viewModel.Lists.Add(newList);
-                    viewModel.SelectedList = newList;
-                }
-            }
+            MainCardsMenu.Visibility = Visibility.Visible;
+            Veil.Visibility = Visibility.Hidden;
         }
+
+        /// <summary>
+        /// Показать Veil и скрыть MainCardsMenu
+        /// </summary>
+        private void NoVisible()
+        {
+            MainCardsMenu.Visibility = Visibility.Collapsed;
+            Veil.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Задержка для проверки нового выбранного списка на наличие карточек
+        /// </summary>
+        private async void Sleeper()
+        {
+            await Task.Delay(2);
+            NoCard();
+        }
+
+        #endregion Methods
     }
 }
