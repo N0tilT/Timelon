@@ -367,5 +367,21 @@ namespace Timelon.App
                 }
             }
         }
+
+        private void AddListTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddListButton_Click(sender, e);
+                TextBox tmp = AddListTextbox;
+                if (tmp.Text != "")
+                {
+                    CardList newList = new CardList(tmp.Text);
+                    viewModel.ListManager.SetList(newList);
+                    viewModel.Lists.Add(newList);
+                    viewModel.SelectedList = newList;
+                }
+            }
+        }
     }
 }

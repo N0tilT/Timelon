@@ -165,9 +165,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -203,7 +203,7 @@
                            Text="{Binding SelectedList.Name}"
                            TextWrapping="Wrap"
                            Style="{StaticResource TitleTheme}" />
-                
+
                 <!--Название списка - результата поиска-->
                 <TextBlock x:Name="SearchResult"
                            Visibility="Collapsed"
@@ -236,7 +236,7 @@
                          Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="418" MaxHeight="101" Cursor="Arrow" />
 
                 <!--#endregion-->
-                
+
                 <!--#region ListsMenu-->
 
                 <!--Поиск-->
@@ -334,7 +334,7 @@
                     <Image Source="Images/DeleteList.png"/>
                 </Button>
 
-                
+
                 <!--#endregion-->
 
                 <!--#region Extended-->
@@ -367,7 +367,7 @@
                                            FontStyle="Oblique"
                                            Style="{StaticResource CardTheme}" />
                                     </StackPanel>
-                                    
+
 
                                     <Image Name="HighPriority"
                                                Source="Images\Priority2.png"
@@ -376,7 +376,7 @@
                                                Height="15"
                                                SnapsToDevicePixels="True"/>
                                 </StackPanel>
-                                
+
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -411,11 +411,11 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
                 <!--#region ExtendedCardInfo-->
-                
+
                 <TextBlock Grid.Column="3"
                            Text="{Binding SelectedExtendedCard.Name}"
                            Style="{StaticResource TitleTheme}" />
-                
+
                 <!--Меню информации о расширенной карточке-->
                 <StackPanel x:Name="ExtendedCardInfo"
                             Grid.Column="4"
@@ -460,7 +460,13 @@
                                   FontSize="14"
                                   Foreground="White" />
                     </Grid>
-
+                    <TextBox x:Name="ExDescription"
+                             Height="17"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             FontSize="14" FontWeight="Bold"
+                             Text="Описание" Width="74"
+                             />
                     <!--Описание карты-->
                     <Border Grid.Row="2"
                             Margin="10,10,1,10"
@@ -535,7 +541,7 @@
                 <!--#endregion-->
 
                 <!--#region CardsMenu-->
-                
+
                 <!--Меню карточек-->
                 <ScrollViewer x:Name="MainCardsMenu" 
                               Visibility="Visible"
@@ -585,8 +591,8 @@
                                                 </Border>
                                             </ControlTemplate>
                                         </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
+                                    </Setter>
+                                    <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FFB27731" />
                                             <Setter Property="Foreground" Value="Black" />
@@ -1051,6 +1057,7 @@
                                  FontSize="15"
                                  Margin="0,-3,0,0"
                                  TextChanged="AddListTextbox_TextChanged"
+                                 KeyDown="AddListTextbox_KeyDown"
                                  Style="{StaticResource TextBoxInputTheme}" />
                     </Grid>
                 </Border>
@@ -1094,7 +1101,7 @@
                         Command="{Binding AddCardCommand}"
                         CommandParameter="{Binding ElementName=AddCardTextbox}"
                         Style="{StaticResource AddButtonTheme}" />
-                
+
                 <TextBox x:Name="Time"
                              Height="21"
                              BorderThickness="0"
@@ -1104,7 +1111,15 @@
                              Grid.Column="2" Grid.RowSpan="2" 
                             FontSize="14" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Top" 
                              />
-
+                <TextBox x:Name="ExTime"
+                             Height="21"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             
+                             Text="Время создания" Margin="0,60,0,0"
+                             Grid.Column="3" Grid.RowSpan="2" 
+                            FontSize="14" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Top" 
+                             />
                 <!--#endregion-->
             </Grid>
         </Border>
