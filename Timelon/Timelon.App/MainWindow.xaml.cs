@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Timelon.App.Core;
+using Timelon.Data;
 
 namespace Timelon.App
 {
@@ -320,8 +325,47 @@ namespace Timelon.App
             }
         }
 
+
         #endregion Window Manager Events
 
+        private void AddCardTextbox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                YesVisible();
+                viewModel.Need_Save = true;
+                TextBox tmp = AddCardTextbox;
+                if (tmp.Text != "")
+                {
+                Card newCard = new Card(tmp.Text);
+                    viewModel.SelectedList.Set(newCard);
+                    viewModel.DefaultCards.Add(newCard);
+                    viewModel.SelectedCard = newCard;
+                }
+            }
+        }
 
+        private void SearchTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SearchButton_Click(sender, e);
+                TextBox tmp = SearchTextbox;
+                if (tmp.Text != "")
+                {
+                    viewModel._extendedCardList = new List<ExtendedCard>();
+                    foreach (KeyValuePair<int, CardList> item in viewModel._listManager.All)
+                    {
+                        List<Card> searchResult = item.Value.SearchByContent(tmp.Text);
+                        foreach (Card card in searchResult)
+                            viewModel._extendedCardList.Add(new ExtendedCard(item.Value.Id,
+                                item.Value.Name, card.Id, card.Name,
+                                card.Date, card.Description, card.IsImportant, card.IsCompleted));
+                    }
+
+                    viewModel.ExtendedCards = new ObservableCollection<ExtendedCard>(viewModel._extendedCardList);
+                }
+            }
+        }
     }
 }

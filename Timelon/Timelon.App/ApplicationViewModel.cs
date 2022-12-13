@@ -54,7 +54,7 @@ namespace Timelon.App
         /// <summary>
         /// Текущий менеджер списков
         /// </summary>
-        private Manager _listManager;
+        public Manager _listManager;
 
         /// <summary>
         /// Выбранная расширенная карта
@@ -64,7 +64,7 @@ namespace Timelon.App
         /// <summary>
         /// Список расширенных карт
         /// </summary>
-        private List<ExtendedCard> _extendedCardList;
+        public List<ExtendedCard> _extendedCardList;
 
         /// <summary>
         /// Коллекция карт - результата работы поиска

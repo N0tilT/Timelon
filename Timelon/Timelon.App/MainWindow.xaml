@@ -254,6 +254,7 @@
                                          Margin="0,-3,0,0"
                                          FontSize="15"
                                          TextChanged="SearchTextbox_TextChanged"
+                                         KeyDown="SearchTextbox_KeyDown"
                                          Style="{StaticResource TextBoxInputTheme}" />
                         </Grid>
                     </Border>
@@ -1079,6 +1080,7 @@
                                  FontSize="15"
                                  Margin="0,-3,0,0"
                                  TextChanged="AddCardTextbox_TextChanged"
+                                 KeyDown="AddCardTextbox_KeyDown"
                                  Style="{StaticResource TextBoxInputTheme}" />
                     </Grid>
                 </Border>
