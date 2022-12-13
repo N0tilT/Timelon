@@ -20,6 +20,10 @@
                 <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedColor}" />
                 <Setter Property="BorderThickness" Value="0" />
             </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedColor}" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Trigger>
         </Style.Triggers>
         <Style.Resources>
             <Style TargetType="Border">
