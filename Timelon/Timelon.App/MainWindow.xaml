@@ -688,7 +688,8 @@
                         Style="{StaticResource AddButtonTheme}" Margin="0,27,5,28" />
 
                 <!--Создать карточку дела-->
-                <Border Grid.Row="3"
+                <Border x:Name="AddBorder"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Margin="40,20,80,20"
                         Style="{StaticResource TextBoxTemplateBorderTheme}">

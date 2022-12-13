@@ -36,14 +36,7 @@ namespace Timelon.App
             Sleeper();
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
-            if (ExtendedCardsMenu.Visibility == Visibility.Visible)
-            {
-                ExtendedCardsMenu.Visibility = Visibility.Hidden;
-                MainCardsMenu.Visibility = Visibility.Visible;
-                ExCardInfoColumn.Width = new GridLength(0);
-                SearchResult.Visibility = Visibility.Hidden;
-                CardListName.Visibility = Visibility.Visible;
-            }
+            FromSearch();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -86,16 +79,23 @@ namespace Timelon.App
         {
             NoVisible();
             viewModel.Need_Save = true;
+            AddList();
+            FromSearch();
         }
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
             YesVisible();
             viewModel.Need_Save = true;
+            AddCard();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            DeleteListButton.Visibility= Visibility.Collapsed;
+            AddBorder.Visibility = Visibility.Hidden;
+            AddCardButton.Visibility = Visibility.Hidden;
+            AddCardTextbox.Visibility = Visibility.Hidden;
             Veil.Visibility = Visibility.Hidden;
             ExtendedCardsMenu.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Hidden;
@@ -103,10 +103,13 @@ namespace Timelon.App
             ExCardInfoColumn.Width = new GridLength(240);
             CardListName.Visibility = Visibility.Collapsed;
             SearchResult.Visibility = Visibility.Visible;
+            SearchCard();
         }
 
         private void GoToListButton_Click(object sender, RoutedEventArgs e)
         {
+            Sleeper();
+            DeleteListButton.Visibility = Visibility.Visible;
             ExtendedCardsMenu.Visibility = Visibility.Hidden;
             MainCardsMenu.Visibility = Visibility.Visible;
             ExCardInfoColumn.Width = new GridLength(0);
@@ -139,6 +142,7 @@ namespace Timelon.App
 
                 if (viewModel.AddCardCommand.CanExecute(AddCardTextbox))
                     viewModel.AddCardCommand.Execute(AddCardTextbox);
+                AddCardTextbox.Text = "";
             }
         }
 
@@ -149,6 +153,7 @@ namespace Timelon.App
                 SearchButton_Click(sender, e);
                 if (viewModel.SearchCardCommand.CanExecute(SearchTextbox))
                     viewModel.SearchCardCommand.Execute(SearchTextbox);
+                
             }
         }
 
@@ -160,6 +165,7 @@ namespace Timelon.App
 
                 if (viewModel.AddListCommand.CanExecute(AddListTextbox))
                     viewModel.AddListCommand.Execute(AddListTextbox);
+                AddListTextbox.Text = "";
             }
         }
 
@@ -343,6 +349,10 @@ namespace Timelon.App
         /// </summary>
         private void YesVisible()
         {
+            DeleteListButton.Visibility = Visibility.Visible;
+            AddBorder.Visibility = Visibility.Visible;
+            AddCardButton.Visibility = Visibility.Visible;
+            AddCardTextbox.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Visible;
             Veil.Visibility = Visibility.Hidden;
         }
@@ -363,6 +373,35 @@ namespace Timelon.App
         {
             await Task.Delay(2);
             NoCard();
+        }
+
+        async void SearchCard()
+        {
+            await Task.Delay(2);
+            SearchTextbox.Text = "";
+        }
+
+        async void AddList()
+        {
+            await Task.Delay(2);
+            AddListTextbox.Text = "";
+        }
+        async void AddCard()
+        {
+            await Task.Delay(2);
+            AddCardTextbox.Text = "";
+        }
+
+        void FromSearch()
+        {
+            if (ExtendedCardsMenu.Visibility == Visibility.Visible)
+            {
+                ExtendedCardsMenu.Visibility = Visibility.Hidden;
+                MainCardsMenu.Visibility = Visibility.Visible;
+                ExCardInfoColumn.Width = new GridLength(0);
+                SearchResult.Visibility = Visibility.Hidden;
+                CardListName.Visibility = Visibility.Visible;
+            }
         }
 
         #endregion Methods
