@@ -101,7 +101,7 @@ namespace Timelon.App
             ExtendedCardsMenu.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Hidden;
             CardInfoColumn.Width = new GridLength(0);
-            ExCardInfoColumn.Width = new GridLength(240);
+            ExCardInfoColumn.Width = new GridLength(0);
             CardListName.Visibility = Visibility.Collapsed;
             SearchResult.Visibility = Visibility.Visible;
             SearchCard();
@@ -145,6 +145,11 @@ namespace Timelon.App
                     viewModel.AddCardCommand.Execute(AddCardTextbox);
                 AddCardTextbox.Text = "";
             }
+        }
+
+        private void SearchResultCard_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ExCardInfoColumn.Width = new GridLength(240);
         }
 
         private void SearchTextbox_KeyDown(object sender, KeyEventArgs e)
