@@ -333,6 +333,17 @@ namespace Timelon.App
                         }
                     }));
 
+        private RelayCommand saveCardChangesCommand;
+
+        public RelayCommand SaveCardChangesCommand => saveCardChangesCommand ??
+            (saveCardChangesCommand = new RelayCommand(obj =>
+            {
+                if(obj is Card sCard)
+                {
+                    SelectedList.Set(sCard);
+                }
+            }));
+
         /// <summary>
         /// Команда удаления карты из списка
         /// </summary>

@@ -183,9 +183,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -291,6 +291,7 @@
                                  SelectedItem="{Binding SelectedList}"
                                  Style="{StaticResource ListTheme}"
                                  GotFocus="MenuButton_Click"
+                                 
                                  ItemContainerStyle="{StaticResource ListBoxItemTheme}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -383,6 +384,7 @@
                                        Text=""
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="ExCardDateTextbox"
+                                     IsReadOnly="True"
                                      Text="{Binding Date.Created, Mode=OneWay}"
                                      Style="{StaticResource TextBoxInputTheme}" />
                         </Grid>
@@ -417,12 +419,10 @@
                             Height="150"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
-                            <TextBlock x:Name="ExCardDescriptionTemplate"
-                                       VerticalAlignment="Top" Margin="10,10"
-                                       Text="" FontSize="14"
-                                       Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="ExCardDescriptionTextbox"
-                                     Text="{Binding Description}" FontSize="14"
+                                     Text="{Binding Description}"
+                                     TextChanged="CardDescriptionTextbox_TextChanged"
+                                     IsReadOnly="True"
                                      Style="{StaticResource TextBoxInputTheme}"
                                      TextWrapping="Wrap" AcceptsReturn="True"/>
                         </Grid>
@@ -615,19 +615,20 @@
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
                             <TextBlock x:Name="CardDescriptionTemplate"
-                                       Text=""
+                                       Text="Описание"
                                        VerticalAlignment="Top"
                                        Margin="10,10"
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="CardDescriptionTextbox"
                                      Text="{Binding Description}"
+                                     TextChanged="CardDescriptionTextbox_TextChanged"
                                      Style="{StaticResource TextBoxInputTheme}" 
                                      TextWrapping="Wrap" AcceptsReturn="True" />
                         </Grid>
                     </Border>
                 </StackPanel>
 
-                <StackPanel Margin="10,208,0,168"
+                <StackPanel Margin="10,208,0,100"
                             Grid.Column="2" Grid.Row="2"
                             VerticalAlignment="Center">
 
@@ -670,6 +671,18 @@
                                 Command="{Binding CardRecoverCommand}"
                                 CommandParameter="{Binding SelectedCard}"
                                 Content="Восстановить задачу"
+                                Style="{StaticResource CardActButtonTheme}">
+                        </Button>
+                    </Border>
+                    
+                    <!--Кнопка Сохранить изменения -->
+                    <Border x:Name="SaveCardChangesButton"
+                            Grid.Column="2" Grid.Row="1"
+                            Height="35" Margin="5">
+                        <Button Click="RecoverCardButton_Click"
+                                Command="{Binding SaveCardChangesCommand}"
+                                CommandParameter="{Binding SelectedCard}"
+                                Content="Сохранить изменения"
                                 Style="{StaticResource CardActButtonTheme}">
                         </Button>
                     </Border>
