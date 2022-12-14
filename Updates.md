@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-   <img src="https://img.shields.io/badge/latest%20update-Dec%203,2022-informational" alt="latest update">
+   <img src="https://img.shields.io/badge/latest%20update-Dec%2014,2022-informational" alt="latest update">
 </p>
 
 ## Последние изменения
