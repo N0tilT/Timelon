@@ -24,7 +24,7 @@ namespace Timelon.App
             get { return _parentListName; }
             set { _parentListName = value; }
         }
-
+        
         public ExtendedCard(int listId,
             string listName, int cardId,
             string cardName, DateTimeContainer date,
@@ -236,6 +236,7 @@ namespace Timelon.App
                 OnPropertyChanged("ExtendedCards");
             }
         }
+
 
         #endregion Properties
 
@@ -510,6 +511,7 @@ namespace Timelon.App
 
             //Изначально выбран первый список - по умолчанию "Задачи"
             SelectedList = ListManager.All[0];
+
 
             //Загрузка списков в коллекцию
             Lists = new ObservableCollection<CardList>(ListManager.All.Values);

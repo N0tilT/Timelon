@@ -183,9 +183,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -362,8 +362,7 @@
 
                 <!--Меню информации о расширенной карточке-->
                 <StackPanel x:Name="ExtendedCardInfo"
-                            Grid.Column="4" Grid.Row="1" Grid.RowSpan="3"
-                            DataContext="{Binding SelectedExtendedCard}">
+                            Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
 
                     <!--Название карты-->
 
@@ -377,7 +376,7 @@
 
                     <!--Дата создания карты-->
                     <Border Grid.Row="1" Grid.Column="2"
-                            Margin="10,10,1,10"
+                            Margin="10,10,0,10"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
                             <TextBlock x:Name="ExCardDateTemplate"
@@ -385,7 +384,7 @@
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="ExCardDateTextbox"
                                      IsReadOnly="True"
-                                     Text="{Binding Date.Created, Mode=OneWay}"
+                                     Text="{Binding SelectedExtendedCard.Date.Created, Mode=OneWay}"
                                      Style="{StaticResource TextBoxInputTheme}" />
                         </Grid>
                     </Border>
@@ -393,17 +392,17 @@
                     <Grid Margin="10,0,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <CheckBox Grid.Column="0"
                                   x:Name="ExCardImportantCheck"
                                   Content="Важное"
-                                  IsChecked="{Binding IsImportant}"
+                                  IsChecked="{Binding SelectedExtendedCard.IsImportant}"
                                   Style="{StaticResource InfoCheckBoxTheme}" />
                         <CheckBox Grid.Column="1"
                                   x:Name="ExCardDoneCheck"
                                   Content="Выполнено"
-                                  IsChecked="{Binding IsCompleted}"
+                                  IsChecked="{Binding SelectedExtendedCard.IsCompleted}"
                                   Style="{StaticResource InfoCheckBoxTheme}" />
                     </Grid>
                     <TextBox x:Name="ExDescription"
@@ -415,28 +414,22 @@
                              Text="Описание" Width="74" />
                     <!--Описание карты-->
                     <Border Grid.Row="2"
-                            Margin="10,10,1,10"
+                            Margin="10,10,0,10"
                             Height="150"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
                             <TextBox x:Name="ExCardDescriptionTextbox"
-                                     Text="{Binding Description}"
+                                     Text="{Binding SelectedExtendedCard.Description}"
                                      TextChanged="CardDescriptionTextbox_TextChanged"
                                      IsReadOnly="True"
                                      Style="{StaticResource TextBoxInputTheme}"
                                      TextWrapping="Wrap" AcceptsReturn="True"/>
                         </Grid>
                     </Border>
-                </StackPanel>
-
-                <StackPanel Margin="10,186,0,145"
-                            Grid.Column="4"
-                            Grid.Row="2"
-                            VerticalAlignment="Center">
 
                     <!--Кнопка перейти к родительскому списку -->
                     <Border Grid.Column="2" Grid.Row="1"
-                            Height="35" Margin="5">
+                            Height="35" Margin="10,0,0,0">
                         <Button Click="GoToListButton_Click"
                                 Command="{Binding ShowParentListCommand}"
                                 CommandParameter="{Binding SelectedExtendedCard}"
@@ -562,8 +555,7 @@
 
                 <!--Меню информации о карточке-->
                 <StackPanel x:Name="CardInfo"
-                            Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
-                            DataContext="{Binding SelectedCard}">
+                            Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
 
                     <TextBox x:Name="Time"
                              HorizontalAlignment="Center"
@@ -574,14 +566,15 @@
                              FontSize="14" FontWeight="Bold" />
                     <!--Дата создания карты-->
                     <Border Grid.Row="1" Grid.Column="2"
-                            Margin="10,10,1,10"
+                            Margin="10,10,0,10"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
                             <TextBlock x:Name="CardDateTemplate"
                                        Text=""
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="CardDateTextbox"
-                                     Text="{Binding Date.Created, Mode=OneWay}"
+                                     Text="{Binding SelectedCard.Date.Created, Mode=OneWay}"
+                                     IsReadOnly="True"
                                      Style="{StaticResource TextBoxInputTheme}" />
                         </Grid>
                     </Border>
@@ -592,11 +585,11 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <CheckBox Grid.Column="0"
-                                  x:Name="CardImportantCheck" IsChecked="{Binding IsImportant}"
+                                  x:Name="CardImportantCheck" IsChecked="{Binding SelectedCard.IsImportant}"
                                   Content="Важное"
                                   Style="{StaticResource InfoCheckBoxTheme}" />
                         <CheckBox Grid.Column="1"
-                                  x:Name="CardDoneCheck" IsChecked="{Binding IsCompleted}"
+                                  x:Name="CardDoneCheck" IsChecked="{Binding SelectedCard.IsCompleted}"
                                   Content="Выполнено"
                                   Style="{StaticResource InfoCheckBoxTheme}" />
                     </Grid>
@@ -610,7 +603,7 @@
 
                     <!--Описание карты-->
                     <Border Grid.Row="2"
-                            Margin="10,5,1,10"
+                            Margin="10,5,0,10"
                             Height="150"
                             Style="{StaticResource TextBoxTemplateBorderTheme}">
                         <Grid>
@@ -620,20 +613,15 @@
                                        Margin="10,10"
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="CardDescriptionTextbox"
-                                     Text="{Binding Description}"
+                                     Text="{Binding SelectedCard.Description}"
                                      TextChanged="CardDescriptionTextbox_TextChanged"
                                      Style="{StaticResource TextBoxInputTheme}" 
                                      TextWrapping="Wrap" AcceptsReturn="True" />
                         </Grid>
                     </Border>
-                </StackPanel>
-
-                <StackPanel Margin="10,208,0,100"
-                            Grid.Column="2" Grid.Row="2"
-                            VerticalAlignment="Center">
-
+                    
                     <!--Кнопка выполнить задачу-->
-                    <Border Height="35" Margin="5">
+                    <Border Height="35" Margin="10,0,0,0">
                         <Button Click="DoneCardButton_Click"
                                 Command="{Binding CardDoneCommand}"
                                 CommandParameter="{Binding SelectedCard}"
@@ -642,10 +630,10 @@
                         </Button>
                     </Border>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
                         <!--Кнопка отметить задачу как важную-->
                         <Border Grid.Column="2" Grid.Row="1"
-                                Height="35" Width="153" Margin="5">
+                                Height="35" Width="163" Margin="0,0,5,0">
                             <Button Click="ImportantCardButton_Click"
                                     Command="{Binding CardImportantCommand}"
                                     CommandParameter="{Binding SelectedCard}"
@@ -666,7 +654,7 @@
 
                     <!--Кнопка восстановить задачу (сделать невыполненной) -->
                     <Border Grid.Column="2" Grid.Row="1"
-                            Height="35" Margin="5">
+                            Height="35" Margin="10,5,0,0">
                         <Button Click="RecoverCardButton_Click"
                                 Command="{Binding CardRecoverCommand}"
                                 CommandParameter="{Binding SelectedCard}"
@@ -678,7 +666,7 @@
                     <!--Кнопка Сохранить изменения -->
                     <Border x:Name="SaveCardChangesButton"
                             Grid.Column="2" Grid.Row="1"
-                            Height="35" Margin="5">
+                            Height="35" Margin="10,5,0,0">
                         <Button Click="RecoverCardButton_Click"
                                 Command="{Binding SaveCardChangesCommand}"
                                 CommandParameter="{Binding SelectedCard}"
