@@ -14,8 +14,7 @@
         AllowsTransparency="True"
         Icon="Images\Icon.ico">
     <Window.Resources>
-        <local:ScrollLimitConverter x:Key="scrollLimitConverter"/>
-        
+
         <ImageBrush x:Key="UpArrow_Default"
                     ImageSource="Images/Up_Arrow_Default.png" />
 
@@ -69,22 +68,6 @@
                     Style="{StaticResource ScrollBar_UpArrow}">
                 </RepeatButton>
 
-                    <!--<Track Grid.Row="1" ViewportSize="0" IsDirectionReversed="True" x:Name="PART_Track">
-                    <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
-                             
-                        </RepeatButton>
-                    </Track.DecreaseRepeatButton>
-                    <Track.Thumb>
-                        <Thumb Style="{StaticResource ScrollBarThumbStyle}" />
-                    </Track.Thumb>
-                    <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="ScrollBar.PageDownCommand"  Style="{StaticResource ScrollBarPageButtonStyle}">
-                             
-                        </RepeatButton>
-                    </Track.IncreaseRepeatButton>
-                </Track>-->
-
                 <RepeatButton
                     x:Name="rb_Down"
                     Grid.Row="2"
@@ -120,20 +103,6 @@
                     </Track.IncreaseRepeatButton>
                 </Track>
             </Grid>
-            <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=VerticalOffset}" Value="0">
-                    <Setter TargetName="rb_Up" Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Value="True">
-                    <DataTrigger.Binding>
-                        <MultiBinding Converter="{StaticResource scrollLimitConverter}">
-                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}" Path="VerticalOffset"/>
-                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}" Path="ScrollableHeight"/>
-                        </MultiBinding>
-                    </DataTrigger.Binding>
-                    <Setter TargetName="rb_Down" Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
 
@@ -235,14 +204,14 @@
                            Grid.Column="1"
                            Text="{Binding SelectedList.Name}"
                            Style="{StaticResource TitleTheme}" 
-                           />
+                           FontSize="22"/>
 
                 <!--Название списка - результата поиска-->
                 <TextBlock x:Name="SearchResult"
                            Grid.Column="1"
                            Visibility="Collapsed"
                            Text="Результат поиска"
-                           Style="{StaticResource TitleTheme}" />
+                           Style="{StaticResource TitleTheme}" FontSize="22" />
 
                 <!--Заглавие информации о карточке-->
                 <TextBlock x:Name="CardInfo_Name"
@@ -342,29 +311,15 @@
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Name="CompleteStatus"
-                                           Source="Images\Checkin.png"
-                                           Margin="4"  Height="15"
-                                           SnapsToDevicePixels="True" />
-
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Name}"
-                                                   Style="{StaticResource CardTheme}" />
-                                        <TextBlock Margin="10,0,0,0"
+                            <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource CardTheme}" 
+                                                   Margin="20,0,0,0"/>
+                                    <TextBlock Margin="20,0,0,0"
                                                    Text="{Binding ParentName}"
                                                    FontSize="12" FontStyle="Oblique"
                                                    Style="{StaticResource CardTheme}" />
-                                    </StackPanel>
-
-                                    <Image Name="HighPriority"
-                                               Source="Images\Priority2.png"
-                                               HorizontalAlignment="Right"
-                                               Margin="8" Height="15"
-                                               SnapsToDevicePixels="True" />
                                 </StackPanel>
-                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
