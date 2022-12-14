@@ -14,7 +14,7 @@
         AllowsTransparency="True"
         Icon="Images\Icon.ico">
     <Window.Resources>
-        <!--<local:ScrollLimitConverter x:Key="scrollLimitConverter"/>-->
+        <local:ScrollLimitConverter x:Key="scrollLimitConverter"/>
         
         <ImageBrush x:Key="UpArrow_Default"
                     ImageSource="Images/Up_Arrow_Default.png" />
@@ -36,7 +36,7 @@
                     <Setter Property="Height"
                             Value="480" />
                     <Setter Property="Margin"
-                            Value="10" />
+                            Value="1" />
 
                     <Setter Property="Template"
                             Value="{DynamicResource VerticalScrollBar}" />
@@ -63,10 +63,27 @@
                     Focusable="False"
                     Height="20"
                     Width="25"
+                    Grid.Row="0"
                     Command="ScrollBar.LineUpCommand"
                     Background="{StaticResource UpArrow_Default}"
                     Style="{StaticResource ScrollBar_UpArrow}">
                 </RepeatButton>
+
+                    <!--<Track Grid.Row="1" ViewportSize="0" IsDirectionReversed="True" x:Name="PART_Track">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                             
+                        </RepeatButton>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumbStyle}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageDownCommand"  Style="{StaticResource ScrollBarPageButtonStyle}">
+                             
+                        </RepeatButton>
+                    </Track.IncreaseRepeatButton>
+                </Track>-->
 
                 <RepeatButton
                     x:Name="rb_Down"
@@ -82,10 +99,10 @@
                 <Track
                     Name="PART_Track"
                     Grid.Row="1"
-                    IsDirectionReversed="True">
+                    IsDirectionReversed="True"
+                    >
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            Margin="2"
                             Command="ScrollBar.PageUpCommand"
                             Style="{StaticResource ScrollBar_Track}" />
                     </Track.DecreaseRepeatButton>
@@ -98,13 +115,12 @@
 
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
-                            Margin="2"
                             Command="ScrollBar.PageDownCommand"
                             Style="{StaticResource ScrollBar_Track}" />
                     </Track.IncreaseRepeatButton>
                 </Track>
             </Grid>
-            <!--<ControlTemplate.Triggers>
+            <ControlTemplate.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=VerticalOffset}" Value="0">
                     <Setter TargetName="rb_Up" Property="IsEnabled" Value="False"/>
                 </DataTrigger>
@@ -117,7 +133,7 @@
                     </DataTrigger.Binding>
                     <Setter TargetName="rb_Down" Property="IsEnabled" Value="False"/>
                 </DataTrigger>
-            </ControlTemplate.Triggers>-->
+            </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
 

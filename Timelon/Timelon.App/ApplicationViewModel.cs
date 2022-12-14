@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Timelon.App.Core;
 using Timelon.Data;
+using System.Windows.Data;
+using System.Windows;
+using System;
 
 namespace Timelon.App
 {
@@ -34,6 +37,21 @@ namespace Timelon.App
         {
             _parentListId = listId;
             _parentListName = listName;
+        }
+    }
+    public class ScrollLimitConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length == 2 && values[0] is double && values[1] is double)
+            {
+                return (double)values[0] == (double)values[1];
+            }
+            return false;
+        }
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 
