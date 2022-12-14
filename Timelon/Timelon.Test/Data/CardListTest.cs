@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Timelon.Data;
 
 namespace Timelon.Test.Data
 {
@@ -8,14 +10,31 @@ namespace Timelon.Test.Data
     [TestClass]
     public class CardListTest
     {
-        public CardListTest()
+        public class TestCardList : CardList
         {
-            //
-            // TODO: Протестировать список карт
-            // Абстракции трогать не надо
-            // Тестируем их через потомков
-            //
+            public TestCardList(int id, string name, bool isEssential, List<Card> list) : base(id, name, isEssential, list)
+            {
+            }
         }
+
+        private TestCardList listA = new TestCardList(0, "EssentialTestListA", true, new List<Card> 
+        {
+            new Card(0,"CardA",DateTimeContainer.Now,"This is CardA", true,true),
+            new Card(1,"CardB",DateTimeContainer.Now,"This is CardB", true,false),
+            new Card(2,"CardC",DateTimeContainer.Now,"This is CardC", false,true),
+            new Card(3,"CardD",DateTimeContainer.Now,"This is CardD", false,false),
+            new Card(4,"CardE",DateTimeContainer.Now,"This is CardE", false,false),
+            new Card(5,"CardF",DateTimeContainer.Now,"This is CardF", true,false),
+        });
+        private TestCardList listB = new TestCardList(1, "TestListB", false, new List<Card>
+        {
+            new Card("CardA"),
+            new Card("CardB"),
+            new Card("CardC"),
+            new Card("CardD"),
+            new Card("CardE"),
+            new Card("CardF"),
+        });
 
         private TestContext testContextInstance;
 
@@ -60,11 +79,46 @@ namespace Timelon.Test.Data
         #endregion Additional test attributes
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestEssential()
         {
-            //
-            // TODO: Add test logic here
-            //
+            Assert.IsTrue(listA.IsEssential);
+            Assert.IsFalse(listB.IsEssential);
+        }
+        [TestMethod]
+        public void TestGet()
+        {
+            int findId = listA.All[0].Id;
+            Assert.AreEqual("CardA", listA.Get(findId).Name);
+        }
+        [TestMethod]
+        public void TestSearch()
+        {
+            //Ищем карту А и сравниваем её имя с "CardA"
+        }
+        [TestMethod]
+        public void TestSort()
+        {
+            //Сортируем список A сравниваем порядок карт.
+            //Как должно быть:B,F,D,E,A,C
+            //(Не знаю как поведут себя карты с одинаковой важностью или выполнение)
+        }
+        [TestMethod]
+        public void TestSet()
+        {
+            Card cCard = listA.All[0];
+            //Меняем свойство карты A - важность или выполнение
+            listA.Set(cCard);
+        }
+        [TestMethod]
+        public void TestContains()
+        {
+            Card cCard = listA.All[0];
+            Assert.IsTrue(listA.Contains(cCard.Id));
+        }
+        [TestMethod]
+        public void TestRemove()
+        {
+            //Удаляем карту из списка и сравниваем с тем как должно получиться
         }
     }
 }

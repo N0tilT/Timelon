@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Timelon.Data;
 
 namespace Timelon.Test.Data
 {
@@ -8,14 +9,20 @@ namespace Timelon.Test.Data
     [TestClass]
     public class CardTest
     {
-        public CardTest()
+        public class TestCard : Card
         {
-            //
-            // TODO: Протестировать карту
-            // Абстракции трогать не надо
-            // Тестируем их через потомков
-            //
+            public TestCard(int cardId, string cardName, DateTimeContainer date, string description, bool isImportant, bool isCompleted) : base(cardId, cardName, date, description, isImportant, isCompleted)
+            {
+            }
         }
+
+        private TestCard cardA = new TestCard(0,"TestCardA",new DateTimeContainer(new System.DateTime(2022, 8, 10)),"This is the test card A",true,true);
+
+        private TestCard cardB = new TestCard(1, "TestCardB", new DateTimeContainer(new System.DateTime(2022, 12, 23)), "This is the test card B", true, false);
+
+        private TestCard cardC = new TestCard(2, "TestCardC", new DateTimeContainer(new System.DateTime(2022, 9, 4)), "This is the test card C", false, true);
+
+        private TestCard cardD = new TestCard(3, "TestCardD", new DateTimeContainer(new System.DateTime(2022, 4, 9)), "This is the test card D", false, false);
 
         private TestContext testContextInstance;
 
@@ -60,11 +67,52 @@ namespace Timelon.Test.Data
         #endregion Additional test attributes
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestId()
         {
-            //
-            // TODO: Add test logic here
-            //
+            Assert.AreEqual(0, cardA.Id);
+            Assert.AreEqual(1, cardB.Id);
+            Assert.AreEqual(2, cardC.Id);
+            Assert.AreEqual(3, cardD.Id);
+        }
+
+        [TestMethod]
+        public void TestName()
+        {
+            Assert.AreEqual("TestCardA", cardA.Name);
+            cardA.Name = "TestedCardA";
+            Assert.AreEqual("TestedCardA", cardA.Name);
+        }
+
+        [TestMethod]
+        public void TestDate()
+        {
+            Assert.AreEqual(new System.DateTime(2022, 8, 10), cardA.Date.Created);
+            Assert.AreEqual(new System.DateTime(2022, 12, 23), cardB.Date.Created);
+        }
+
+        [TestMethod]
+        public void TestDescription()
+        {
+            Assert.AreEqual("This is the test card A", cardA.Description);
+            cardA.Description = "This is tested card A";
+            Assert.AreEqual("This is tested card A", cardA.Description);
+
+        }
+
+        [TestMethod]
+        public void TestImportance()
+        {
+            //Сравнить значения при создании (асерт)
+            //Поменять значение на противоположное
+            if (cardB.IsImportant == true) cardB.IsImportant = false;
+            //else...
+            //Сравнить с ожидаемым
+        }
+
+        [TestMethod]
+        public void TestCompleted()
+        {
+            //То же что и с TestImportance
         }
     }
 }

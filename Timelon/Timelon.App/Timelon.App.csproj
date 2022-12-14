@@ -73,7 +73,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ApplicationViewModel.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayComand.cs" />
     <Compile Include="MainWindow.xaml.cs">
