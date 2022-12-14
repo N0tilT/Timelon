@@ -50,7 +50,7 @@ namespace Timelon.Data
     /// <summary>
     /// Абстрактный класс для хранения и генерации уникальных идентификаторов
     /// </summary>
-    public abstract class Unique<IUniqueIdentifiable>
+    public abstract class Unique<T> where T : IUniqueIdentifiable
     {
         /// <summary>
         /// Счетчик
