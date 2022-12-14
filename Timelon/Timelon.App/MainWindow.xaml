@@ -217,7 +217,8 @@
                 <TextBlock x:Name="CardListName"
                            Grid.Column="1"
                            Text="{Binding SelectedList.Name}"
-                           Style="{StaticResource TitleTheme}" />
+                           Style="{StaticResource TitleTheme}" 
+                           />
 
                 <!--Название списка - результата поиска-->
                 <TextBlock x:Name="SearchResult"
@@ -231,7 +232,10 @@
                            Grid.Column="2"
                            HorizontalAlignment="Center"
                            Text="{Binding SelectedCard.Name}"
-                           Style="{StaticResource TitleTheme}" />
+                           Style="{StaticResource TitleTheme}" 
+                           TextWrapping="Wrap">
+
+                </TextBlock>
 
                 <!--#endregion-->
 
@@ -614,7 +618,8 @@
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="CardDescriptionTextbox"
                                      Text="{Binding Description}"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}" 
+                                     TextWrapping="Wrap" AcceptsReturn="True" />
                         </Grid>
                     </Border>
                 </StackPanel>
