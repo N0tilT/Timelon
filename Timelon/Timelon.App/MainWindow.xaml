@@ -210,7 +210,8 @@
                 <!--Заглавие-->
                 <Border x:Name ="Title">
                     <TextBlock x:Name="TitleText"
-                               Style="{StaticResource TitleTheme}"><Run Text="Timelon" /></TextBlock>
+                               Style="{StaticResource TitleTheme}"
+                               FontSize="22"><Run Text="Timelon" /></TextBlock>
                 </Border>
 
                 <!--Название списка-->
