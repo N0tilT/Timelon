@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Data;
 
 namespace Timelon.App
 {
@@ -92,7 +93,7 @@ namespace Timelon.App
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            DeleteListButton.Visibility= Visibility.Collapsed;
+            DeleteListButton.Visibility = Visibility.Collapsed;
             AddBorder.Visibility = Visibility.Hidden;
             AddCardButton.Visibility = Visibility.Hidden;
             AddCardTextbox.Visibility = Visibility.Hidden;
@@ -153,7 +154,7 @@ namespace Timelon.App
                 SearchButton_Click(sender, e);
                 if (viewModel.SearchCardCommand.CanExecute(SearchTextbox))
                     viewModel.SearchCardCommand.Execute(SearchTextbox);
-                
+
             }
         }
 
@@ -405,5 +406,23 @@ namespace Timelon.App
         }
 
         #endregion Methods
+
+        public class ScrollLimitConverter : IMultiValueConverter
+        {
+            public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                if (values.Length == 2 && values[0] is double && values[1] is double)
+                {
+                    return (double)values[0] == (double)values[1];
+                }
+                return false;
+            }
+            public object[] ConvertBack(object value, Type[] targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
     }
+    
 }
