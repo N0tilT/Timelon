@@ -4,7 +4,7 @@
 
 <p align="center">
    <img src="https://img.shields.io/badge/.NET%20ver-4.7.2-informational" alt=".NET Version">
-   <img src="https://img.shields.io/badge/App%20ver-1.0-blueviolet" alt="App Version">
+   <img src="https://img.shields.io/badge/App%20ver-2.0-blueviolet" alt="App Version">
    <img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License">
 </p>
 
