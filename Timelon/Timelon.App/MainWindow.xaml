@@ -355,7 +355,8 @@
                 <TextBlock Grid.Column="3"
                            HorizontalAlignment="Center"
                            Text="{Binding SelectedExtendedCard.Name}"
-                           Style="{StaticResource TitleTheme}" />
+                           Style="{StaticResource TitleTheme}"
+                           TextWrapping="Wrap"/>
 
                 <!--Меню информации о расширенной карточке-->
                 <StackPanel x:Name="ExtendedCardInfo"
@@ -421,7 +422,8 @@
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="ExCardDescriptionTextbox"
                                      Text="{Binding Description}" FontSize="14"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}"
+                                     TextWrapping="Wrap" AcceptsReturn="True"/>
                         </Grid>
                     </Border>
                 </StackPanel>

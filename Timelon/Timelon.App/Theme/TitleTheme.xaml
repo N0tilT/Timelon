@@ -8,7 +8,7 @@
 
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 </ResourceDictionary>
