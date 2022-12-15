@@ -233,7 +233,17 @@
                          Text=" Здесь пустовато...
 
                          Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже."
-                         Style="{StaticResource VeilTheme}" />
+                         Style="{StaticResource VeilTheme}" >                     
+                </TextBox>
+                
+                <TextBox x:Name="Veil_Search"
+                          Grid.Column="1"
+                          Grid.Row="2"
+                          SelectionOpacity="0"
+                          Text="Ничего не найдено"
+                          Visibility="Hidden"
+                          Style="{StaticResource VeilTheme}" >
+                </TextBox>
 
                 <!--#endregion-->
 
@@ -344,7 +354,11 @@
                              Background="Transparent"
                              Text="Время создания"
                              Foreground="{DynamicResource ForegroundColor}"
-                             FontSize="14" FontWeight="Bold" />
+                             FontSize="14" FontWeight="Bold"    
+                             Cursor="Arrow"
+                             IsReadOnly="True" 
+                             Focusable="False"
+                             />
 
                     <!--Дата создания карты-->
                     <Border Grid.Row="1" Grid.Column="2"
@@ -357,7 +371,10 @@
                             <TextBox x:Name="ExCardDateTextbox"
                                      IsReadOnly="True"
                                      Text="{Binding SelectedExtendedCard.Date.Created, Mode=OneWay}"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}" 
+                                     Focusable="False"
+                                     Cursor="Arrow"
+                                     />
                         </Grid>
                     </Border>
 
@@ -383,7 +400,11 @@
                              Background="Transparent"
                              Foreground="{DynamicResource ForegroundColor}"
                              FontSize="14" FontWeight="Bold"
-                             Text="Описание" Width="74" />
+                             Text="Описание" Width="74"   
+                             Cursor="Arrow"
+                             IsReadOnly="True"
+                             Focusable="False"
+                             />
                     <!--Описание карты-->
                     <Border Grid.Row="2"
                             Margin="10,10,0,10"
@@ -477,7 +498,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <!--Разделитель завершённых и невыполненных-->
-                        <Border BorderBrush="Black"
+                        <Border x:Name="EndTasks"
+                                BorderBrush="Black"
                                 BorderThickness="2"
                                 Margin="7,0,7,0">
                             <StackPanel Orientation="Horizontal"
@@ -535,7 +557,11 @@
                              Background="Transparent"
                              Foreground="{DynamicResource ForegroundColor}"
                              Text="Время создания"
-                             FontSize="14" FontWeight="Bold" />
+                             FontSize="14" FontWeight="Bold"
+                             Cursor="Arrow"
+                             IsReadOnly="True"
+                             Focusable="False"
+                             />
                     <!--Дата создания карты-->
                     <Border Grid.Row="1" Grid.Column="2"
                             Margin="10,10,0,10"
@@ -547,7 +573,10 @@
                             <TextBox x:Name="CardDateTextbox"
                                      Text="{Binding SelectedCard.Date.Created, Mode=OneWay}"
                                      IsReadOnly="True"
-                                     Style="{StaticResource TextBoxInputTheme}" />
+                                     Style="{StaticResource TextBoxInputTheme}"
+                                     Focusable="False"
+                                     Cursor="Arrow"
+                                     />
                         </Grid>
                     </Border>
 
@@ -571,7 +600,11 @@
                              Background="Transparent"
                              Foreground="{DynamicResource ForegroundColor}"
                              FontSize="14" FontWeight="Bold"
-                             Text="Описание" />
+                             Text="Описание"                              
+                             Cursor="Arrow"
+                             IsReadOnly="True"
+                             Focusable="False"
+                             />
 
                     <!--Описание карты-->
                     <Border Grid.Row="2"
