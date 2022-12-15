@@ -128,7 +128,7 @@ namespace Timelon.Data
             }
         }
 
-        public bool Equals(Unique<IUniqueIdentifiable> unique)
+        public bool Equals(Unique<T> unique)
         {
             return unique.Id == Id && unique.Name == Name;
         }
