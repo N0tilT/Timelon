@@ -35,6 +35,7 @@ namespace Timelon.Test.Data
             new Card("CardE"),
             new Card("CardF"),
         });
+ 
 
         private TestContext testContextInstance;
 
@@ -77,31 +78,48 @@ namespace Timelon.Test.Data
         //
 
         #endregion Additional test attributes
-
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void TestEssential()
         {
             Assert.IsTrue(listA.IsEssential);
             Assert.IsFalse(listB.IsEssential);
         }
+        /// <summary>
+        /// Тест метода Get (получение карты из списка)
+        /// </summary>
         [TestMethod]
         public void TestGet()
         {
             int findId = listA.All[0].Id;
             Assert.AreEqual("CardA", listA.Get(findId).Name);
         }
+        /// <summary>
+        /// Тест методов Search
+        /// </summary>
         [TestMethod]
         public void TestSearch()
         {
             //Ищем карту А и сравниваем её имя с "CardA"
+            Assert.AreEqual("CardA", listA.SearchByContent("A"));
+            
         }
+        /// <summary>
+        /// Тест метода Sort
+        /// </summary>
         [TestMethod]
         public void TestSort()
         {
             //Сортируем список A сравниваем порядок карт.
             //Как должно быть:B,F,D,E,A,C
             //(Не знаю как поведут себя карты с одинаковой важностью или выполнение)
+
         }
+        /// <summary>
+        /// Тест метода Set (сохранение карты в списке)
+        /// </summary>
         [TestMethod]
         public void TestSet()
         {
@@ -109,16 +127,24 @@ namespace Timelon.Test.Data
             //Меняем свойство карты A - важность или выполнение
             listA.Set(cCard);
         }
+        /// <summary>
+        /// Тест метода Contains (нахождение в списке)
+        /// </summary>
         [TestMethod]
         public void TestContains()
         {
             Card cCard = listA.All[0];
             Assert.IsTrue(listA.Contains(cCard.Id));
         }
+        /// <summary>
+        /// Тест метода Remove (удаление из списка)
+        /// </summary>
         [TestMethod]
         public void TestRemove()
         {
-            //Удаляем карту из списка и сравниваем с тем как должно получиться
+            int ReId = listB.All[6].Id;
+            listB.Remove(ReId);
+            Assert.IsFalse(listB.Contains(ReId));
         }
     }
 }
