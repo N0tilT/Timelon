@@ -26,6 +26,15 @@ namespace Timelon.Test.Data
             new Card(4,"CardE",DateTimeContainer.Now,"This is CardE", false,false),
             new Card(5,"CardF",DateTimeContainer.Now,"This is CardF", true,false),
         });
+        private TestCardList listQ = new TestCardList(0, "EssentialTestListA", true, new List<Card>
+        {
+            new Card(6,"CardA",DateTimeContainer.Now,"This is CardA", true,true),
+            new Card(7,"CardB",DateTimeContainer.Now,"This is CardB", true,false),
+            new Card(8,"CardC",DateTimeContainer.Now,"This is CardC", false,true),
+            new Card(9,"CardD",DateTimeContainer.Now,"This is CardD", false,false),
+            new Card(10,"CardE",DateTimeContainer.Now,"This is CardE", false,false),
+            new Card(11,"CardF",DateTimeContainer.Now,"This is CardF", true,false),
+        });
         private TestCardList listB = new TestCardList(1, "TestListB", false, new List<Card>
         {
             new Card("CardA"),
@@ -35,7 +44,8 @@ namespace Timelon.Test.Data
             new Card("CardE"),
             new Card("CardF"),
         });
- 
+
+
 
         private TestContext testContextInstance;
 
@@ -95,6 +105,36 @@ namespace Timelon.Test.Data
         {
             int findId = listA.All[0].Id;
             Assert.AreEqual("CardA", listA.Get(findId).Name);
+
+            Assert.AreEqual("CardA", listQ.Get(6).Name);
+        }
+        /// <summary>
+        /// функция строчного представления имен карт, хранящихся в списке 
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns>список имен карт</returns>
+        public string Str(TestCardList l)
+        {
+            string s = "";
+            for (int i = 0; i < l.All.Count; i++)
+            {
+                s += l.Get(i).Name + " ";
+            }
+            return s;
+        }
+        /// <summary>
+        /// функция строчного представления имен карт, хранящихся в списке
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns>список имен карт</returns>
+        public string Str(List<Card> l)
+        {
+            string s = "";
+            foreach (var item in l)
+            {
+                s += item.Name + " ";
+            }
+            return s;
         }
         /// <summary>
         /// Тест методов Search
@@ -102,20 +142,25 @@ namespace Timelon.Test.Data
         [TestMethod]
         public void TestSearch()
         {
-            //Ищем карту А и сравниваем её имя с "CardA"
-            Assert.AreEqual("CardA", listA.SearchByContent("A"));
+            Assert.AreEqual("CardA ", Str(listA.SearchByContent("CardA")));
+            Assert.AreEqual("CardB ", Str(listA.SearchByContent("B")));
+            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", Str(listA.SearchByContent("A")));
+            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", Str(listA.SearchByContent("a")));
+            Assert.AreEqual("", Str(listA.SearchByContent("137")));
             
         }
+
         /// <summary>
-        /// Тест метода Sort
+        /// Тест методов сортировки карт
         /// </summary>
         [TestMethod]
         public void TestSort()
         {
-            //Сортируем список A сравниваем порядок карт.
-            //Как должно быть:B,F,D,E,A,C
-            //(Не знаю как поведут себя карты с одинаковой важностью или выполнение)
-
+            Assert.AreEqual("CardB CardF ", Str(listA.GetListImportant()));
+            Assert.AreEqual("CardD CardE ", Str(listA.GetListDefault()));
+            Assert.AreEqual("CardA CardC ", Str(listA.GetListCompleted()));
+            Assert.AreEqual("CardB CardF CardD CardE CardA CardC ", Str(listA.GetListImportant()) + Str(listA.GetListDefault()) + Str(listA.GetListCompleted()));
+            //CardB CardF CardD CardE CardC CardA 
         }
         /// <summary>
         /// Тест метода Set (сохранение карты в списке)
@@ -123,9 +168,12 @@ namespace Timelon.Test.Data
         [TestMethod]
         public void TestSet()
         {
-            Card cCard = listA.All[0];
-            //Меняем свойство карты A - важность или выполнение
-            listA.Set(cCard);
+            Card cCard = listQ.All[6];
+            cCard.IsImportant = false;
+            cCard.IsCompleted = false;
+            listQ.Set(cCard);
+            Assert.AreEqual(false, cCard.IsImportant);
+            Assert.AreEqual(false, cCard.IsCompleted);
         }
         /// <summary>
         /// Тест метода Contains (нахождение в списке)
@@ -133,8 +181,13 @@ namespace Timelon.Test.Data
         [TestMethod]
         public void TestContains()
         {
-            Card cCard = listA.All[0];
-            Assert.IsTrue(listA.Contains(cCard.Id));
+            Card cCard = listQ.All[6];
+            Assert.IsTrue(listQ.Contains(cCard.Id));
+            Assert.IsFalse(listQ.Contains(0));
+
+            Card bCard = listA.All[5];
+            Assert.IsTrue(listA.Contains(bCard.Id));
+            Assert.IsTrue(listA.Contains(1));
         }
         /// <summary>
         /// Тест метода Remove (удаление из списка)
@@ -142,9 +195,13 @@ namespace Timelon.Test.Data
         [TestMethod]
         public void TestRemove()
         {
-            int ReId = listB.All[6].Id;
-            listB.Remove(ReId);
-            Assert.IsFalse(listB.Contains(ReId));
+            int ReId = listQ.All[11].Id;
+            listQ.Remove(ReId);
+            Assert.IsFalse(listQ.Contains(ReId));
+
+            int Re1Id = listA.All[0].Id;
+            listA.Remove(Re1Id);
+            Assert.IsFalse(listA.Contains(Re1Id));
         }
     }
 }
