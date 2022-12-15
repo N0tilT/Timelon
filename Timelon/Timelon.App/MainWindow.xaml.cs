@@ -34,6 +34,7 @@ namespace Timelon.App
         /// <param name="e"></param>
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            Veil_Search.Visibility = Visibility.Hidden;
             Sleeper();
             if (CardInfoColumn.Width == new GridLength(240))
                 CardInfoColumn.Width = new GridLength(0);
@@ -50,6 +51,8 @@ namespace Timelon.App
 
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
+            if (CardDescriptionTextbox.Text == "") CardDescriptionTemplate.Visibility = Visibility.Visible;
+            else CardDescriptionTemplate.Visibility = Visibility.Hidden;
             if (CardInfoColumn.Width == new GridLength(0))
                 CardInfoColumn.Width = new GridLength(240);
             DoneCardsPanel.SelectedItem = null;
@@ -78,6 +81,7 @@ namespace Timelon.App
 
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
+            Veil_Search.Visibility = Visibility.Hidden;
             NoVisible();
             viewModel.Need_Save = true;
             AddList();
@@ -109,6 +113,7 @@ namespace Timelon.App
 
         private void GoToListButton_Click(object sender, RoutedEventArgs e)
         {
+            Veil_Search.Visibility = Visibility.Hidden;
             Sleeper();
             DeleteListButton.Visibility = Visibility.Visible;
             ExtendedCardsMenu.Visibility = Visibility.Hidden;
@@ -202,7 +207,8 @@ namespace Timelon.App
 
         private void CardDescriptionTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CardDescriptionTemplate.Visibility = Visibility.Hidden;
+            if(CardDescriptionTextbox.Text=="") CardDescriptionTemplate.Visibility = Visibility.Visible;
+            else CardDescriptionTemplate.Visibility = Visibility.Hidden;
         }
 
         #endregion TextChangedEvents
@@ -355,11 +361,14 @@ namespace Timelon.App
         /// </summary>
         private void YesVisible()
         {
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(0);
             DeleteListButton.Visibility = Visibility.Visible;
             AddBorder.Visibility = Visibility.Visible;
             AddCardButton.Visibility = Visibility.Visible;
             AddCardTextbox.Visibility = Visibility.Visible;
             MainCardsMenu.Visibility = Visibility.Visible;
+            EndTasks.Visibility = Visibility.Visible;
             Veil.Visibility = Visibility.Hidden;
         }
 
@@ -368,8 +377,16 @@ namespace Timelon.App
         /// </summary>
         private void NoVisible()
         {
-            MainCardsMenu.Visibility = Visibility.Collapsed;
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(0);
+            DeleteListButton.Visibility = Visibility.Visible;
+            AddBorder.Visibility = Visibility.Visible;
+            AddCardButton.Visibility = Visibility.Visible;
+            AddCardTextbox.Visibility = Visibility.Visible;
+            MainCardsMenu.Visibility = Visibility.Hidden;
+            EndTasks.Visibility = Visibility.Hidden;
             Veil.Visibility = Visibility.Visible;
+
         }
 
         /// <summary>
@@ -385,6 +402,8 @@ namespace Timelon.App
         {
             await Task.Delay(2);
             SearchTextbox.Text = "";
+            if (viewModel.ExtendedCards.Count == 0) Veil_Search.Visibility = Visibility.Visible;
+            else Veil_Search.Visibility = Visibility.Hidden;
         }
 
         async void AddList()
@@ -403,10 +422,7 @@ namespace Timelon.App
             if (ExtendedCardsMenu.Visibility == Visibility.Visible)
             {
                 ExtendedCardsMenu.Visibility = Visibility.Hidden;
-                MainCardsMenu.Visibility = Visibility.Visible;
-                ExCardInfoColumn.Width = new GridLength(0);
-                SearchResult.Visibility = Visibility.Hidden;
-                CardListName.Visibility = Visibility.Visible;
+                NoVisible();
             }
         }
 
