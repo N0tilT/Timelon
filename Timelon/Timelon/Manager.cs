@@ -86,7 +86,7 @@ namespace Timelon
         /// <summary>
         /// Конструктор менеджера для отладки
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source">Путь до файла данных</param>
         /// <exception cref="ArgumentException"></exception>
         public Manager(string source)
         {
@@ -199,10 +199,10 @@ namespace Timelon
         /// <param name="data">Данные списков карт</param>
         private void WriteCardListData(List<CardListData> data)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
-
             using (StreamWriter writer = new StreamWriter(Source))
             {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
+
                 serializer.Serialize(writer, data);
             }
         }
@@ -212,15 +212,15 @@ namespace Timelon
         /// </summary>
         private void LoadData()
         {
-            // Очищаем списки карт перед загрузкой новых
-            All.Clear();
             CreateDataSource();
-
-            XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
 
             using (StreamReader reader = new StreamReader(Source))
             {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<CardListData>));
                 List<CardListData> data = (List<CardListData>)serializer.Deserialize(reader);
+
+                // Очищаем списки карт перед загрузкой новых
+                All.Clear();
 
                 foreach (CardListData item in data)
                 {

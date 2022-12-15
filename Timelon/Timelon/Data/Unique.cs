@@ -1,12 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Xml.Serialization;
 
 namespace Timelon.Data
 {
     /// <summary>
-    /// Интерфейс, обозначающий принадлежность к идентифицируемому виду
+    /// Идентифицируемый вид
     /// </summary>
     public interface IUniqueIdentifiable
     {
@@ -14,41 +13,19 @@ namespace Timelon.Data
     }
 
     /// <summary>
-    /// Базовый контейнер данных для сериализации
-    /// </summary>
-    public abstract class DataContainer
-    {
-        /// <summary>
-        /// Получить подробное представление объекта в виде строки
-        /// Используется формат XML
-        /// </summary>
-        /// <returns>Строка с данными объекта</returns>
-        public override string ToString()
-        {
-            XmlSerializer serializer = new XmlSerializer(GetType());
-
-            using (StringWriter writer = new StringWriter())
-            {
-                serializer.Serialize(writer, this);
-
-                return writer.ToString();
-            }
-        }
-    }
-
-    /// <summary>
-    /// Контейнер данных уникального класса для сериализации
+    /// Контейнер данных идентифицируемого объекта для сериализации
     /// </summary>
     public abstract class UniqueData : DataContainer
     {
         [XmlAttribute]
         public int Id;
-
         public string Name;
     }
 
     /// <summary>
-    /// Абстрактный класс для хранения и генерации уникальных идентификаторов
+    /// Абстракция идентифицируемого объекта
+    /// Служит для хранения и генерации идентификаторов и названий
+    /// Только для идентифицируемого вида
     /// </summary>
     public abstract class Unique<T> where T : IUniqueIdentifiable
     {

@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="Data\Card.cs" />
     <Compile Include="Data\CardList.cs" />
+    <Compile Include="Data\Unique.cs" />
     <Compile Include="Manager.cs" />
-    <Compile Include="Data\AbstractData.cs" />
+    <Compile Include="Data\DataContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
