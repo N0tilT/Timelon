@@ -15,6 +15,21 @@ namespace Timelon.Test.Data
             public TestCardList(int id, string name, bool isEssential, List<Card> list) : base(id, name, isEssential, list)
             {
             }
+
+            /// <summary>
+             /// Строчное представление имен карт, хранящихся в списке
+             /// </summary>
+             /// <param name="list">Список карт</param>
+             /// <returns>список имен карт</returns>
+            public string CardsToStringGeneric(List<Card> list)
+            {
+                string s = "";
+
+                foreach (Card item in list)
+                    s += item.Name + " ";
+
+                return s;
+            }
         }
 
         private TestCardList listA = new TestCardList(0, "EssentialTestListA", true, new List<Card> 
@@ -45,51 +60,8 @@ namespace Timelon.Test.Data
             new Card("CardF"),
         });
 
-
-
-        private TestContext testContextInstance;
-
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-
-        #endregion Additional test attributes
-        /// <summary>
-        /// 
+        /// Тест свойства "по умолчанию" у карт
         /// </summary>
         [TestMethod]
         public void TestEssential()
@@ -108,45 +80,18 @@ namespace Timelon.Test.Data
 
             Assert.AreEqual("CardA", listQ.Get(6).Name);
         }
-        /// <summary>
-        /// функция строчного представления имен карт, хранящихся в списке 
-        /// </summary>
-        /// <param name="l"></param>
-        /// <returns>список имен карт</returns>
-        public string Str(TestCardList l)
-        {
-            string s = "";
-            for (int i = 0; i < l.All.Count; i++)
-            {
-                s += l.Get(i).Name + " ";
-            }
-            return s;
-        }
-        /// <summary>
-        /// функция строчного представления имен карт, хранящихся в списке
-        /// </summary>
-        /// <param name="l"></param>
-        /// <returns>список имен карт</returns>
-        public string Str(List<Card> l)
-        {
-            string s = "";
-            foreach (var item in l)
-            {
-                s += item.Name + " ";
-            }
-            return s;
-        }
+        
         /// <summary>
         /// Тест методов Search
         /// </summary>
         [TestMethod]
         public void TestSearch()
         {
-            Assert.AreEqual("CardA ", Str(listA.SearchByContent("CardA")));
-            Assert.AreEqual("CardB ", Str(listA.SearchByContent("B")));
-            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", Str(listA.SearchByContent("A")));
-            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", Str(listA.SearchByContent("a")));
-            Assert.AreEqual("", Str(listA.SearchByContent("137")));
+            Assert.AreEqual("CardA ", listA.CardsToStringGeneric(listA.SearchByContent("CardA")));
+            Assert.AreEqual("CardB ", listA.CardsToStringGeneric(listA.SearchByContent("B")));
+            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", listA.CardsToStringGeneric(listA.SearchByContent("A")));
+            Assert.AreEqual("CardA CardB CardC CardD CardE CardF ", listA.CardsToStringGeneric(listA.SearchByContent("a")));
+            Assert.AreEqual("", listA.CardsToStringGeneric(listA.SearchByContent("137")));
             
         }
 
@@ -156,10 +101,13 @@ namespace Timelon.Test.Data
         [TestMethod]
         public void TestSort()
         {
-            Assert.AreEqual("CardB CardF ", Str(listA.GetListImportant()));
-            Assert.AreEqual("CardD CardE ", Str(listA.GetListDefault()));
-            Assert.AreEqual("CardA CardC ", Str(listA.GetListCompleted()));
-            Assert.AreEqual("CardB CardF CardD CardE CardA CardC ", Str(listA.GetListImportant()) + Str(listA.GetListDefault()) + Str(listA.GetListCompleted()));
+            Assert.AreEqual("CardB CardF ", listA.CardsToStringGeneric(listA.GetListImportant()));
+            Assert.AreEqual("CardD CardE ", listA.CardsToStringGeneric(listA.GetListDefault()));
+            Assert.AreEqual("CardA CardC ", listA.CardsToStringGeneric(listA.GetListCompleted()));
+            Assert.AreEqual("CardB CardF CardD CardE CardA CardC ", 
+                listA.CardsToStringGeneric(listA.GetListImportant()) + 
+                listA.CardsToStringGeneric(listA.GetListDefault()) + 
+                listA.CardsToStringGeneric(listA.GetListCompleted()));
             //CardB CardF CardD CardE CardC CardA 
         }
         /// <summary>
