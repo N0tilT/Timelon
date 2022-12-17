@@ -479,12 +479,9 @@ namespace Timelon.App
             {
                 if (obj is ExtendedCard rCard)
                 {
-                    if (rCard.ParentId != 0)
-                    {
                         SelectedList = ListManager.GetList(rCard.ParentId);
                         SelectedCard = SelectedList.Get(rCard.Id);
                         ExtendedCards = null;
-                    }
                 }
             }));
 
