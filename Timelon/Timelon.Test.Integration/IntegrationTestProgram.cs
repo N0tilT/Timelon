@@ -12,6 +12,7 @@ namespace Timelon.Test.Integration
     {
         private static void Main()
         {
+            //TEST
             // Инициализация менеджера как можно раньше
             _ = Manager.Instance;
 
