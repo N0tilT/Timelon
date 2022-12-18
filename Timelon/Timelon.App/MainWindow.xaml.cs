@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Data;
+using Timelon.Data;
 
 namespace Timelon.App
 {
@@ -66,6 +67,7 @@ namespace Timelon.App
 
         private void ImportantCardButton_Click(object sender, RoutedEventArgs e)
         {
+            CardInfoColumn.Width = new GridLength(0);
             viewModel.Need_Save = true;
         }
 
@@ -113,6 +115,7 @@ namespace Timelon.App
 
         private void GoToListButton_Click(object sender, RoutedEventArgs e)
         {
+            SearchResult.Visibility= Visibility.Hidden;
             Veil_Search.Visibility = Visibility.Hidden;
             Sleeper();
             DeleteListButton.Visibility = Visibility.Visible;
@@ -207,7 +210,12 @@ namespace Timelon.App
 
         private void CardDescriptionTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(CardDescriptionTextbox.Text=="") CardDescriptionTemplate.Visibility = Visibility.Visible;
+            viewModel.Need_Save = true;
+            if (sender is Card sCard)
+            {
+                viewModel.SelectedList.Set(sCard);
+            }
+            if (CardDescriptionTextbox.Text=="") CardDescriptionTemplate.Visibility = Visibility.Visible;
             else CardDescriptionTemplate.Visibility = Visibility.Hidden;
         }
 
@@ -222,22 +230,12 @@ namespace Timelon.App
         /// <param name="e"></param>
         private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //if (viewModel.Need_Save == true)
-            //{
-            //    if (MessageBox.Show("Точно хотите выйти? Все несохраненные данные будут удалены.",
-            //        "Выход",
-            //        MessageBoxButton.YesNo,
-            //        MessageBoxImage.Question) == MessageBoxResult.Yes)
-            //    {
-            //        this.Close();
-            //    }
-            //}
-            //else this.Close();
             this.Hide();
         }
 
         private void SaveChanges_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            MainCardsMenu.Focus();
             viewModel.Need_Save = false;
             viewModel.ListManager.SaveData();
         }
@@ -370,6 +368,8 @@ namespace Timelon.App
             MainCardsMenu.Visibility = Visibility.Visible;
             EndTasks.Visibility = Visibility.Visible;
             Veil.Visibility = Visibility.Hidden;
+            CardListName.Visibility = Visibility.Visible;
+            SearchResult.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -386,7 +386,8 @@ namespace Timelon.App
             MainCardsMenu.Visibility = Visibility.Hidden;
             EndTasks.Visibility = Visibility.Hidden;
             Veil.Visibility = Visibility.Visible;
-
+            CardListName.Visibility = Visibility.Visible;
+            SearchResult.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
