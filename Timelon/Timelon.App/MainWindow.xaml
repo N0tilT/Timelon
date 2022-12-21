@@ -589,7 +589,8 @@
                                        Text=""
                                        Style="{StaticResource TextBlockTemplateTheme}" />
                             <TextBox x:Name="CardDateTextbox"
-                                     Text="{Binding SelectedCard.Date.Created, Mode=OneWay}"
+                                     TextAlignment="Center"
+                                     Text="{Binding SelectedCard.Date.Created, StringFormat=dd/MM/yyyy HH:mm:ss, Mode=OneWay}"
                                      IsReadOnly="True"
                                      Style="{StaticResource TextBoxInputTheme}"
                                      Focusable="False"

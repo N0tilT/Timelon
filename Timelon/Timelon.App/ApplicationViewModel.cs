@@ -227,7 +227,6 @@ namespace Timelon.App
             }
         }
 
-
         #endregion Properties
 
         #region Commands
