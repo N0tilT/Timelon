@@ -375,7 +375,7 @@ namespace Timelon.App
             Veil.Visibility = Visibility.Hidden;
             CardListName.Visibility = Visibility.Visible;
             SearchResult.Visibility = Visibility.Hidden;
-            if (viewModel.SelectedList.Id == 0 || viewModel.SelectedList.Id == 1) DeleteListButton.Visibility = Visibility.Hidden;
+            if (viewModel.SelectedList.IsEssential) DeleteListButton.Visibility = Visibility.Hidden;
             else DeleteListButton.Visibility = Visibility.Visible;
         }
 
@@ -395,6 +395,8 @@ namespace Timelon.App
             Veil.Visibility = Visibility.Visible;
             CardListName.Visibility = Visibility.Visible;
             SearchResult.Visibility = Visibility.Hidden;
+            if (viewModel.SelectedList.IsEssential) DeleteListButton.Visibility = Visibility.Hidden;
+            else DeleteListButton.Visibility = Visibility.Visible;
         }
 
         /// <summary>
