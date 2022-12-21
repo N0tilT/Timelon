@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Icon2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Hardcodet.NotifyIcon.Wpf, Version=1.1.0.0, Culture=neutral, PublicKeyToken=682384a853a08aad, processorArchitecture=MSIL">
@@ -282,6 +282,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\избранное2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
