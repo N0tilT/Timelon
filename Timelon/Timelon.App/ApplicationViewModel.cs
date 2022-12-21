@@ -249,8 +249,8 @@ namespace Timelon.App
                             {
                                 iCard.IsImportant = true;
                                 SelectedList.Set(iCard);
-                                SelectedCard = SelectedList.Get(iCard.Id);
                                 UpdateCardsCollections();
+                                SelectedCard = SelectedList.Get(iCard.Id);
                             }
                         }
                     }));
@@ -273,8 +273,8 @@ namespace Timelon.App
                                 unimpCard.IsImportant = false;
                                 SelectedList.Set(unimpCard);
 
-                                SelectedCard = SelectedList.Get(unimpCard.Id);
                                 UpdateCardsCollections();
+                                SelectedCard = SelectedList.Get(unimpCard.Id);
                             }
                         }
                     }));
@@ -297,8 +297,8 @@ namespace Timelon.App
                                 cCard.IsCompleted = true;
                                 SelectedList.Set(cCard);    //Обновляем карту в списке
 
-                                SelectedCard = SelectedList.Get(cCard.Id);
                                 UpdateCardsCollections();
+                                SelectedCard = SelectedList.Get(cCard.Id);
                             }
                         }
                     }));
@@ -320,8 +320,8 @@ namespace Timelon.App
                             {
                                 recCard.IsCompleted = false;
                                 SelectedList.Set(recCard);
-                                SelectedCard = SelectedList.Get(recCard.Id);
                                 UpdateCardsCollections();
+                                SelectedCard = SelectedList.Get(recCard.Id);
                             }
                         }
                     }));

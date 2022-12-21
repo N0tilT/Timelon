@@ -36,6 +36,8 @@ namespace Timelon.App
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             Veil_Search.Visibility = Visibility.Hidden;
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(0);
             Sleeper();
             FromSearch();
         }
@@ -44,6 +46,7 @@ namespace Timelon.App
         {
             if ((viewModel.DefaultCards.Count + viewModel.ImportantCards.Count + viewModel.DoneCards.Count) == 1) NoVisible();
             viewModel.Need_Save = true;
+            CardInfoColumn.Width = new GridLength(0);
         }
 
         private void CardButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,7 @@ namespace Timelon.App
             else CardDescriptionTemplate.Visibility = Visibility.Hidden;
             DoneCardsPanel.SelectedItem = null;
             CardsPanel.SelectedItem = null;
+            CardInfoColumn.Width = new GridLength(240);
         }
 
         private void DoneCardButton_Click(object sender, RoutedEventArgs e)
@@ -77,6 +81,8 @@ namespace Timelon.App
         private void AddListButton_Click(object sender, RoutedEventArgs e)
         {
             Veil_Search.Visibility = Visibility.Hidden;
+            CardInfoColumn.Width = new GridLength(0);
+            ExCardInfoColumn.Width = new GridLength(0);
             NoVisible();
             viewModel.Need_Save = true;
             AddList();
@@ -85,6 +91,7 @@ namespace Timelon.App
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
+            CardInfoColumn.Width = new GridLength(240);
             YesVisible();
             viewModel.Need_Save = true;
             AddCard();
@@ -101,6 +108,7 @@ namespace Timelon.App
             MainCardsMenu.Visibility = Visibility.Hidden;
             CardListName.Visibility = Visibility.Collapsed;
             SearchResult.Visibility = Visibility.Visible;
+            CardInfoColumn.Width = new GridLength(0);
             SearchCard();
         }
 
@@ -114,7 +122,8 @@ namespace Timelon.App
             MainCardsMenu.Visibility = Visibility.Visible;
             CardListName.Visibility = Visibility.Visible;
             SearchResult.Visibility = Visibility.Collapsed;
-            
+            CardInfoColumn.Width = new GridLength(240);
+            ExCardInfoColumn.Width = new GridLength(0);
         }
 
         private void DoneCardsShow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -140,6 +149,7 @@ namespace Timelon.App
                 YesVisible();
                 viewModel.Need_Save = true;
 
+                CardInfoColumn.Width = new GridLength(240);
                 if (viewModel.AddCardCommand.CanExecute(AddCardTextbox))
                     viewModel.AddCardCommand.Execute(AddCardTextbox);
                 AddCardTextbox.Text = "";
@@ -148,6 +158,7 @@ namespace Timelon.App
 
         private void SearchResultCard_GotFocus(object sender, RoutedEventArgs e)
         {
+            ExCardInfoColumn.Width = new GridLength(240);
         }
 
         private void SearchTextbox_KeyDown(object sender, KeyEventArgs e)

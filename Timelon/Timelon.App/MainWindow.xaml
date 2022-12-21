@@ -184,9 +184,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="0" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="0" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
