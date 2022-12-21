@@ -62,6 +62,8 @@ namespace Timelon.App
 
         private void DoneCardButton_Click(object sender, RoutedEventArgs e)
         {
+
+            CardInfoColumn.Width = new GridLength(0);
             viewModel.Need_Save = true;
         }
 
@@ -73,11 +75,15 @@ namespace Timelon.App
 
         private void RecoverCardButton_Click(object sender, RoutedEventArgs e)
         {
+
+            CardInfoColumn.Width = new GridLength(0);
             viewModel.Need_Save = true;
         }
 
         private void UndoImportantCardButton_Click(object sender, RoutedEventArgs e)
         {
+
+            CardInfoColumn.Width = new GridLength(0);
             viewModel.Need_Save = true;
         }
 

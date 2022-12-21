@@ -128,10 +128,6 @@ namespace Timelon.App
             {
                 _importantCards = value;
 
-                ImportantCards.CollectionChanged += (s, e) =>
-                {
-                    OnPropertyChanged("IsEmptyListVisibility");
-                };
 
                 OnPropertyChanged("ImportantCards");
             }
@@ -150,11 +146,6 @@ namespace Timelon.App
             {
                 _defaultCards = value;
 
-                DefaultCards.CollectionChanged += (s, e) =>
-                {
-                    OnPropertyChanged("IsEmptyListVisibility");
-                };
-
                 OnPropertyChanged("DefaultCards");
             }
         }
@@ -172,10 +163,6 @@ namespace Timelon.App
             {
                 _doneCards = value;
 
-                DoneCards.CollectionChanged += (s, e) =>
-                {
-                    OnPropertyChanged("IsEmptyListVisibility");
-                };
 
                 OnPropertyChanged("DoneCards");
             }
@@ -262,7 +249,6 @@ namespace Timelon.App
                             {
                                 iCard.IsImportant = true;
                                 SelectedList.Set(iCard);
-
                                 UpdateCardsCollections();
                             }
                         }
@@ -336,17 +322,6 @@ namespace Timelon.App
                             }
                         }
                     }));
-
-        private RelayCommand saveCardChangesCommand;
-
-        public RelayCommand SaveCardChangesCommand => saveCardChangesCommand ??
-            (saveCardChangesCommand = new RelayCommand(obj =>
-            {
-                if(obj is Card sCard)
-                {
-                    SelectedList.Set(sCard);
-                }
-            }));
 
         /// <summary>
         /// Команда удаления карты из списка
@@ -479,9 +454,9 @@ namespace Timelon.App
             {
                 if (obj is ExtendedCard rCard)
                 {
-                        SelectedList = ListManager.GetList(rCard.ParentId);
-                        SelectedCard = SelectedList.Get(rCard.Id);
-                        ExtendedCards = null;
+                    SelectedList = ListManager.GetList(rCard.ParentId);
+                    SelectedCard = SelectedList.Get(rCard.Id);
+                    ExtendedCards = null;
                 }
             }));
 
@@ -497,6 +472,7 @@ namespace Timelon.App
             ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant());
             DefaultCards = new ObservableCollection<Card>(_selectedList.GetListDefault());
             DoneCards = new ObservableCollection<Card>(_selectedList.GetListCompleted());
+            SelectedCard = _selectedCard;
         }
 
         #endregion Methods
