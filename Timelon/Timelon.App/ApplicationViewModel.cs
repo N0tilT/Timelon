@@ -249,6 +249,7 @@ namespace Timelon.App
                             {
                                 iCard.IsImportant = true;
                                 SelectedList.Set(iCard);
+                                SelectedCard = SelectedList.Get(iCard.Id);
                                 UpdateCardsCollections();
                             }
                         }
@@ -265,13 +266,14 @@ namespace Timelon.App
         public RelayCommand CardUndoImportantCommand => cardUndoImportantCommand ??
                     (cardUndoImportantCommand = new RelayCommand(obj =>
                     {
-                        if (obj is Card iCard)
+                        if (obj is Card unimpCard)
                         {
-                            if (iCard.IsImportant)
+                            if (unimpCard.IsImportant)
                             {
-                                iCard.IsImportant = false;
-                                SelectedList.Set(iCard);
+                                unimpCard.IsImportant = false;
+                                SelectedList.Set(unimpCard);
 
+                                SelectedCard = SelectedList.Get(unimpCard.Id);
                                 UpdateCardsCollections();
                             }
                         }
@@ -288,13 +290,14 @@ namespace Timelon.App
         public RelayCommand CardDoneCommand => cardDoneCommand ??
                     (cardDoneCommand = new RelayCommand(obj =>
                     {
-                        if (obj is Card completed)
+                        if (obj is Card cCard)
                         {
-                            if (!completed.IsCompleted)
+                            if (!cCard.IsCompleted)
                             {
-                                completed.IsCompleted = true;
-                                SelectedList.Set(completed);    //Обновляем карту в списке
+                                cCard.IsCompleted = true;
+                                SelectedList.Set(cCard);    //Обновляем карту в списке
 
+                                SelectedCard = SelectedList.Get(cCard.Id);
                                 UpdateCardsCollections();
                             }
                         }
@@ -311,13 +314,13 @@ namespace Timelon.App
         public RelayCommand CardRecoverCommand => cardRecoverCommand ??
                     (cardRecoverCommand = new RelayCommand(obj =>
                     {
-                        if (obj is Card iCard)
+                        if (obj is Card recCard)
                         {
-                            if (iCard.IsCompleted)
+                            if (recCard.IsCompleted)
                             {
-                                iCard.IsCompleted = false;
-                                SelectedList.Set(iCard);
-
+                                recCard.IsCompleted = false;
+                                SelectedList.Set(recCard);
+                                SelectedCard = SelectedList.Get(recCard.Id);
                                 UpdateCardsCollections();
                             }
                         }

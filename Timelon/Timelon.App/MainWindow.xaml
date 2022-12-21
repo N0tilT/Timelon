@@ -593,8 +593,7 @@
                                      IsReadOnly="True"
                                      Style="{StaticResource TextBoxInputTheme}"
                                      Focusable="False"
-                                     Cursor="Arrow"
-                                     />
+                                     Cursor="Arrow" />
                         </Grid>
                     </Border>
 
