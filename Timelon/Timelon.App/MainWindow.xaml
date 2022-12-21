@@ -116,7 +116,7 @@
         </Grid.RowDefinitions>
 
         <!--Заполнение панели управления окном-->
-        <Rectangle x:Name="Window_Menu" Grid.Row="0">
+        <Rectangle x:Name="Window_Menu" Grid.Row="0" Grid.ColumnSpan="2">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#ffe9eb" />
             </Rectangle.Fill>
@@ -124,41 +124,57 @@
         <!--#endregion-->
 
         <!--#region Manage Window-->
-        <Image Name="SaveButton"
-                   Margin="2,2,0,2"
-               HorizontalAlignment="Left"
+        <Button Width="30"
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                Margin="3"
+                Background="Transparent"
+                Click="SaveChanges_Click" >
+            <Image Name="SaveButton"
                    Source="Images\Save.png"
-                   MouseDown="SaveChanges_MouseDown" />
+                       SnapsToDevicePixels="True"/>
+        </Button>
+
+
         <!--Кнопки управления окном-->
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right" Margin="934,0,0,0">
+                    HorizontalAlignment="Right" Grid.Column="1">
+            <Button Background="Transparent"
+                    BorderThickness="0"
+                    Margin="3"
+                    Click="HideWindow_Click" >
+                <Image Name="HideButton"
+                       Source="Images\Less2.png"
+                       SnapsToDevicePixels="True"/>
+            </Button>
+            <Button Background="Transparent"
+                    BorderThickness="0"
+                    Margin="3"
+                    Click="MinimizeWindow_Click" >
+                <Image Name="SizeButton"
+                       Source="Images\FS.png"
+                       SnapsToDevicePixels="True" />
+            </Button>
+            <Button Background="Transparent"
+                    BorderThickness="0"
+                    Margin="3"
+                    Click="CloseApp_Click" >
+                <Image Name="CloseButton"
+                       Source="Images/close2.png"
+                       SnapsToDevicePixels="True"/>
+            </Button>
 
-            <Image Name="HideButton"
-                   Margin="4"
-                   Source="Images\Less2.png"
-                   MouseDown="HideWindow_MouseDown"
-                   SnapsToDevicePixels="True"
-                   HorizontalAlignment="Right"/>
 
-            <Image Name="SizeButton"
-                   Margin="4"
-                   Source="Images\FS.png"
-                   MouseDown="MinimizeWindow_MouseDown"
-                   SnapsToDevicePixels="True" />
 
-            <Image Name="CloseButton"
-                   Margin="4"
-                   Source="Images/close2.png"
-                   MouseDown="CloseApp_MouseDown"
-                   SnapsToDevicePixels="True"
-                   HorizontalAlignment="Right"/>
+
+
         </StackPanel>
         <!--#endregion-->
 
         <!--Скругленные нижние края-->
         <Border Background="{DynamicResource MainBackgroundColor}"
                 CornerRadius="0 0 10 10"
-                Grid.Row="1" Grid.RowSpan="2">
+                Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
 
             <!--Элементы управления приложением-->
             <Grid Margin="10,0,10,0">
@@ -168,9 +184,9 @@
                     <ColumnDefinition Width="240" />
                     <ColumnDefinition Width="89*" />
                     <!--Скрываемая панель информации о карточке-->
-                    <ColumnDefinition x:Name="CardInfoColumn" Width="200" />
+                    <ColumnDefinition x:Name="CardInfoColumn" Width="240" />
                     <!--Скрываемая панель информации о расширенной карточке-->
-                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="200" />
+                    <ColumnDefinition x:Name="ExCardInfoColumn" Width="240" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -196,7 +212,7 @@
                 <Border x:Name ="Title">
                     <TextBlock x:Name="TitleText"
                                Style="{StaticResource TitleTheme}"
-                               FontSize="22"><Run Text="Timelon" /></TextBlock>
+                               FontSize="30" FontWeight="Bold"><Run Text="Timelon" /></TextBlock>
                 </Border>
 
                 <!--Название списка-->
@@ -233,9 +249,9 @@
                          Text=" Здесь пустовато...
 
                          Этот список не содержит задач. Добавьте к нему задачи с помощью кнопки ниже."
-                         Style="{StaticResource VeilTheme}" >                     
+                         Style="{StaticResource VeilTheme}" >
                 </TextBox>
-                
+
                 <TextBox x:Name="Veil_Search"
                           Grid.Column="1"
                           Grid.Row="2"
@@ -323,14 +339,14 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Name}"
+                                <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource CardTheme}" 
                                                    Margin="20,0,0,0"/>
-                                    <TextBlock Margin="20,0,0,0"
+                                <TextBlock Margin="20,0,0,0"
                                                    Text="{Binding ParentName}"
                                                    FontSize="12" FontStyle="Oblique"
                                                    Style="{StaticResource CardTheme}" />
-                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -378,22 +394,6 @@
                         </Grid>
                     </Border>
 
-                    <Grid Margin="10,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0"
-                                  x:Name="ExCardImportantCheck"
-                                  Content="Важное"
-                                  IsChecked="{Binding SelectedExtendedCard.IsImportant}"
-                                  Style="{StaticResource InfoCheckBoxTheme}" />
-                        <CheckBox Grid.Column="1"
-                                  x:Name="ExCardDoneCheck"
-                                  Content="Выполнено"
-                                  IsChecked="{Binding SelectedExtendedCard.IsCompleted}"
-                                  Style="{StaticResource InfoCheckBoxTheme}" />
-                    </Grid>
                     <TextBox x:Name="ExDescription"
                              Height="17"
                              BorderThickness="0"
@@ -419,10 +419,28 @@
                                      TextWrapping="Wrap" AcceptsReturn="True"/>
                         </Grid>
                     </Border>
-
+                    
+                    <!--Индикация важности и выполненности-->
+                    <Grid Margin="10,0,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0"
+                                  x:Name="ExCardImportantCheck"
+                                  Content="Важное"
+                                  IsChecked="{Binding SelectedExtendedCard.IsImportant}"
+                                  Style="{StaticResource InfoCheckBoxTheme}" />
+                        <CheckBox Grid.Column="1"
+                                  x:Name="ExCardDoneCheck"
+                                  Content="Завершена"
+                                  IsChecked="{Binding SelectedExtendedCard.IsCompleted}"
+                                  Style="{StaticResource InfoCheckBoxTheme}" />
+                    </Grid>
+                    
                     <!--Кнопка перейти к родительскому списку -->
                     <Border Grid.Column="2" Grid.Row="1"
-                            Height="35" Margin="10,0,0,0">
+                            Height="35" Margin="10,10,0,0">
                         <Button Click="GoToListButton_Click"
                                 Command="{Binding ShowParentListCommand}"
                                 CommandParameter="{Binding SelectedExtendedCard}"
@@ -580,20 +598,6 @@
                         </Grid>
                     </Border>
 
-                    <Grid Margin="10,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0"
-                                  x:Name="CardImportantCheck" IsChecked="{Binding SelectedCard.IsImportant}"
-                                  Content="Важное"
-                                  Style="{StaticResource InfoCheckBoxTheme}" />
-                        <CheckBox Grid.Column="1"
-                                  x:Name="CardDoneCheck" IsChecked="{Binding SelectedCard.IsCompleted}"
-                                  Content="Выполнено"
-                                  Style="{StaticResource InfoCheckBoxTheme}" />
-                    </Grid>
                     <TextBox x:Name="Description"
                              Height="21" Width="74"
                              BorderThickness="0"
@@ -624,13 +628,29 @@
                                      TextWrapping="Wrap" AcceptsReturn="True" />
                         </Grid>
                     </Border>
-                    
+
+                    <!--Индикация важности и выполненности-->
+                    <Grid Margin="10,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0"
+                                  x:Name="CardImportantCheck" IsChecked="{Binding SelectedCard.IsImportant}"
+                                  Content="Важное"
+                                  Style="{StaticResource InfoCheckBoxTheme}" />
+                        <CheckBox Grid.Column="1"
+                                  x:Name="CardDoneCheck" IsChecked="{Binding SelectedCard.IsCompleted}"
+                                  Content="Завершена"
+                                  Style="{StaticResource InfoCheckBoxTheme}" />
+                    </Grid>
+
                     <!--Кнопка выполнить задачу-->
-                    <Border Height="35" Margin="10,0,0,0">
+                    <Border Height="35" Margin="10,10,0,0">
                         <Button Click="DoneCardButton_Click"
                                 Command="{Binding CardDoneCommand}"
                                 CommandParameter="{Binding SelectedCard}"
-                                Content="Выполнить задачу"
+                                Content="Завершить задачу"
                                 Style="{StaticResource CardActButtonTheme}">
                         </Button>
                     </Border>
@@ -638,16 +658,16 @@
                     <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
                         <!--Кнопка отметить задачу как важную-->
                         <Border Grid.Column="2" Grid.Row="1"
-                                Height="35" Width="163" Margin="0,0,5,0">
+                                Height="35" Width="110" Margin="0,0,10,0">
                             <Button Click="ImportantCardButton_Click"
                                     Command="{Binding CardImportantCommand}"
                                     CommandParameter="{Binding SelectedCard}"
-                                    Content="Отметить как важное"
+                                    Content="Важное"
                                     Style="{StaticResource CardActButtonTheme}">
                             </Button>
                         </Border>
                         <!--Отменить отметку о важности-->
-                        <Border Grid.Column="2" Grid.Row="1" Height="35">
+                        <Border Grid.Column="2" Grid.Row="1" Height="35" Width="110">
                             <Button Click="UndoImportantCardButton_Click"
                                     Command="{Binding CardUndoImportantCommand}"
                                     CommandParameter="{Binding SelectedCard}"
@@ -667,7 +687,7 @@
                                 Style="{StaticResource CardActButtonTheme}">
                         </Button>
                     </Border>
-                    
+
                 </StackPanel>
 
                 <!--Кнопка удалить задачу-->
@@ -744,7 +764,7 @@
             </Grid>
         </Border>
         <!--#region  Tray-->
-        <Grid>
+        <Grid Grid.ColumnSpan="2">
             <tb:TaskbarIcon x:Name="Tray"
                 Visibility="Visible"
                 TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown"
@@ -763,8 +783,8 @@
                 </tb:TaskbarIcon.ContextMenu>
             </tb:TaskbarIcon>
         </Grid>
-        <Grid Margin="788,68,144,542" Grid.Row="1" />
-        <Grid Margin="788,68,144,542" Grid.Row="1" />
+        <Grid Margin="6,68,144,542" Grid.Row="1" Grid.Column="1" />
+        <Grid Margin="6,68,144,542" Grid.Row="1" Grid.Column="1" />
         <!--#endregion-->
     </Grid>
 </Window>

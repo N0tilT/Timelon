@@ -228,12 +228,11 @@ namespace Timelon.App
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CloseApp_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
         }
-
-        private void SaveChanges_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
             MainCardsMenu.Focus();
             viewModel.Need_Save = false;
@@ -245,7 +244,7 @@ namespace Timelon.App
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void HideWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void HideWindow_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
             Canvas.SetZIndex(CloseButton, 1);
@@ -256,7 +255,7 @@ namespace Timelon.App
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MinimizeWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MinimizeWindow_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
                 this.WindowState = WindowState.Maximized;
@@ -427,10 +426,11 @@ namespace Timelon.App
             }
         }
 
+
+
         #endregion Methods
 
         
-
     }
     
 }
