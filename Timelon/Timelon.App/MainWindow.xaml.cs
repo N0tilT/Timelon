@@ -375,6 +375,8 @@ namespace Timelon.App
             Veil.Visibility = Visibility.Hidden;
             CardListName.Visibility = Visibility.Visible;
             SearchResult.Visibility = Visibility.Hidden;
+            if (viewModel.SelectedList.Id == 0 || viewModel.SelectedList.Id == 1) DeleteListButton.Visibility = Visibility.Hidden;
+            else DeleteListButton.Visibility = Visibility.Visible;
         }
 
         /// <summary>
