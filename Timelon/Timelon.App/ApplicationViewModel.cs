@@ -472,9 +472,9 @@ namespace Timelon.App
         /// </summary>
         private void UpdateCardsCollections()
         {
-            ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant());
-            DefaultCards = new ObservableCollection<Card>(_selectedList.GetListDefault());
-            DoneCards = new ObservableCollection<Card>(_selectedList.GetListCompleted());
+            ImportantCards = new ObservableCollection<Card>(_selectedList.GetListImportant(SortOrder.Ascending));
+            DefaultCards = new ObservableCollection<Card>(_selectedList.GetListDefault(SortOrder.Ascending));
+            DoneCards = new ObservableCollection<Card>(_selectedList.GetListCompleted(SortOrder.Initial));
             SelectedCard = _selectedCard;
         }
 

@@ -196,7 +196,7 @@ namespace Timelon.Data
         /// </summary>
         /// <param name="order">Статус сортировки</param>
         /// <returns>Список карт</returns>
-        public List<Card> GetListDefault(SortOrder order = SortOrder.Ascending)
+        public List<Card> GetListDefault(SortOrder order = SortOrder.Descending)
         {
             return GetListSorted(_idListDefault, order);
         }
@@ -208,7 +208,7 @@ namespace Timelon.Data
         /// </summary>
         /// <param name="order">Статус сортировки</param>
         /// <returns>Список карт</returns>
-        public List<Card> GetListImportant(SortOrder order = SortOrder.Ascending)
+        public List<Card> GetListImportant(SortOrder order = SortOrder.Descending)
         {
             return GetListSorted(_idListImportant, order);
         }
@@ -220,7 +220,7 @@ namespace Timelon.Data
         /// </summary>
         /// <param name="order">Статус сортировки</param>
         /// <returns>Список карт</returns>
-        public List<Card> GetListCompleted(SortOrder order = SortOrder.Ascending)
+        public List<Card> GetListCompleted(SortOrder order = SortOrder.Descending)
         {
             return GetListSorted(_idListCompleted, order);
         }
